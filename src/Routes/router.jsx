@@ -5,8 +5,10 @@ import Error from '../Pages/Error/Error';
 import Home from '../Pages/Home/Home';
 import SignIn from '../Pages/Authentication/SignIn';
 import SignUp from '../Pages/Authentication/SignUp';
-import Dashboard from '../Pages/Dashboard/Dashboard';
 import Profile from '../Pages/Dashboard/Profile/Profile';
+import AllClasses from '../Pages/AllClasses/AllClasses';
+import ApplyTeacher from '../Pages/ApplyTeacher/ApplyTeacher';
+import DashboardLayout from '../Layouts/DashboardLayout';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
+      },
+      {
+        path: '/all_classes',
+        element: <AllClasses />,
+      },
+      {
+        path: '/apply_teacher',
+        element: <ApplyTeacher />,
       },
     ],
   },
@@ -30,7 +40,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <Dashboard />,
+    element: <DashboardLayout />,
     children: [
       {
         index: true,
