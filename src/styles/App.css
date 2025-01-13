@@ -1,0 +1,31 @@
+@keyframes btnClickAnim {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+button:active {
+  animation: btnClickAnim 0.1s;
+}
+
+button:hover {
+  box-shadow: 0 2px 4px #808080;
+}
+
+nav a.active {
+  color: #fd7e14;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media screen and (min-width: 640px) {
+  nav a.active {
+    color: #155724;
+  }
+}
