@@ -1,13 +1,14 @@
 import React, { useEffect } from 'react';
+import Banner from './Banner/Banner';
 
 const Home = () => {
   useEffect(() => {
-    document.title = 'Home';
+    document.title = 'Home | EduHive';
   }, []);
 
   return (
     <>
-      <p className="text-4xl font-semibold">Home</p>
+      <Banner />
     </>
   );
 };

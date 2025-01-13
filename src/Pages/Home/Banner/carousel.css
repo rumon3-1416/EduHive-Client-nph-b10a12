@@ -1,0 +1,38 @@
+.swiper-slide {
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.swiper-button-next {
+  right: -1rem;
+}
+.swiper-button-prev {
+  left: -1rem;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #28a745;
+  background-color: rgba(255, 255, 255, 0.497);
+  padding: 3rem;
+  border-radius: 6rem;
+  transform: scale(0.5);
+}
+
+.swiper-pagination-bullet {
+  background-color: #28a745;
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+@media screen and (min-width: 640px) {
+  .swiper-slide {
+    aspect-ratio: 4/3;
+  }
+}
+@media screen and (min-width: 768px) {
+  .swiper-slide {
+    aspect-ratio: 2/1;
+  }
+}
