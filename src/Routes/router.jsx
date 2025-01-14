@@ -9,6 +9,7 @@ import Profile from '../Pages/Dashboard/Profile/Profile';
 import AllClasses from '../Pages/AllClasses/AllClasses';
 import ApplyTeacher from '../Pages/ApplyTeacher/ApplyTeacher';
 import DashboardLayout from '../Layouts/DashboardLayout';
+import ClassDetails from '../Pages/ClassDetails/ClassDetails';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: '/apply_teacher',
         element: <ApplyTeacher />,
+      },
+      {
+        path: '/classDetails/:id',
+        element: <ClassDetails />,
       },
     ],
   },

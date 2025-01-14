@@ -4,6 +4,8 @@ import Collaborators from './Collaborators/Collaborators';
 import PopularClasses from './PopularClasses/PopularClasses';
 import Feedbacks from './Feedback/Feedbacks';
 import Overview from './OverView/Overview';
+import BecomeTeacher from './BecomeTeacher/BecomeTeacher';
+import Extra from './Extra';
 
 const Home = () => {
   useEffect(() => {
@@ -17,6 +19,8 @@ const Home = () => {
       <PopularClasses />
       <Feedbacks />
       <Overview />
+      <BecomeTeacher />
+      <Extra />
     </>
   );
 };

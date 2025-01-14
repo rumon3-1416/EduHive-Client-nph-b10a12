@@ -1,10 +1,15 @@
 import React from 'react';
+import Container from '../Container/Container';
 
 const Footer = () => {
   return (
-    <footer>
-      <p>This is footer</p>
-    </footer>
+    <div>
+      <Container>
+        <footer>
+          <p className="text-pink-400 text-2xl">This is footer</p>
+        </footer>
+      </Container>
+    </div>
   );
 };
 
