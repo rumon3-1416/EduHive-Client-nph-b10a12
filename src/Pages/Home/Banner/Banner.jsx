@@ -7,29 +7,30 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
+import { useQuery } from '@tanstack/react-query';
 
-import './carousel.css';
 import { useAuthContext } from '../../../Hooks/useAuthContext';
 import Container from '../../../components/Container/Container';
-
 import Loading from '../../../components/Loading/Loading';
 import Slide from './Slide';
+import './carousel.css';
 
 const Banner = () => {
-  const [slides, setSlides] = useState([]);
-
   const { serverUrl } = useAuthContext();
 
-  useEffect(() => {
-    axios
-      .get(`${serverUrl}/slides`)
-      .then(res => res.data && setSlides(res.data));
-  }, [serverUrl]);
+  const { data: slides = [], isLoading } = useQuery({
+    queryKey: ['slides'],
+    queryFn: async () => {
+      const { data } = await axios.get(`${serverUrl}/slides`);
+
+      return data;
+    },
+  });
 
   return (
     <section className="bg-greenBg">
       <Container>
-        {slides?.length > 2 ? (
+        {!isLoading ? (
           <Swiper
             slidesPerView={1}
             spaceBetween={30}

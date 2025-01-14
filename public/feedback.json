@@ -1,0 +1,20 @@
+[
+  {
+    "feedback": "This course was amazing! The instructor explained everything clearly, and I gained valuable skills.",
+    "name": "Mr. Rumon",
+    "image": "https://i.ibb.co.com/FDQdp4v/20210813-104509-2.jpg",
+    "title": "Web Development Basics"
+  },
+  {
+    "feedback": "A very insightful class. The assignments were practical and helped me understand the concepts deeply.",
+    "name": "Michael Brown",
+    "image": "https://www.thelittlehawk.com/wp-content/uploads/2018/10/IMG-1246-900x675.jpg",
+    "title": "Advanced JavaScript"
+  },
+  {
+    "feedback": "I loved the course structure and the way the content was organized. Highly recommended!",
+    "name": "Emily Davis",
+    "image": "https://img.freepik.com/free-photo/closeup-portrait-caucasian-happy-teacher-glasses_74855-9736.jpg",
+    "title": "React for Beginners"
+  }
+]

@@ -63,10 +63,10 @@ const Navbar = () => {
             </ul>
 
             <div className="flex items-center gap-2 lg:gap-3 relative">
-              {user ? (
+              {!user ? (
                 <>
                   <button
-                    onClick={() => setShowProfile(true)}
+                    onClick={() => setShowProfile(!showProfile)}
                     className="bg-transparent w-12 h-12 p-0.5 border-2 border-teal rounded-full"
                   >
                     <img
@@ -78,16 +78,12 @@ const Navbar = () => {
 
                   {/* Profile Info */}
                   <div
-                    className={`bg-white p-2 top-10 right-2 absolute ${
+                    className={`p-2 top-10 right-2 absolute ${
                       showProfile ? 'block' : 'hidden'
                     }`}
                   >
                     <div
-                      className={`text-center p-4 pb-5 rounded-lg shadow-md shadow-[#7b7b7b] ${
-                        darkTheme
-                          ? 'bg-dark4 text-light2'
-                          : 'bg-light2 text-dark'
-                      }`}
+                      className={`bg-white text-center p-4 pb-5 rounded-lg shadow-md shadow-[#7b7b7b] `}
                     >
                       <h2 className="font-semibold text-nowrap">
                         {user?.displayName || 'Display Name'}

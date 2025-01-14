@@ -1,0 +1,152 @@
+[
+  {
+    "title": "Web Development Bootcamp",
+    "name": "Rumon",
+    "image": "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20221222184908/web-development1.png",
+    "price": 199,
+    "description": "Learn full-stack web development with hands-on projects.",
+    "total_enrolment": 120,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Introduction to Python",
+    "name": "Rumon",
+    "image": "https://cdn.activestate.com/wp-content/uploads/2021/12/python-coding-mistakes.jpg",
+    "price": 99,
+    "description": "Master the basics of Python programming.",
+    "total_enrolment": 95,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Graphic Design Essentials",
+    "name": "Rumon",
+    "image": "https://5.imimg.com/data5/SELLER/Default/2020/10/QD/XH/ER/31891429/graphic-designing-500x500.jpg",
+    "price": 149,
+    "description": "Learn the fundamentals of graphic design with practical exercises.",
+    "total_enrolment": 85,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Digital Marketing Pro",
+    "name": "Rumon",
+    "image": "https://cdn.ostad.app/course/photo/2024-12-19T15-55-32.073Z-Digital-Marketing.jpg",
+    "price": 179,
+    "description": "Explore the key concepts of digital marketing and analytics.",
+    "total_enrolment": 130,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "UI/UX Design Mastery",
+    "name": "Rumon",
+    "image": "https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/130117531/original/bbab1f1c563769919b2c7fb9d02babd7f4b1737b/do-ui-ux-design-for-website-mobile-app-or-landing-page.png",
+    "price": 199,
+    "description": "Design user-friendly interfaces and enhance user experiences.",
+    "total_enrolment": 75,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Advanced JavaScript",
+    "name": "Rumon",
+    "image": "https://cdn-images-1.medium.com/v2/resize:fit:958/1*dbggYEdKfBg-4SqRqrkFow.png",
+    "price": 149,
+    "description": "Deep dive into JavaScript concepts and advanced programming.",
+    "total_enrolment": 110,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Photography Basics",
+    "name": "Rumon",
+    "image": "https://www.findbanquet.com/blog/wp-content/uploads/2024/06/photographers.jpg",
+    "price": 99,
+    "description": "Learn to capture stunning photos with this beginner's course.",
+    "total_enrolment": 60,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Machine Learning Essentials",
+    "name": "Rumon",
+    "image": "https://bigblue.academy/images/image/blog/what-is-machine-learning-2023-beginners-guide/1-3cxboknql4qs-lryht3pqw.jpg",
+    "price": 249,
+    "description": "Understand machine learning concepts with practical examples.",
+    "total_enrolment": 90,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "SEO Masterclass",
+    "name": "Rumon",
+    "image": "https://cdn.shopify.com/s/files/1/0840/8370/3830/articles/1603954182-seo-article-header.png?v=1714646999",
+    "price": 119,
+    "description": "Boost your website's visibility with advanced SEO strategies.",
+    "total_enrolment": 100,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "React.js for Beginners",
+    "name": "Rumon",
+    "image": "https://media.licdn.com/dms/image/C4E12AQEBVCR2SpRr9g/article-cover_image-shrink_720_1280/0/1625909824541?e=2147483647&v=beta&t=Y_zSoI8cPUR3wQvPyYK15PLWpQJJ0si6OvsuXFnIC18",
+    "price": 149,
+    "description": "Learn React.js to build modern and dynamic web applications.",
+    "total_enrolment": 115,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Financial Management Basics",
+    "name": "Rumon",
+    "image": "https://i.ytimg.com/vi/825TSuxTiQU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLANfzvclauSETToy56ExmMfBphqpA",
+    "price": 129,
+    "description": "Manage personal and business finances effectively.",
+    "total_enrolment": 70,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Data Science Fundamentals",
+    "name": "Rumon",
+    "image": "https://www.mygreatlearning.com/blog/wp-content/uploads/2019/09/What-is-data-science-2.jpg",
+    "price": 249,
+    "description": "Get started with data analysis and visualization techniques.",
+    "total_enrolment": 95,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Creative Writing Workshop",
+    "name": "Rumon",
+    "image": "https://bethanyinstitutions.edu.in/wp-content/uploads/2024/09/Strategies-to-Enhance-Students-Creative-Writing-Skills-in-Schools.png",
+    "price": 89,
+    "description": "Enhance your storytelling and writing skills.",
+    "total_enrolment": 50,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "App Development with Flutter",
+    "name": "Rumon",
+    "image": "https://api.reliasoftware.com/uploads/the_complete_guide_to_mobile_app_development_2021_ded2abd1b1.png",
+    "price": 199,
+    "description": "Build cross-platform mobile apps using Flutter.",
+    "total_enrolment": 85,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  },
+  {
+    "title": "Public Speaking Mastery",
+    "name": "Rumon",
+    "image": "https://u2y8h9a9.delivery.rocketcdn.me/wp-content/uploads/2022/05/public-speaker-1.png",
+    "price": 119,
+    "description": "Overcome stage fear and master public speaking.",
+    "total_enrolment": 65,
+    "email": "shahidhasanruman3@gmail.com",
+    "status": "approved"
+  }
+]
