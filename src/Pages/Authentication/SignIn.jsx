@@ -116,7 +116,7 @@ const SignIn = () => {
 
               {/* Submit */}
               <button
-                className="bg-green hover:bg-gold2 text-white text-xl font-semibold px-5 py-4 rounded-xl"
+                className="bg-green-500 hover:bg-gold2 text-white text-xl font-semibold px-5 py-4 rounded-xl"
                 type="submit"
               >
                 Log In

@@ -4,29 +4,42 @@ import { useAuthContext } from './useAuthContext';
 
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_ServerUrl,
-  withCredentials: true,
 });
 
 const useAxiosSecure = () => {
   const authContext = useAuthContext();
 
   useEffect(() => {
-    const interceptor = axiosInstance.interceptors.response.use(
-      res => {
-        return res;
+    // Request Interceptor
+    const reqInterceptor = axiosInstance.interceptors.request.use(
+      config => {
+        const token = localStorage.getItem('access_token');
+        config.headers.Authorization = `Bearer ${token}`;
+
+        return config;
       },
-      err => {
-        if (err.status === 401 || err.status === 403) {
-          authContext?.signOutUser();
-        }
-        return Promise.reject(err);
+      error => {
+        console.log('ReqIntError --> ', error.message);
+        return Promise.reject(error);
+      }
+    );
+
+    // Response Interceptor
+    const resInterceptor = axiosInstance.interceptors.response.use(
+      response => {
+        return response;
+      },
+      error => {
+        console.log('ResIntError --> ', error.message);
+        return Promise.reject(error);
       }
     );
 
     return () => {
-      axiosInstance.interceptors.response.eject(interceptor);
+      axiosInstance.interceptors.response.eject(reqInterceptor);
+      axiosInstance.interceptors.response.eject(resInterceptor);
     };
-  }, [authContext]);
+  }, []);
 
   return axiosInstance;
 };

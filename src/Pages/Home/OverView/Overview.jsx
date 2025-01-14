@@ -1,16 +1,16 @@
 import React from 'react';
-import Container from '../../../components/Container/Container';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import { useAuthContext } from '../../../Hooks/useAuthContext';
+
+import Container from '../../../components/Container/Container';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const Overview = () => {
-  const { serverUrl } = useAuthContext();
+  const axiosPublic = useAxiosPublic();
 
   const { data: overview = {} } = useQuery({
     queryKey: ['overview'],
     queryFn: async () => {
-      const { data } = await axios.get(`${serverUrl}/overview`);
+      const { data } = await axiosPublic.get(`/overview`);
       return data;
     },
   });

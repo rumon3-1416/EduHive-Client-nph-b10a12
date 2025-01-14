@@ -27,7 +27,7 @@ const BecomeTeacher = () => {
               magnam soluta atque voluptatibus! Ipsa veritatis temporibus eum
               corporis quisquam, voluptate reprehenderit ad nemo vel numquam.
             </p>
-            <button onClick={() => navigate('/all_classes')} className="btn">
+            <button onClick={() => navigate('/apply_teacher')} className="btn">
               Become an Instructor Today
             </button>
           </div>

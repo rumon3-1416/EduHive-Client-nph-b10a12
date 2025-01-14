@@ -1,19 +1,25 @@
-import React from 'react';
-import { useAuthContext } from '../../Hooks/useAuthContext';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+
 import Container from '../../components/Container/Container';
+import { useNavigate } from 'react-router-dom';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const AllClasses = () => {
-  const { serverUrl } = useAuthContext();
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   const { data: classes = [] } = useQuery({
     queryKey: ['classes'],
     queryFn: async (req, res) => {
-      const { data } = await axios.get(`${serverUrl}/classes`);
+      const { data } = await axiosPublic.get(`/classes`);
       return data;
     },
   });
+
+  useEffect(() => {
+    document.title = 'All Classes | EduHive';
+  }, []);
 
   return (
     <div>
@@ -41,7 +47,12 @@ const AllClasses = () => {
                   <p>Enrolled : {total_enrolment}</p>
                   <p>Price : {price}</p>
                   <p>{description}</p>
-                  <button className="btn btn-success text-white">Enroll</button>
+                  <button
+                    onClick={() => navigate(`/class_details/${_id}`)}
+                    className="btn btn-success text-white"
+                  >
+                    Enroll
+                  </button>
                 </div>
               );
             })}

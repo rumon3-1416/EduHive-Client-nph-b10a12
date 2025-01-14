@@ -1,20 +1,17 @@
 import React from 'react';
-import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
 import Container from '../../../components/Container/Container';
-import { useAuthContext } from '../../../Hooks/useAuthContext';
 import PopClassCard from './PopClassCard';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const PopularClasses = () => {
-  const { serverUrl } = useAuthContext();
+  const axiosPublic = useAxiosPublic();
 
   const { data: popularClasses = [] } = useQuery({
     queryKey: ['popular-classes'],
     queryFn: async () => {
-      const { data } = await axios.get(
-        `${serverUrl}/classes?popular=true&limit=6`
-      );
+      const { data } = await axiosPublic.get(`/classes?popular=true&limit=6`);
 
       return data;
     },

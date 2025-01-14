@@ -63,7 +63,7 @@ const Navbar = () => {
             </ul>
 
             <div className="flex items-center gap-2 lg:gap-3 relative">
-              {!user ? (
+              {user ? (
                 <>
                   <button
                     onClick={() => setShowProfile(!showProfile)}

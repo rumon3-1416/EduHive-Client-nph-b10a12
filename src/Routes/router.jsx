@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <ApplyTeacher />,
       },
       {
-        path: '/classDetails/:id',
+        path: '/class_details/:id',
         element: <ClassDetails />,
       },
     ],

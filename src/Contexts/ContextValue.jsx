@@ -52,11 +52,13 @@ export const ContextValue = () => {
       setUser(currentUser || null);
 
       if (currentUser) {
-        axiosSecure.post('/jwt', { email: currentUser.email });
+        axiosSecure
+          .post('/jwt', { email: currentUser.email })
+          .then(res => localStorage.setItem('access_token', res.data.token));
 
         setLoading(false);
       } else {
-        axiosSecure.post('/logout');
+        localStorage.removeItem('access_token');
 
         setLoading(false);
       }

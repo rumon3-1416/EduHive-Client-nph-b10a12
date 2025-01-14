@@ -1,7 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React from 'react';
-import { useAuthContext } from '../../../Hooks/useAuthContext';
 import Container from '../../../components/Container/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation } from 'swiper/modules';
@@ -10,16 +8,17 @@ import { Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 // import required modules
 
 const Feedbacks = () => {
-  const { serverUrl } = useAuthContext();
+  const axiosPublic = useAxiosPublic();
 
   const { data: feedbacks = [] } = useQuery({
     queryKey: ['feedbacks'],
     queryFn: async () => {
-      const { data } = await axios.get(`${serverUrl}/feedbacks`);
+      const { data } = await axiosPublic.get(`/feedbacks`);
       return data;
     },
   });

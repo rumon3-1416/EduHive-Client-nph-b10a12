@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
@@ -9,19 +8,19 @@ import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
 import { useQuery } from '@tanstack/react-query';
 
-import { useAuthContext } from '../../../Hooks/useAuthContext';
 import Container from '../../../components/Container/Container';
 import Loading from '../../../components/Loading/Loading';
 import Slide from './Slide';
 import './carousel.css';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const Banner = () => {
-  const { serverUrl } = useAuthContext();
+  const axiosPublic = useAxiosPublic();
 
   const { data: slides = [], isLoading } = useQuery({
     queryKey: ['slides'],
     queryFn: async () => {
-      const { data } = await axios.get(`${serverUrl}/slides`);
+      const { data } = await axiosPublic.get(`/slides`);
 
       return data;
     },
