@@ -3,6 +3,7 @@ import Banner from './Banner/Banner';
 import Collaborators from './Collaborators/Collaborators';
 import PopularClasses from './PopularClasses/PopularClasses';
 import Feedbacks from './Feedback/Feedbacks';
+import Overview from './OverView/Overview';
 
 const Home = () => {
   useEffect(() => {
@@ -15,6 +16,7 @@ const Home = () => {
       <Collaborators />
       <PopularClasses />
       <Feedbacks />
+      <Overview />
     </>
   );
 };

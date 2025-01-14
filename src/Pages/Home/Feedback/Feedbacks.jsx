@@ -4,7 +4,7 @@ import React from 'react';
 import { useAuthContext } from '../../../Hooks/useAuthContext';
 import Container from '../../../components/Container/Container';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -38,16 +38,13 @@ const Feedbacks = () => {
                 delay: 2500,
                 disableOnInteraction: false,
               }}
-              pagination={{
-                clickable: true,
-              }}
               navigation={true}
-              modules={[Autoplay, Pagination, Navigation]}
+              modules={[Autoplay, Navigation]}
               className="mySwiper"
             >
               {feedbacks.map(feed => (
                 <SwiperSlide key={feed._id}>
-                  <div className="border border-black text-center w-full h-full flex flex-col justify-center items-center">
+                  <div className="bg-gray-200 text-center w-full h-full flex flex-col justify-center items-center">
                     <h3>{feed.title}</h3>
                     <img
                       className="w-32 aspect-square object-cover rounded-full"
