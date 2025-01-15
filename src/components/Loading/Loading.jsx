@@ -1,13 +1,13 @@
 import React from 'react';
 import Lottie from 'lottie-react';
 import loadingHand from './loadingHand.json';
-import MainLayout from '../../Layouts/MainLayout';
+import Container from '../Container/Container';
 
 const Loading = () => {
   return (
-    <MainLayout>
+    <Container>
       <Lottie className="h-[70vh]" animationData={loadingHand} />
-    </MainLayout>
+    </Container>
   );
 };
 

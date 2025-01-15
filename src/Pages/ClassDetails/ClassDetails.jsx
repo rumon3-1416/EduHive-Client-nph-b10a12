@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Container from '../../components/Container/Container';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../Hooks/useAuthContext';
 
@@ -9,6 +9,7 @@ const ClassDetails = () => {
   const { user } = useAuthContext();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const { data: classDetails = {} } = useQuery({
     queryKey: ['classDetails', id],
@@ -42,7 +43,12 @@ const ClassDetails = () => {
               <p>Enrolled : {total_enrolment}</p>
               <p>Price : {price}</p>
               <p>{description}</p>
-              <button className="btn">Pay Now</button>
+              <button
+                onClick={() => navigate(`/payment/${_id}`)}
+                className="btn"
+              >
+                Pay Now
+              </button>
             </div>
           </div>
         </div>

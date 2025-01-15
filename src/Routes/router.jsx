@@ -10,6 +10,8 @@ import AllClasses from '../Pages/AllClasses/AllClasses';
 import ApplyTeacher from '../Pages/ApplyTeacher/ApplyTeacher';
 import DashboardLayout from '../Layouts/DashboardLayout';
 import ClassDetails from '../Pages/ClassDetails/ClassDetails';
+import PrivateNavigator from './PrivateNavigator';
+import Payment from '../Pages/Payment/Payment';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/class_details/:id',
-        element: <ClassDetails />,
+        element: (
+          <PrivateNavigator>
+            <ClassDetails />
+          </PrivateNavigator>
+        ),
+      },
+      {
+        path: '/payment/:id',
+        element: (
+          <PrivateNavigator>
+            <Payment />
+          </PrivateNavigator>
+        ),
       },
     ],
   },
