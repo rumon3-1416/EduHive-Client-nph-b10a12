@@ -57,6 +57,11 @@ export const ContextValue = () => {
           .post('/jwt', { email: currentUser.email })
           .then(res => localStorage.setItem('access_token', res.data.token));
 
+        axiosPublic.post('/users', {
+          email: currentUser.email,
+          displayName: currentUser.displayName,
+        });
+
         setLoading(false);
       } else {
         localStorage.removeItem('access_token');

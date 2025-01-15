@@ -71,6 +71,7 @@ const Navbar = () => {
                   >
                     <img
                       className="w-full h-full object-cover rounded-full"
+                      referrerPolicy="no-referrer"
                       src={user?.photoURL || userIcon}
                       alt=""
                     />
