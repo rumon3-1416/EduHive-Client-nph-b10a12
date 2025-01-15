@@ -7,8 +7,10 @@ import { IoEyeOutline } from 'react-icons/io5';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import googleIcon from '../../assets/icons/google.png';
 import Container from '../../components/Container/Container';
+import { useForm } from 'react-hook-form';
 
 const SignUp = () => {
+  const { register, handleSubmit } = useForm();
   const [showPass, setShowPass] = useState(false);
   const [passErr, setPassErr] = useState(null);
   const [errMessage, setErrMessage] = useState(null);
@@ -23,14 +25,8 @@ const SignUp = () => {
     useAuthContext();
 
   // Form Submit handler
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    const displayName = e.target.name.value;
-    const email = e.target.email.value;
-    const photoURL = e.target.photo.value;
-    const password = e.target.password.value;
-    const terms = e.target.terms.checked;
+  const handleSignup = data => {
+    const { displayName, email, password, photoURL, terms } = data;
 
     const regex = /^(?=.*[a-z])(?=.*[A-Z])/;
 
@@ -66,7 +62,6 @@ const SignUp = () => {
                 res: 'success',
                 title: 'Register Successful',
               });
-              e.target.reset();
             })
             .catch(err => setErrMessage(err.message));
         })
@@ -106,16 +101,17 @@ const SignUp = () => {
             <div className="border border-[#E7E7E7] my-8"></div>
 
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(handleSignup)}
               className="md:px-6 flex flex-col gap-6"
             >
               {/* Name */}
               <div>
                 <p className="text-xl font-semibold mb-4">Name</p>
                 <input
+                  {...register('displayName')}
                   className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
-                  id="name"
-                  name="name"
+                  id="displayName"
+                  name="displayName"
                   type="text"
                   placeholder="Enter your name"
                   required
@@ -125,6 +121,7 @@ const SignUp = () => {
               <div>
                 <p className="text-xl font-semibold mb-4">Email</p>
                 <input
+                  {...register('email')}
                   className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
                   id="email"
                   name="email"
@@ -137,9 +134,10 @@ const SignUp = () => {
               <div>
                 <p className="text-xl font-semibold mb-4">Photo URL</p>
                 <input
+                  {...register('photoURL')}
                   className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
-                  id="photo"
-                  name="photo"
+                  id="photoURL"
+                  name="photoURL"
                   type="text"
                   placeholder="Enter your photo url"
                   required
@@ -149,6 +147,7 @@ const SignUp = () => {
               <div className="relative">
                 <p className="text-xl font-semibold mb-4">Password</p>
                 <input
+                  {...register('password')}
                   className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
                   id="password"
                   name="password"
@@ -172,6 +171,7 @@ const SignUp = () => {
               {/* Terms */}
               <div className="flex items-center gap-2.5">
                 <input
+                  {...register('terms')}
                   className="w-6 h-6 outline-none accent-green"
                   type="checkbox"
                   name="terms"
@@ -186,7 +186,7 @@ const SignUp = () => {
               {errMessage && <p className="text-red-500">{errMessage}</p>}
               {/* Submit */}
               <button
-                className="bg-green hover:bg-gold2 text-white text-xl font-semibold px-5 py-4 mt-6 rounded-xl"
+                className="bg-green-500 hover:bg-gold2 text-white text-xl font-semibold px-5 py-4 mt-6 rounded-xl"
                 type="submit"
               >
                 Register

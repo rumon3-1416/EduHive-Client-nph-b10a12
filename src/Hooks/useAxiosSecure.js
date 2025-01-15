@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const authContext = useAuthContext();
+  const { user } = useAuthContext();
 
   useEffect(() => {
     // Request Interceptor
@@ -15,6 +15,7 @@ const useAxiosSecure = () => {
       config => {
         const token = localStorage.getItem('access_token');
         config.headers.Authorization = `Bearer ${token}`;
+        config.headers['user_email'] = user.email;
 
         return config;
       },
@@ -39,7 +40,7 @@ const useAxiosSecure = () => {
       axiosInstance.interceptors.response.eject(reqInterceptor);
       axiosInstance.interceptors.response.eject(resInterceptor);
     };
-  }, []);
+  }, [user]);
 
   return axiosInstance;
 };

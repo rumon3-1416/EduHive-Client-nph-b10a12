@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
 import { ContextValue } from '../Contexts/ContextValue';
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const value = ContextValue();

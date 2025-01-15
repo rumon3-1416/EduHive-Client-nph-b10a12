@@ -13,6 +13,7 @@ const CheckoutForm = () => {
   const { id } = useParams();
   const { user } = useAuthContext();
 
+  // Generate Payment Secret
   const mutation = useMutation({
     mutationFn: async () => {
       const { data } = await axiosSecure.post('/create_payment_intent', { id });
@@ -33,16 +34,17 @@ const CheckoutForm = () => {
       return;
     }
 
+    // Load Payment Secret
     let clientSecret;
     if (!mutation.isPending && !mutation.data) {
       clientSecret = await mutation.mutateAsync();
     }
-
     if (!clientSecret) {
       setStripeError('Client secret is missing');
       return;
     }
 
+    // Create Payment
     const { error } = await stripe.createPaymentMethod({
       type: 'card',
       card,
@@ -52,6 +54,7 @@ const CheckoutForm = () => {
       return;
     }
 
+    // Confirm Payment
     const { paymentIntent, error: stripeError } =
       await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -65,8 +68,14 @@ const CheckoutForm = () => {
     if (stripeError) {
       setStripeError(stripeError.message);
     } else {
-      console.log('Transaction Id : ', paymentIntent.id);
       setStripeError('');
+
+      const transactionDetails = {
+        transactionId: paymentIntent.id,
+        classId: id,
+        email: user.email,
+      };
+      axiosSecure.post('/transactions', { transactionDetails });
     }
   };
 
@@ -94,7 +103,7 @@ const CheckoutForm = () => {
         disabled={!stripe || mutation.isLoading}
         type="submit"
       >
-        {mutation.isLoading ? 'Loading...' : 'Pay'}
+        {mutation.isPending ? 'Loading...' : 'Pay'}
       </button>
     </form>
   );

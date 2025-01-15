@@ -3,10 +3,8 @@ import Container from '../../components/Container/Container';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import { useAuthContext } from '../../Hooks/useAuthContext';
 
 const ClassDetails = () => {
-  const { user } = useAuthContext();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -14,11 +12,7 @@ const ClassDetails = () => {
   const { data: classDetails = {} } = useQuery({
     queryKey: ['classDetails', id],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/class_details/${id}`, {
-        headers: {
-          user_email: user.email,
-        },
-      });
+      const { data } = await axiosSecure.get(`/class_details/${id}`);
       return data;
     },
   });

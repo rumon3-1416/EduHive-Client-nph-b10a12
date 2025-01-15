@@ -7,15 +7,17 @@ import { IoEyeOutline } from 'react-icons/io5';
 import { FaRegEyeSlash } from 'react-icons/fa';
 import googleIcon from '../../assets/icons/google.png';
 import Container from '../../components/Container/Container';
+import { useForm } from 'react-hook-form';
 
 const SignIn = () => {
-  const [showPass, setShowPass] = useState(false);
-  const [errMessage, setErrMessage] = useState(null);
+  const { register, handleSubmit } = useForm();
   const [modal, setModal] = useState({
     show: false,
     res: '',
     title: '',
   });
+  const [showPass, setShowPass] = useState(false);
+  const [errMessage, setErrMessage] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,16 +25,9 @@ const SignIn = () => {
 
   const desired = location.state?.pathname || '/';
 
-  useEffect(() => {
-    document.title = 'Login | EduHive';
-  }, []);
-
   // Email Password Log In Handler
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  const handleSignin = data => {
+    const { email, password } = data;
 
     emailPassSignIn(email, password)
       .then(() => {
@@ -58,26 +53,31 @@ const SignIn = () => {
       });
   };
 
+  useEffect(() => {
+    document.title = 'Signin | EduHive';
+  }, []);
+
   return (
     <div className="bg-greenBg pb-24">
       <Container>
         <section className="min-h-[80vh] p-6 md:p-10 flex justify-center items-center">
           <div className="text-[#403F3F bg-[#fffcfc] w-full md:w-4/5 lg:w-3/5 px-6 md:px-14 pt-12 md:pt-16 pb-16 rounded-2xl shadow-lg">
             <h3 className="text-2xl sm:text-3xl md:text-4xl text-center font-semibold">
-              Log In to Continue
+              Signin to Continue
             </h3>
             {/* border */}
             <div className="border border-[#E7E7E7] my-8"></div>
 
             {/* Email Password Sign In */}
             <form
-              onSubmit={handleSubmit}
+              onSubmit={handleSubmit(handleSignin)}
               className="md:px-6 flex flex-col gap-6"
             >
               {/* Email */}
               <div>
                 <p className="text-xl font-semibold mb-4">Email</p>
                 <input
+                  {...register('email')}
                   className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
                   id="email"
                   name="email"
@@ -91,6 +91,7 @@ const SignIn = () => {
               <div className="relative">
                 <p className="text-xl font-semibold mb-4">Password</p>
                 <input
+                  {...register('password')}
                   className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md mb-3"
                   id="password"
                   name="password"
@@ -119,7 +120,7 @@ const SignIn = () => {
                 className="bg-green-500 hover:bg-gold2 text-white text-xl font-semibold px-5 py-4 rounded-xl"
                 type="submit"
               >
-                Log In
+                Signin
               </button>
             </form>
 

@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import useAxiosSecure from '../Hooks/useAxiosSecure';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const googleProvider = new GoogleAuthProvider();
 const serverUrl = import.meta.env.VITE_ServerUrl;
@@ -19,7 +20,7 @@ export const ContextValue = () => {
   const [user, setUser] = useState(null);
   const [darkTheme, setDarkTheme] = useState(false);
 
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
 
   // Create User
   const emailPassSignUp = (email, pass) => {
@@ -52,7 +53,7 @@ export const ContextValue = () => {
       setUser(currentUser || null);
 
       if (currentUser) {
-        axiosSecure
+        axiosPublic
           .post('/jwt', { email: currentUser.email })
           .then(res => localStorage.setItem('access_token', res.data.token));
 
@@ -65,7 +66,7 @@ export const ContextValue = () => {
     });
 
     return () => unsubscribe();
-  }, [axiosSecure]);
+  }, [axiosPublic]);
 
   return {
     loading,
