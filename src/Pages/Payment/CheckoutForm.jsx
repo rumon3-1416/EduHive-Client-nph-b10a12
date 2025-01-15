@@ -1,24 +1,28 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useParams } from 'react-router-dom';
 import { useAuthContext } from '../../Hooks/useAuthContext';
+import { useMutation } from '@tanstack/react-query';
 
 const CheckoutForm = () => {
-  const [paymentSecret, setPaymentSecret] = useState('');
   const [stripeError, setStripeError] = useState('');
-
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = useAxiosSecure();
   const { id } = useParams();
   const { user } = useAuthContext();
 
-  useEffect(() => {
-    axiosSecure
-      .post('/create_payment_intent', { id })
-      .then(res => setPaymentSecret(res.data.client_secret));
-  }, [axiosSecure, id]);
+  const mutation = useMutation({
+    mutationFn: async () => {
+      const { data } = await axiosSecure.post('/create_payment_intent', { id });
+      return data.client_secret;
+    },
+
+    onError: error => {
+      setStripeError(error.message);
+    },
+  });
 
   const handlePay = async e => {
     e.preventDefault();
@@ -26,23 +30,30 @@ const CheckoutForm = () => {
     const card = elements.getElement(CardElement);
 
     if (!stripe || !elements || card === null) {
-      console.log('hi');
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    let clientSecret;
+    if (!mutation.isPending && !mutation.data) {
+      clientSecret = await mutation.mutateAsync();
+    }
+
+    if (!clientSecret) {
+      setStripeError('Client secret is missing');
+      return;
+    }
+
+    const { error } = await stripe.createPaymentMethod({
       type: 'card',
       card,
     });
-
     if (error) {
       setStripeError(error.message);
-    } else {
-      setStripeError('');
+      return;
     }
 
     const { paymentIntent, error: stripeError } =
-      await stripe.confirmCardPayment(paymentSecret, {
+      await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
           card,
           billing_details: {
@@ -51,11 +62,10 @@ const CheckoutForm = () => {
           },
         },
       });
-
     if (stripeError) {
       setStripeError(stripeError.message);
     } else {
-      console.log(paymentIntent);
+      console.log('Transaction Id : ', paymentIntent.id);
       setStripeError('');
     }
   };
@@ -81,10 +91,10 @@ const CheckoutForm = () => {
       {stripeError && <p className="text-red-500">{stripeError}</p>}
       <button
         className="btn btn-success"
-        disabled={!stripe || !paymentSecret}
+        disabled={!stripe || mutation.isLoading}
         type="submit"
       >
-        Pay
+        {mutation.isLoading ? 'Loading...' : 'Pay'}
       </button>
     </form>
   );
