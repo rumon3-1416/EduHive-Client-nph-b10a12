@@ -19,7 +19,6 @@ const ApplyTeacher = () => {
       ...data,
       image: imageUrl,
     });
-    console.log(res.data);
   };
 
   return (

@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, NavLink } from 'react-router-dom';
 
-import sidebarIcon from '../../../assets/icons/sidebar.png';
+import sidebarIcon from '../../../../assets/icons/sidebar.png';
+import { useAuthContext } from '../../../../Hooks/useAuthContext';
+import StudentMenu from './StudentMenu';
+import TeacherMenu from './TeacherMenu';
+import AdminMenu from './AdminMenu';
+import './sidebar.css';
 
 const Sidebar = () => {
   const [collapse, setCollapse] = useState(false);
   const { pathname } = useLocation();
-
+  // const { role } = useAuthContext();
+  console.log(pathname);
   useEffect(() => {
     window.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
   }, []);
@@ -38,45 +44,18 @@ const Sidebar = () => {
 
             {/* Sidebar Links */}
             <ul className="text-gray font-medium">
+              {/* {role === 'student' ? (
+                <StudentMenu />
+              ) : role === 'teacher' ? (
+                <TeacherMenu />
+              ) : (
+                role === 'admin' && <AdminMenu />
+              )} */}
+              <StudentMenu />
+              <TeacherMenu />
+              <AdminMenu />
               <li>
-                <NavLink
-                  className={`flex items-center gap-2 ${
-                    pathname === '/dashboard' && 'text-green font-semibold'
-                  }`}
-                  to="."
-                >
-                  <span className={collapse ? 'hidden' : 'block'}>
-                    Add Marathon
-                  </span>
-                </NavLink>
-              </li>
-
-              <li className="mt-5">
-                <NavLink
-                  className={`flex items-center gap-2 ${
-                    pathname === '/dashboard/my_marathons' &&
-                    'text-green font-semibold'
-                  }`}
-                  to="my_marathons"
-                >
-                  <span className={collapse ? 'hidden' : 'block'}>
-                    My Marathons
-                  </span>
-                </NavLink>
-              </li>
-
-              <li className="mt-5">
-                <NavLink
-                  className={`flex items-center gap-2 ${
-                    pathname === '/dashboard/my_apply' &&
-                    'text-green font-semibold'
-                  }`}
-                  to="my_apply"
-                >
-                  <span className={collapse ? 'hidden' : 'block'}>
-                    My Apply
-                  </span>
-                </NavLink>
+                <NavLink to=".">Profile</NavLink>
               </li>
             </ul>
           </div>
