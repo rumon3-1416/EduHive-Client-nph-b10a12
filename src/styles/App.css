@@ -14,9 +14,9 @@ button:active {
   animation: btnClickAnim 0.1s;
 }
 
-button:hover {
+/* button:hover {
   box-shadow: 0 2px 4px #808080;
-}
+} */
 
 nav a.active {
   color: #fd7e14;

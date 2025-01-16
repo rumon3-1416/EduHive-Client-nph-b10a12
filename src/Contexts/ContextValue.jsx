@@ -18,9 +18,9 @@ const serverUrl = import.meta.env.VITE_ServerUrl;
 export const ContextValue = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
-  // const [role, setRole] = useState('student');
+  const [role, setRole] = useState('student');
   // const [role, setRole] = useState('teacher');
-  const [role, setRole] = useState('admin');
+  // const [role, setRole] = useState('admin');
 
   const axiosPublic = useAxiosPublic();
 
@@ -55,19 +55,24 @@ export const ContextValue = () => {
       setUser(currentUser || null);
 
       if (currentUser) {
+        // Get Token
         axiosPublic
           .post('/jwt', { email: currentUser.email })
           .then(res => localStorage.setItem('access_token', res.data.token));
 
-        axiosPublic.post('/users', {
-          email: currentUser.email,
-          displayName: currentUser.displayName,
-          photoURL: currentUser.photoURL,
-        });
-        // .then(res => setRole(res.data.role));
-
-        setLoading(false);
+        // Save User & Get Role
+        axiosPublic
+          .post('/users', {
+            email: currentUser.email,
+            displayName: currentUser.displayName,
+            photoURL: currentUser.photoURL,
+          })
+          .then(res => {
+            setRole(res.data.role);
+            setLoading(false);
+          });
       } else {
+        // Clear Token
         localStorage.removeItem('access_token');
 
         setLoading(false);

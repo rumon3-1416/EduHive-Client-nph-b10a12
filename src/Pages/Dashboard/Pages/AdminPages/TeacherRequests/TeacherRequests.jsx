@@ -45,6 +45,10 @@ const TeacherRequests = () => {
     refetch();
   };
 
+  useEffect(() => {
+    document.title = 'Teacher Requests | EduHive';
+  }, []);
+
   return (
     <div>
       <DashboardContainer>
@@ -97,7 +101,9 @@ const TeacherRequests = () => {
                         } hover:bg-[#e6e6e6]`}
                         key={_id}
                       >
-                        <td className="text-nowrap">{index + 1}</td>
+                        <td className="text-nowrap">
+                          {index + 1 + (currentPage - 1) * 10}
+                        </td>
                         <td className="text-nowrap">
                           <img
                             className="max-w-10 aspect-square object-cover rounded-lg"
