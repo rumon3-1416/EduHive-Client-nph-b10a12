@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DashboardContainer from '../../../Components/Container/DashboardContainer';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 
 const TeacherRequests = () => {
@@ -13,13 +13,19 @@ const TeacherRequests = () => {
 
   const axiosSecure = useAxiosSecure();
 
+  // Get Total Requests
   useEffect(() => {
     axiosSecure
       .get('/teacher_requests_count')
       .then(res => setTotalData(res.data.count));
   }, [axiosSecure]);
 
-  const { data: teacherRequests = [] } = useQuery({
+  // Load Teacher Requests
+  const {
+    data: teacherRequests = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ['teacherRequests', currentPage],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -28,6 +34,30 @@ const TeacherRequests = () => {
       return data;
     },
   });
+
+  // Handle Request Action
+  const mutation = useMutation({
+    mutationFn: async ({ id, email, action }) => {
+      const { data } = await axiosSecure.put('/update_teach_req', {
+        updatedStatus: action,
+        id,
+        email,
+      });
+      return data;
+    },
+  });
+
+  // Handle Approve
+  const handleApprove = async (id, email) => {
+    await mutation.mutateAsync({ id, email, action: 'approved' });
+    refetch();
+  };
+
+  // Handle Reject
+  const handleReject = async (id, email) => {
+    await mutation.mutateAsync({ id, email, action: 'rejected' });
+    refetch();
+  };
 
   return (
     <div>
@@ -48,17 +78,25 @@ const TeacherRequests = () => {
                   <th>Category</th>
                   <th>Experience</th>
                   <th>Status</th>
-                  <th>Action</th>
+                  <th className="text-center">Action</th>
                 </tr>
               </thead>
 
               {/* body */}
               <tbody>
-                {teacherRequests.length > 0 &&
+                {isLoading ? (
+                  <tr>
+                    <td colSpan={8}>
+                      <h2 className="text-2xl font-semibold">Loading...</h2>
+                    </td>
+                  </tr>
+                ) : (
+                  teacherRequests.length > 0 &&
                   teacherRequests.map((request, index) => {
                     const {
                       _id,
                       name,
+                      email,
                       image,
                       title,
                       experience,
@@ -91,24 +129,33 @@ const TeacherRequests = () => {
                               ? 'text-green-500'
                               : status === 'rejected'
                               ? 'text-red-500'
-                              : 'text-orange-500'
+                              : 'text-yellow-500'
                           }`}
                         >
-                          {status}
+                          {status.charAt(0).toUpperCase() + status.slice(1)}
                         </td>
                         <td>
                           <div className="flex justify-center items-center gap-4">
-                            <p className="text-green-300 hover:text-green-500 cursor-pointer">
+                            <button
+                              onClick={() => handleApprove(_id, email)}
+                              className="text-green-300 hover:text-green-500"
+                              disabled={status !== 'pending'}
+                            >
                               Approve
-                            </p>
-                            <p className="text-[#ff8629] hover:text-[#ff0000] px-2 rounded-md cursor-pointer">
+                            </button>
+                            <button
+                              onClick={() => handleReject(_id, email)}
+                              className="text-[#ff8629] hover:text-[#ff0000] px-2 rounded-md"
+                              disabled={status !== 'pending'}
+                            >
                               Reject
-                            </p>
+                            </button>
                           </div>
                         </td>
                       </tr>
                     );
-                  })}
+                  })
+                )}
               </tbody>
 
               {/* foot */}
