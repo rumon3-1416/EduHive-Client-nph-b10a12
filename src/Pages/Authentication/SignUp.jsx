@@ -8,6 +8,7 @@ import { FaRegEyeSlash } from 'react-icons/fa';
 import googleIcon from '../../assets/icons/google.png';
 import Container from '../../components/Container/Container';
 import { useForm } from 'react-hook-form';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
@@ -21,6 +22,7 @@ const SignUp = () => {
   });
 
   const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const { setLoading, emailPassSignUp, googleSignIn, updateUserProfile } =
     useAuthContext();
 
@@ -52,6 +54,11 @@ const SignUp = () => {
       emailPassSignUp(email, password)
         .then(res => {
           setErrMessage(null);
+          axiosPublic.post('/users', {
+            email: res.user.email,
+            displayName: displayName,
+            photoURL: photoURL,
+          });
 
           updateUserProfile(res.user, { displayName, photoURL })
             .then(() => {

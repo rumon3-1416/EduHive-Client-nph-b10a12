@@ -36,26 +36,12 @@ const TeacherRequests = () => {
   });
 
   // Handle Request Action
-  const mutation = useMutation({
-    mutationFn: async ({ id, email, action }) => {
-      const { data } = await axiosSecure.put('/update_teach_req', {
-        updatedStatus: action,
-        id,
-        email,
-      });
-      return data;
-    },
-  });
-
-  // Handle Approve
-  const handleApprove = async (id, email) => {
-    await mutation.mutateAsync({ id, email, action: 'approved' });
-    refetch();
-  };
-
-  // Handle Reject
-  const handleReject = async (id, email) => {
-    await mutation.mutateAsync({ id, email, action: 'rejected' });
+  const handleReqAction = async (id, email, action) => {
+    await axiosSecure.put('/update_teach_req', {
+      updatedStatus: action,
+      id,
+      email,
+    });
     refetch();
   };
 
@@ -121,8 +107,13 @@ const TeacherRequests = () => {
                         </td>
                         <td className="text-nowrap">{name}</td>
                         <td className="text-nowrap">{title}</td>
-                        <td className="text-nowrap">{category}</td>
-                        <td className="text-nowrap">{experience}</td>
+                        <td className="text-nowrap">
+                          {category.charAt(0).toUpperCase() + category.slice(1)}
+                        </td>
+                        <td className="text-nowrap">
+                          {experience.charAt(0).toUpperCase() +
+                            experience.slice(1)}
+                        </td>
                         <td
                           className={`text-nowrap ${
                             status === 'approved'
@@ -137,14 +128,18 @@ const TeacherRequests = () => {
                         <td>
                           <div className="flex justify-center items-center gap-4">
                             <button
-                              onClick={() => handleApprove(_id, email)}
+                              onClick={() =>
+                                handleReqAction(_id, email, 'approved')
+                              }
                               className="text-green-300 hover:text-green-500"
                               disabled={status !== 'pending'}
                             >
                               Approve
                             </button>
                             <button
-                              onClick={() => handleReject(_id, email)}
+                              onClick={() =>
+                                handleReqAction(_id, email, 'rejected')
+                              }
                               className="text-[#ff8629] hover:text-[#ff0000] px-2 rounded-md"
                               disabled={status !== 'pending'}
                             >

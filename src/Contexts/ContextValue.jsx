@@ -62,6 +62,7 @@ export const ContextValue = () => {
         axiosPublic.post('/users', {
           email: currentUser.email,
           displayName: currentUser.displayName,
+          photoURL: currentUser.photoURL,
         });
         // .then(res => setRole(res.data.role));
 
