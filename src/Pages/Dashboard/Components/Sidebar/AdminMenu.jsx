@@ -1,16 +1,24 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const AdminMenu = () => {
+  const { pathname } = useLocation();
+
   return (
     <>
-      <li>
-        <NavLink to="/dashboard/teacher_requests">Teacher Requests</NavLink>
+      <li className={`${pathname === '/dashboard' ? 'text-blue-500' : ''}`}>
+        <NavLink to="/dashboard">Teacher Requests</NavLink>
       </li>
-      <li>
+      <li
+        className={`${pathname === '/dashboard/users' ? 'text-blue-500' : ''}`}
+      >
         <NavLink to="/dashboard/users">Users</NavLink>
       </li>
-      <li>
+      <li
+        className={`${
+          pathname === '/dashboard/all_classes' ? 'text-blue-500' : ''
+        }`}
+      >
         <NavLink to="/dashboard/all_classes">All Classes</NavLink>
       </li>
     </>

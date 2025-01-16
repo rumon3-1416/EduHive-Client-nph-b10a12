@@ -6,17 +6,15 @@ import { useAuthContext } from '../../../../Hooks/useAuthContext';
 import StudentMenu from './StudentMenu';
 import TeacherMenu from './TeacherMenu';
 import AdminMenu from './AdminMenu';
-import './sidebar.css';
 
 const Sidebar = () => {
   const [collapse, setCollapse] = useState(false);
   const { pathname } = useLocation();
-  // const { role } = useAuthContext();
-  console.log(pathname);
+  const { role } = useAuthContext();
+
   useEffect(() => {
     window.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
   }, []);
-
   window.addEventListener('resize', e => {
     e.target.innerWidth < 768 && setCollapse(true);
   });
@@ -44,18 +42,20 @@ const Sidebar = () => {
 
             {/* Sidebar Links */}
             <ul className="text-gray font-medium">
-              {/* {role === 'student' ? (
+              {role === 'student' ? (
                 <StudentMenu />
               ) : role === 'teacher' ? (
                 <TeacherMenu />
               ) : (
                 role === 'admin' && <AdminMenu />
-              )} */}
-              <StudentMenu />
-              <TeacherMenu />
-              <AdminMenu />
-              <li>
-                <NavLink to=".">Profile</NavLink>
+              )}
+
+              <li
+                className={`${
+                  pathname === '/dashboard/profile' ? 'text-blue-500' : ''
+                }`}
+              >
+                <NavLink to="/dashboard/profile">Profile</NavLink>
               </li>
             </ul>
           </div>

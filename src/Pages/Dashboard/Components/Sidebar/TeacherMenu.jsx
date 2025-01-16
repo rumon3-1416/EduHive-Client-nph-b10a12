@@ -1,13 +1,19 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 
 const TeacherMenu = () => {
+  const { pathname } = useLocation();
+
   return (
     <>
-      <li>
-        <NavLink to="/dashboard/add_class">Add Class</NavLink>
+      <li className={`${pathname === '/dashboard' ? 'text-blue-500' : ''}`}>
+        <NavLink to="/dashboard">Add Class</NavLink>
       </li>
-      <li>
+      <li
+        className={`${
+          pathname === '/dashboard/my_classes' ? 'text-blue-500' : ''
+        }`}
+      >
         <NavLink to="/dashboard/my_classes">My Classes</NavLink>
       </li>
     </>
