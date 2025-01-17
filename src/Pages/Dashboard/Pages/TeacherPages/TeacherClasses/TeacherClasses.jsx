@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import UpdateClass from './UpdateClass';
 import Modal from '../../../../../components/Modal/Modal';
+import { useNavigate } from 'react-router-dom';
 
 const TeacherClasses = () => {
   const [totalData, setTotalData] = useState(0);
@@ -24,6 +25,7 @@ const TeacherClasses = () => {
   });
 
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   // Load My Total Classes
   useEffect(() => {
@@ -59,7 +61,6 @@ const TeacherClasses = () => {
     setConfirmModal(true);
     setModal({ show: true, res: 'warn', title: 'Delete Class?' });
   };
-
   const handleDelete = async () => {
     const { data } = await axiosSecure.delete(`/delete_class/${delId}`);
 
@@ -99,7 +100,9 @@ const TeacherClasses = () => {
                 <p>Title : {title}</p>
                 <p>Total Enroll : {total_enrolment}</p>
                 <p>Price : {price}</p>
-                <p>Status : {status}</p>
+                <p>
+                  Status : {status?.charAt(0).toUpperCase() + status?.slice(1)}
+                </p>
                 <p>Name : {name}</p>
                 <p>Email : {email}</p>
                 <p>Description : {description}</p>
@@ -115,7 +118,13 @@ const TeacherClasses = () => {
                 >
                   Delete
                 </button>
-                <button className="btn ms-2" disabled={status !== 'approved'}>
+                <button
+                  onClick={() =>
+                    navigate(`/dashboard/teach_class_details/${_id}`)
+                  }
+                  className="btn ms-2"
+                  disabled={status !== 'approved'}
+                >
                   Details
                 </button>
               </div>

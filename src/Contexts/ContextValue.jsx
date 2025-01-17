@@ -19,8 +19,6 @@ export const ContextValue = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [role, setRole] = useState('student');
-  // const [role, setRole] = useState('teacher');
-  // const [role, setRole] = useState('admin');
 
   const axiosPublic = useAxiosPublic();
 
