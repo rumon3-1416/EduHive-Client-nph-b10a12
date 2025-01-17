@@ -35,7 +35,7 @@ const Profile = () => {
             <p>Role : {role}</p>
             <p>Name : {displayName}</p>
             <p>Email : {email}</p>
-            <p>Number : {_id.slice(0, 15)}</p>
+            <p>Number : {_id?.slice(0, 15)}</p>
           </div>
         </section>
       </DashboardContainer>
