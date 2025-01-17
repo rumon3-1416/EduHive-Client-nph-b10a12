@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import UpdateClass from './UpdateClass';
+import Modal from '../../../../../components/Modal/Modal';
 
 const TeacherClasses = () => {
   const [totalData, setTotalData] = useState(0);
@@ -10,9 +11,16 @@ const TeacherClasses = () => {
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
 
+  const [delId, setDelId] = useState(null);
+  const [confirmModal, setConfirmModal] = useState(false);
   const [updateModal, setUpdateModal] = useState({
     show: false,
     classData: {},
+  });
+  const [modal, setModal] = useState({
+    show: false,
+    res: '',
+    title: '',
   });
 
   const axiosSecure = useAxiosSecure();
@@ -47,7 +55,18 @@ const TeacherClasses = () => {
 
   // Handle DeleteModal
   const HandleDeleteMOdal = id => {
-    console.log(id);
+    setDelId(id);
+    setConfirmModal(true);
+    setModal({ show: true, res: 'warn', title: 'Delete Class?' });
+  };
+
+  const handleDelete = async () => {
+    const { data } = await axiosSecure.delete(`/delete_class/${delId}`);
+
+    data.acknowledged &&
+      (refetch(),
+      setConfirmModal(false),
+      setModal({ show: true, res: 'success', title: 'Class Deleted' }));
   };
 
   return (
@@ -139,6 +158,42 @@ const TeacherClasses = () => {
             classData={updateModal.classData}
             handleUpdate={handleUpdate}
           />
+        )}
+
+        {/* Delete Modal */}
+        {confirmModal ? (
+          <Modal property={modal}>
+            <div className="flex gap-4">
+              <button
+                onClick={handleDelete}
+                className="bg-[#ff3d3d] text-white text-lg font-medium px-6 py-2 rounded-full"
+              >
+                Delete
+              </button>
+              <button
+                onClick={() => {
+                  setModal({ ...modal, show: false });
+                  setDelId(null);
+                  setConfirmModal(false);
+                }}
+                className="bg-[#979797] text-white text-lg font-medium px-6 py-2 rounded-full"
+              >
+                Cancel
+              </button>
+            </div>
+          </Modal>
+        ) : (
+          <Modal property={modal}>
+            <button
+              onClick={() => {
+                setModal({ ...modal, show: false });
+                setConfirmModal(false);
+              }}
+              className="bg-green-500 text-white text-lg font-medium px-6 py-2 rounded-full"
+            >
+              OK
+            </button>
+          </Modal>
         )}
       </div>
     </div>
