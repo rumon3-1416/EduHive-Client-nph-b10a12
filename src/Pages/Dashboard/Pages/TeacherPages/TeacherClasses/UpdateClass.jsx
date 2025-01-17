@@ -14,6 +14,10 @@ const UpdateClass = ({ classData, handleUpdate }) => {
 
   const { register, handleSubmit } = useForm();
 
+  const updateClass = async data => {
+    await handleUpdate({ _id, ...data });
+  };
+
   return (
     <div className="bg-[#00000053] w-full min-h-screen max-h-screen backdrop-blur-sm p-8 sm:p-10 md:p-12 fixed inset-0 overflow-hidden flex flex-col justify-center items-center z-50">
       <div
@@ -23,7 +27,7 @@ const UpdateClass = ({ classData, handleUpdate }) => {
           Update Class
         </h3>
 
-        <form onSubmit={handleSubmit(handleUpdate)}>
+        <form onSubmit={handleSubmit(updateClass)}>
           {/* Title */}
           <div className="mb-6 flex flex-col">
             <label htmlFor="title" className={`font-semibold mb-2`}>

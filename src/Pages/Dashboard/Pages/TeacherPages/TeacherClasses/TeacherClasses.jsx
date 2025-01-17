@@ -25,7 +25,7 @@ const TeacherClasses = () => {
   }, [axiosSecure]);
 
   // Load all Classes
-  const { data: myClasses = [] } = useQuery({
+  const { data: myClasses = [], refetch } = useQuery({
     queryKey: ['myClasses', currentPage],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
@@ -39,8 +39,9 @@ const TeacherClasses = () => {
   const handleUpdateModal = classData => {
     setUpdateModal({ show: true, classData });
   };
-  const handleUpdate = updatedData => {
-    console.log(updatedData);
+  const handleUpdate = async updatedData => {
+    const { data } = await axiosSecure.patch('/update_my_class', updatedData);
+    refetch();
     setUpdateModal({ show: false, classData: {} });
   };
 
@@ -76,6 +77,7 @@ const TeacherClasses = () => {
                   src={image}
                   alt={title}
                 />
+                <p>Title : {title}</p>
                 <p>Total Enroll : {total_enrolment}</p>
                 <p>Price : {price}</p>
                 <p>Status : {status}</p>
