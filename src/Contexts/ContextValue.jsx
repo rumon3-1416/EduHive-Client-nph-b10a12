@@ -58,23 +58,23 @@ export const ContextValue = () => {
         // Get Token
         axiosPublic
           .post('/jwt', { email: currentUser.email })
-          .then(res => localStorage.setItem('access_token', res.data.token));
-
-        // Save User & Get Role
-        axiosPublic
-          .post('/users', {
-            email: currentUser.email,
-            displayName: currentUser.displayName,
-            photoURL: currentUser.photoURL,
-          })
-          .then(res => {
-            setRole(res.data.role);
-            setLoading(false);
+          .then(res => localStorage.setItem('access_token', res.data.token))
+          .then(() => {
+            // Save User & Get Role
+            axiosPublic
+              .post('/users', {
+                email: currentUser.email,
+                displayName: currentUser.displayName,
+                photoURL: currentUser.photoURL,
+              })
+              .then(res => {
+                setRole(res.data.role);
+                setLoading(false);
+              });
           });
       } else {
         // Clear Token
         localStorage.removeItem('access_token');
-
         setLoading(false);
       }
     });

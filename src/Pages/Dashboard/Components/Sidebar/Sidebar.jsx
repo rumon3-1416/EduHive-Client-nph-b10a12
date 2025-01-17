@@ -10,7 +10,7 @@ import AdminMenu from './AdminMenu';
 const Sidebar = () => {
   const [collapse, setCollapse] = useState(false);
   const { pathname } = useLocation();
-  const { role } = useAuthContext();
+  const { user, role, signOutUser } = useAuthContext();
 
   useEffect(() => {
     window.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
@@ -57,6 +57,11 @@ const Sidebar = () => {
               >
                 <NavLink to="/dashboard/profile">Profile</NavLink>
               </li>
+              {user && (
+                <li>
+                  <button onClick={() => signOutUser()}>Logout</button>
+                </li>
+              )}
             </ul>
           </div>
         </div>

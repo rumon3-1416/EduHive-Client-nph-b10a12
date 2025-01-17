@@ -1,8 +1,8 @@
-# RunSphere (Assignment 11)
+# EduHive (Assignment 12)
 
 ### Live Site URL
 
-[https://assignment-11-d1cd3.web.app/](https://assignment-11-d1cd3.web.app/)
+[https://assignment-12-26ee0.web.app](https://assignment-12-26ee0.web.app)
 
 RunSphere is a modern and intuitive website for organizing and participating in marathon events. Whether you're an event organizer or a participant, RunSphere offers an easy way to manage and explore marathons.
 
