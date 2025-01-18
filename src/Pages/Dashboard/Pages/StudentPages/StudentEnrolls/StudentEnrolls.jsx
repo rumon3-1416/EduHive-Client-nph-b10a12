@@ -20,7 +20,7 @@ const StudentEnrolls = () => {
       <h2 className="text-3xl font-semibold">My Enrolls</h2>
 
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {studentEnrolls.length > 0 &&
+        {studentEnrolls.length > 0 ? (
           studentEnrolls.map(enroll => {
             const { _id, title, name, image } = enroll;
 
@@ -43,7 +43,12 @@ const StudentEnrolls = () => {
                 </button>
               </div>
             );
-          })}
+          })
+        ) : (
+          <div>
+            <h2 className="text-3xl font-semibold">No Data Found!</h2>
+          </div>
+        )}
       </div>
     </div>
   );

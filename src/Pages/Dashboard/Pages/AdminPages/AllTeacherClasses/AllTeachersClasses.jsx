@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import ClassProgress from '../../../Components/ClassProgress';
+import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 
 const AllTeacherClasses = () => {
   const [totalData, setTotalData] = useState(0);
@@ -12,6 +13,7 @@ const AllTeacherClasses = () => {
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
 
+  const { notify } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
   // Load all Classes
@@ -32,7 +34,11 @@ const AllTeacherClasses = () => {
 
   // Handle Class Status
   const handleClassStatus = async (id, status) => {
-    await axiosSecure.put('/update_class', { id, updatedStatus: status });
+    const { data } = await axiosSecure.put('/update_class', {
+      id,
+      updatedStatus: status,
+    });
+    data.acknowledged && notify('success', 'Class Status Updated');
     refetch();
   };
 

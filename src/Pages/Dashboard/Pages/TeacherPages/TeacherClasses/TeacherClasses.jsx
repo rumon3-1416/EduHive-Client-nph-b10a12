@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import UpdateClass from './UpdateClass';
 import Modal from '../../../../../components/Modal/Modal';
 import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 
 const TeacherClasses = () => {
   const [totalData, setTotalData] = useState(0);
@@ -23,7 +24,7 @@ const TeacherClasses = () => {
     res: '',
     title: '',
   });
-
+  const { notify } = useAuthContext();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
@@ -43,25 +44,29 @@ const TeacherClasses = () => {
   const handleUpdateModal = classData => {
     setUpdateModal({ show: true, classData });
   };
+  // handle Update
   const handleUpdate = async updatedData => {
     const { data } = await axiosSecure.patch('/update_my_class', updatedData);
+    data.acknowledged
+      ? notify('success', 'Class Updated Successfully')
+      : notify('error', 'Class Update Failed!');
     refetch();
     setUpdateModal({ show: false, classData: {} });
   };
 
   // Handle DeleteModal
-  const HandleDeleteMOdal = id => {
+  const HandleDeleteModal = id => {
     setDelId(id);
-    setConfirmModal(true);
     setModal({ show: true, res: 'warn', title: 'Delete Class?' });
   };
+  // handle Delete
   const handleDelete = async () => {
     const { data } = await axiosSecure.delete(`/delete_class/${delId}`);
 
     data.acknowledged &&
       (refetch(),
-      setConfirmModal(false),
-      setModal({ show: true, res: 'success', title: 'Class Deleted' }));
+      notify('success', 'Class Deleted'),
+      setModal({ show: false, res: '', title: '' }));
   };
 
   return (
@@ -107,7 +112,7 @@ const TeacherClasses = () => {
                   Update
                 </button>
                 <button
-                  onClick={() => HandleDeleteMOdal(_id)}
+                  onClick={() => HandleDeleteModal(_id)}
                   className="btn ms-2"
                 >
                   Delete
@@ -164,40 +169,25 @@ const TeacherClasses = () => {
         )}
 
         {/* Delete Modal */}
-        {confirmModal ? (
-          <Modal property={modal}>
-            <div className="flex gap-4">
-              <button
-                onClick={handleDelete}
-                className="bg-[#ff3d3d] text-white text-lg font-medium px-6 py-2 rounded-full"
-              >
-                Delete
-              </button>
-              <button
-                onClick={() => {
-                  setModal({ ...modal, show: false });
-                  setDelId(null);
-                  setConfirmModal(false);
-                }}
-                className="bg-[#979797] text-white text-lg font-medium px-6 py-2 rounded-full"
-              >
-                Cancel
-              </button>
-            </div>
-          </Modal>
-        ) : (
-          <Modal property={modal}>
+        <Modal property={modal}>
+          <div className="flex gap-4">
+            <button
+              onClick={handleDelete}
+              className="bg-[#ff3d3d] text-white text-lg font-medium px-6 py-2 rounded-full"
+            >
+              Delete
+            </button>
             <button
               onClick={() => {
                 setModal({ ...modal, show: false });
-                setConfirmModal(false);
+                setDelId(null);
               }}
-              className="bg-green-500 text-white text-lg font-medium px-6 py-2 rounded-full"
+              className="bg-[#979797] text-white text-lg font-medium px-6 py-2 rounded-full"
             >
-              OK
+              Cancel
             </button>
-          </Modal>
-        )}
+          </div>
+        </Modal>
       </div>
     </div>
   );

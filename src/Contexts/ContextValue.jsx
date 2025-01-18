@@ -10,6 +10,7 @@ import {
 } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
+import { toast } from 'react-toastify';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -19,6 +20,15 @@ export const ContextValue = () => {
   const [role, setRole] = useState('student');
 
   const axiosPublic = useAxiosPublic();
+
+  // Toast notify
+  const notify = (action, message) => {
+    toast[action](message, {
+      position: 'top-center',
+      autoClose: 5000,
+      pauseOnHover: false,
+    });
+  };
 
   // Create User
   const emailPassSignUp = (email, pass) => {
@@ -81,6 +91,7 @@ export const ContextValue = () => {
   return {
     user,
     role,
+    notify,
     loading,
     setLoading,
     googleSignIn,

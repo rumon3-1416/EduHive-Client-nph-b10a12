@@ -3,11 +3,13 @@ import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const AddClass = () => {
-  const { register, handleSubmit } = useForm();
-  const { user } = useAuthContext();
+  const { register, handleSubmit, reset } = useForm();
+  const { user, notify } = useAuthContext();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async details => {
@@ -18,7 +20,11 @@ const AddClass = () => {
 
   const handleAddClass = async details => {
     const res = await mutation.mutateAsync(details);
-    console.log(res);
+    res.acknowledged
+      ? (notify('success', 'Class added Successfully'),
+        reset(),
+        navigate('/dashboard/my_classes'))
+      : notify('error', 'Class add Failed!');
   };
 
   return (

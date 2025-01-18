@@ -1,17 +1,19 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useState } from 'react';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import { useMutation } from '@tanstack/react-query';
 
 const CheckoutForm = () => {
   const [stripeError, setStripeError] = useState('');
-  const stripe = useStripe();
   const elements = useElements();
+  const stripe = useStripe();
+
+  const { user, notify } = useAuthContext();
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const { id } = useParams();
-  const { user } = useAuthContext();
 
   // Generate Payment Secret
   const mutation = useMutation({
@@ -67,6 +69,7 @@ const CheckoutForm = () => {
       });
     if (stripeError) {
       setStripeError(stripeError.message);
+      notify('error', 'Payment Failed!');
     } else {
       setStripeError('');
 
@@ -75,7 +78,13 @@ const CheckoutForm = () => {
         classId: id,
         email: user.email,
       };
-      axiosSecure.post('/transactions', { transactionDetails });
+      const { data } = await axiosSecure.post('/transactions', {
+        transactionDetails,
+      });
+      data.acknowledged
+        ? notify('success', 'Payment Success')
+        : notify('error', 'Payment Failed!');
+      navigate('/dashboard');
     }
   };
 

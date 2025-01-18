@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 
 const Users = () => {
   const [totalData, setTotalData] = useState(0);
@@ -10,6 +11,7 @@ const Users = () => {
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
 
+  const { notify } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
   // Load Teacher Requests
@@ -30,7 +32,8 @@ const Users = () => {
 
   // Handle Admin Action
   const handleAdmin = async email => {
-    await axiosSecure.put('/users_admin', { email });
+    const { data } = await axiosSecure.put('/users_admin', { email });
+    data.acknowledged && notify('success', 'User is Now Admin');
     refetch();
   };
 

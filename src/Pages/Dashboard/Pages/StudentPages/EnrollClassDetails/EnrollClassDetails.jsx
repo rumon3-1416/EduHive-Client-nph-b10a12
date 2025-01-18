@@ -18,7 +18,7 @@ const EnrollClassDetails = () => {
   const [rating, setRating] = useState(0);
 
   const { id } = useParams();
-  const { user } = useAuthContext();
+  const { user, notify } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
   // Load Assignments
@@ -37,23 +37,17 @@ const EnrollClassDetails = () => {
     },
   });
 
-  // Submit Assignment
-  const assignmentMutation = useMutation({
-    mutationFn: async ({ id, assign }) => {
-      const { data } = await axiosSecure.put('/submit_assignment', {
-        id,
-        assign,
-      });
-      return data;
-    },
-  });
   // Handle submit assignment
   const handleAssignment = async assign => {
-    const res = await assignmentMutation.mutateAsync({
+    const { data } = await axiosSecure.put('/submit_assignment', {
       id: assignClassId,
       assign,
     });
-    console.log(res);
+
+    data.acknowledged
+      ? notify('success', 'Assignment Submitted Successfully')
+      : notify('error', 'Assignment Submitted Failed!');
+
     reset();
     setClassId(null);
     document.getElementById('assignment_modal').close();
@@ -77,7 +71,9 @@ const EnrollClassDetails = () => {
     };
 
     const res = await feedbackMutation.mutateAsync(feedback);
-    console.log(res);
+    res.acknowledged
+      ? notify('success', 'Feedback Submitted Successfully!')
+      : notify('error', 'Feedback Submit Failed!');
 
     reset();
     setClassId(null);

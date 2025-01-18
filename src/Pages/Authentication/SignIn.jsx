@@ -21,7 +21,7 @@ const SignIn = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { emailPassSignIn, googleSignIn } = useAuthContext();
+  const { notify, emailPassSignIn, googleSignIn } = useAuthContext();
 
   const desired = location.state?.pathname || '/';
 
@@ -32,11 +32,12 @@ const SignIn = () => {
     emailPassSignIn(email, password)
       .then(() => {
         setErrMessage(null);
-        setModal({ show: true, res: 'success', title: 'Log In Successful' });
+        notify('success', 'Login Successful');
+        navigate(desired);
       })
       .catch(err => {
         setErrMessage(err.message);
-        setModal({ show: true, res: 'error', title: 'Log In Failed' });
+        notify('error', 'Login Failed!');
       });
   };
 
@@ -45,11 +46,12 @@ const SignIn = () => {
     googleSignIn()
       .then(() => {
         setErrMessage(null);
-        setModal({ show: true, res: 'success', title: 'Log In Successful' });
+        notify('success', 'Login Successful');
+        navigate(desired);
       })
       .catch(err => {
-        setErrMessage(err.message),
-          setModal({ show: true, res: 'error', title: 'Log In failed' });
+        setErrMessage(err.message);
+        notify('error', 'Login Failed!');
       });
   };
 
@@ -149,18 +151,6 @@ const SignIn = () => {
               <span>Continue With Google</span>
             </button>
           </div>
-
-          <Modal property={modal}>
-            <button
-              onClick={() => {
-                setModal({ ...modal, show: false });
-                !errMessage && navigate(desired);
-              }}
-              className="bg-green text-white text-lg font-medium px-6 py-2 rounded-xl"
-            >
-              OK
-            </button>
-          </Modal>
         </section>
       </Container>
     </div>

@@ -3,10 +3,12 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import AddAssignment from './AddAssignment';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
+import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 
 const TeachClassDetails = () => {
   const [showForm, setShowForm] = useState(false);
 
+  const { notify } = useAuthContext();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
 
@@ -29,10 +31,14 @@ const TeachClassDetails = () => {
   });
   // Handle Add Assignment
   const addAssignment = async assignment => {
-    await mutation.mutateAsync({
+    const res = await mutation.mutateAsync({
       ...assignment,
       classId: id,
     });
+
+    res.acknowledged
+      ? notify('success', 'Assignment Added')
+      : notify('error', 'Assignment add Failed!');
     refetch();
     setShowForm(false);
   };

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../Hooks/useAuthContext';
-import Modal from '../../components/Modal/Modal';
 
 import { IoEyeOutline } from 'react-icons/io5';
 import { FaRegEyeSlash } from 'react-icons/fa';
@@ -15,16 +14,16 @@ const SignUp = () => {
   const [showPass, setShowPass] = useState(false);
   const [passErr, setPassErr] = useState(null);
   const [errMessage, setErrMessage] = useState(null);
-  const [modal, setModal] = useState({
-    show: false,
-    res: '',
-    title: '',
-  });
 
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
-  const { setLoading, emailPassSignUp, googleSignIn, updateUserProfile } =
-    useAuthContext();
+  const {
+    notify,
+    setLoading,
+    emailPassSignUp,
+    googleSignIn,
+    updateUserProfile,
+  } = useAuthContext();
 
   // Form Submit handler
   const handleSignup = data => {
@@ -64,17 +63,14 @@ const SignUp = () => {
             .then(() => {
               setLoading(false);
               setErrMessage(null);
-              setModal({
-                show: true,
-                res: 'success',
-                title: 'Register Successful',
-              });
+              notify('success', 'Registration Successful');
+              navigate('/');
             })
             .catch(err => setErrMessage(err.message));
         })
         .catch(err => {
           setErrMessage(err.message);
-          setModal({ show: true, res: 'error', title: 'Register Failed' });
+          notify('error', 'Registration Failed!');
         });
     }
   };
@@ -84,11 +80,12 @@ const SignUp = () => {
     googleSignIn()
       .then(() => {
         setErrMessage(null);
-        setModal({ show: true, res: 'success', title: 'Register Successful' });
+        notify('success', 'Registration Successful');
+        navigate('/');
       })
       .catch(err => {
         setErrMessage(err.message);
-        setModal({ show: true, res: 'error', title: 'Register Failed' });
+        notify('error', 'Registration Failed!');
       });
   };
 
@@ -225,18 +222,6 @@ const SignUp = () => {
               <span>Continue With Google</span>
             </button>
           </div>
-
-          <Modal property={modal}>
-            <button
-              onClick={() => {
-                setModal({ ...modal, show: false });
-                !errMessage && navigate('/');
-              }}
-              className="bg-green text-white text-lg font-medium px-6 py-2 rounded-xl"
-            >
-              OK
-            </button>
-          </Modal>
         </section>
       </Container>
     </div>
