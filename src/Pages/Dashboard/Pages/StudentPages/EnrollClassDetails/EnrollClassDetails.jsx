@@ -1,9 +1,10 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
-import Loading from '../../../../../components/Loading/Loading';
 import { useForm } from 'react-hook-form';
+import Rating from './Rating';
+import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
+import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 
 const EnrollClassDetails = () => {
   const [totalData, setTotalData] = useState(0);
@@ -14,10 +15,13 @@ const EnrollClassDetails = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const [assignClassId, setClassId] = useState(null);
+  const [rating, setRating] = useState(0);
 
   const { id } = useParams();
+  const { user } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
+  // Load Assignments
   const {
     data: assignments = [],
     isLoading,
@@ -33,7 +37,8 @@ const EnrollClassDetails = () => {
     },
   });
 
-  const mutation = useMutation({
+  // Submit Assignment
+  const assignmentMutation = useMutation({
     mutationFn: async ({ id, assign }) => {
       const { data } = await axiosSecure.put('/submit_assignment', {
         id,
@@ -42,19 +47,60 @@ const EnrollClassDetails = () => {
       return data;
     },
   });
-
+  // Handle submit assignment
   const handleAssignment = async assign => {
-    const res = await mutation.mutateAsync({ id: assignClassId, assign });
+    const res = await assignmentMutation.mutateAsync({
+      id: assignClassId,
+      assign,
+    });
     console.log(res);
     reset();
     setClassId(null);
     document.getElementById('assignment_modal').close();
   };
 
+  // Submit Feedback
+  const feedbackMutation = useMutation({
+    mutationFn: async feedback => {
+      const { data } = await axiosSecure.post('/post_feedback', feedback);
+      return data;
+    },
+  });
+  // Handle submit assignment
+  const handleFeedback = async feed => {
+    const feedback = {
+      ...feed,
+      id,
+      rating,
+      name: user.displayName,
+      image: user.photoURL,
+    };
+
+    const res = await feedbackMutation.mutateAsync(feedback);
+    console.log(res);
+
+    reset();
+    setClassId(null);
+    document.getElementById('feedback_modal').close();
+  };
+
   return (
     <div>
       <h2 className="text-3xl font-semibold">Class Details</h2>
 
+      {/* Feedback Button */}
+      <div className="my-4">
+        <button
+          onClick={() => {
+            document.getElementById('feedback_modal').showModal();
+          }}
+          className="btn btn-success text-white"
+        >
+          Teaching Evaluation Report
+        </button>
+      </div>
+
+      {/* Assignments */}
       <div>
         <table className="table">
           {/* head */}
@@ -181,6 +227,36 @@ const EnrollClassDetails = () => {
                   required
                 ></textarea>
               )}
+
+              <button className="btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
+      {/* Feedback Modal */}
+      <dialog id="feedback_modal" className="modal">
+        <div className="modal-box w-4/5 max-w-5xl bg-gray-200">
+          <h2 className="text-center text-2xl font-semibold mb-6">Feedback</h2>
+
+          <div className="modal-action">
+            <form
+              onSubmit={handleSubmit(handleFeedback)}
+              method="dialog"
+              className="w-full flex flex-col items-center gap-4"
+            >
+              <textarea
+                {...register('feedback')}
+                className="w-full px-2 py-1 rounded-xl outline-none resize-none"
+                rows={5}
+                name="feedback"
+                id="feedback"
+                placeholder="Give feedback"
+                required
+              ></textarea>
+              <div>
+                <Rating setRating={setRating} />
+              </div>
 
               <button className="btn">Submit</button>
             </form>

@@ -1,13 +1,15 @@
-import Profile from '../Pages/Dashboard/Pages/Profile/Profile';
+import PrivateNavigator from './Navigators/PrivateNavigator';
+import StudentNavigator from './Navigators/StudentNavigator';
+import TeacherNavigator from './Navigators/TeacherNavigator';
+import AdminNavigator from './Navigators/AdminNavigator';
+import DashboardDefault from './Navigators/DashboardDefault';
+
 import DashboardLayout from '../Layouts/DashboardLayout';
-import PrivateNavigator from './PrivateNavigator';
-import TeacherNavigator from './TeacherNavigator';
-import TeacherClasses from '../Pages/Dashboard/Pages/TeacherPages/TeacherClasses/TeacherClasses';
-import AdminNavigator from './AdminNavigator';
+import Profile from '../Pages/Dashboard/Pages/Profile/Profile';
 import Users from '../Pages/Dashboard/Pages/AdminPages/Users/Users';
-import AllTeacherClasses from '../Pages/Dashboard/Pages/AdminPages/AllTeacherClasses/AllTeachersClasses';
-import DashboardDefault from './dashboardDefault';
+import TeacherClasses from '../Pages/Dashboard/Pages/TeacherPages/TeacherClasses/TeacherClasses';
 import TeachClassDetails from '../Pages/Dashboard/Pages/TeacherPages/ClassDetails/TeachClassDetails';
+import AllTeacherClasses from '../Pages/Dashboard/Pages/AdminPages/AllTeacherClasses/AllTeachersClasses';
 import EnrollClassDetails from '../Pages/Dashboard/Pages/StudentPages/EnrollClassDetails/EnrollClassDetails';
 
 const dashboardRouter = {
@@ -48,7 +50,11 @@ const dashboardRouter = {
     },
     {
       path: 'enroll_class_details/:id',
-      element: <EnrollClassDetails />,
+      element: (
+        <StudentNavigator>
+          <EnrollClassDetails />
+        </StudentNavigator>
+      ),
     },
     {
       path: 'teach_class_details/:id',

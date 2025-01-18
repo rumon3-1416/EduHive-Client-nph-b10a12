@@ -1,15 +1,15 @@
 import React from 'react';
-import { useAuthContext } from '../Hooks/useAuthContext';
 import { Navigate } from 'react-router-dom';
+import { useAuthContext } from '../../Hooks/useAuthContext';
 
-const TeacherNavigator = ({ children }) => {
+const StudentNavigator = ({ children }) => {
   const { role } = useAuthContext();
 
-  if (role === 'teacher') {
+  if (role === 'student') {
     return children;
   } else {
     return <Navigate to="/dashboard" replace />;
   }
 };
 
-export default TeacherNavigator;
+export default StudentNavigator;

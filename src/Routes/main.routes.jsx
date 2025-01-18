@@ -1,11 +1,12 @@
+import PrivateNavigator from './Navigators/PrivateNavigator';
+
 import MainLayout from '../Layouts/MainLayout';
-import Error from '../Pages/Error/Error';
 import Home from '../Pages/Home/Home';
-import AllClasses from '../Pages/AllClasses/AllClasses';
-import ApplyTeacher from '../Pages/ApplyTeacher/ApplyTeacher';
-import ClassDetails from '../Pages/ClassDetails/ClassDetails';
-import PrivateNavigator from './PrivateNavigator';
+import Error from '../Pages/Error/Error';
 import Payment from '../Pages/Payment/Payment';
+import AllClasses from '../Pages/AllClasses/AllClasses';
+import ClassDetails from '../Pages/ClassDetails/ClassDetails';
+import ApplyTeacher from '../Pages/ApplyTeacher/ApplyTeacher';
 
 const mainRouter = {
   path: '/',

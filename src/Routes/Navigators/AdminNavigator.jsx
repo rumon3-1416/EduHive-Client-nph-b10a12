@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuthContext } from '../Hooks/useAuthContext';
+import { useAuthContext } from '../../Hooks/useAuthContext';
 import { Navigate } from 'react-router-dom';
 
 const AdminNavigator = ({ children }) => {
