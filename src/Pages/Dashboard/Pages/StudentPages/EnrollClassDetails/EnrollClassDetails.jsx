@@ -1,8 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import Loading from '../../../../../components/Loading/Loading';
+import { useForm } from 'react-hook-form';
 
 const EnrollClassDetails = () => {
   const [totalData, setTotalData] = useState(0);
@@ -10,6 +11,9 @@ const EnrollClassDetails = () => {
   const dataPerPage = 10;
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
+
+  const { register, handleSubmit, reset } = useForm();
+  const [assignClassId, setClassId] = useState(null);
 
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -28,6 +32,24 @@ const EnrollClassDetails = () => {
       return data.assignments;
     },
   });
+
+  const mutation = useMutation({
+    mutationFn: async ({ id, assign }) => {
+      const { data } = await axiosSecure.put('/submit_assignment', {
+        id,
+        assign,
+      });
+      return data;
+    },
+  });
+
+  const handleAssignment = async assign => {
+    const res = await mutation.mutateAsync({ id: assignClassId, assign });
+    console.log(res);
+    reset();
+    setClassId(null);
+    document.getElementById('assignment_modal').close();
+  };
 
   return (
     <div>
@@ -75,10 +97,17 @@ const EnrollClassDetails = () => {
                       {description.slice(0, 20) +
                         (description.length > 20 && '...')}
                     </td>
-                    <td className="text-nowrap">{deadline}</td>
+                    <td className="text-nowrap">
+                      {new Date(deadline).toISOString().split('T')[0]}
+                    </td>
                     <td>
                       <button
-                        // onClick={() => handleClassStatus(_id, 'approved')}
+                        onClick={() => {
+                          setClassId(classId);
+                          document
+                            .getElementById('assignment_modal')
+                            .showModal();
+                        }}
                         className="text-green-300 hover:text-green-500"
                       >
                         Start
@@ -127,6 +156,37 @@ const EnrollClassDetails = () => {
           </tfoot>
         </table>
       </div>
+
+      {/* Assignment Modal */}
+      <dialog id="assignment_modal" className="modal">
+        <div className="modal-box w-4/5 max-w-5xl bg-gray-200">
+          <h2 className="text-center text-2xl font-semibold mb-6">
+            Assignment
+          </h2>
+
+          <div className="modal-action">
+            <form
+              onSubmit={handleSubmit(handleAssignment)}
+              method="dialog"
+              className="w-full flex flex-col items-center gap-4"
+            >
+              {assignClassId && (
+                <textarea
+                  {...register('assignment')}
+                  className="w-full px-2 py-1 rounded-xl outline-none resize-none"
+                  rows={5}
+                  name="assignment"
+                  id="assignment"
+                  placeholder="Write assignment"
+                  required
+                ></textarea>
+              )}
+
+              <button className="btn">Submit</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };
