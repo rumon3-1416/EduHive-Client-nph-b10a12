@@ -1,59 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
+import Loading from '../../../../../components/Loading/Loading';
 
-const Users = () => {
+const EnrollClassDetails = () => {
   const [totalData, setTotalData] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-
   const dataPerPage = 10;
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
 
+  const { id } = useParams();
   const axiosSecure = useAxiosSecure();
 
-  // Load Teacher Requests
   const {
-    data: users = [],
+    data: assignments = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['users', currentPage],
+    queryKey: ['assignments', currentPage, id],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/users?page=${currentPage}&data=${dataPerPage}`
+        `/class_assignments/${id}?page=${currentPage}&data=${dataPerPage}`
       );
       setTotalData(data.count);
-      return data.users;
+      return data.assignments;
     },
   });
 
-  // Handle Admin Action
-  const handleAdmin = async email => {
-    await axiosSecure.put('/users_admin', { email });
-    refetch();
-  };
-
-  useEffect(() => {
-    document.title = 'Users | EduHive';
-  }, []);
-
   return (
     <div>
-      <h2 className="text-3xl font-semibold">All Users</h2>
+      <h2 className="text-3xl font-semibold">Class Details</h2>
 
-      {/* Table */}
-      <div className="bg-[#fffcfc] overflow-x-auto mt-4">
+      <div>
         <table className="table">
           {/* head */}
           <thead>
             <tr className={`bg-[#cccccc] text-slate-700`}>
               <th>No</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Action</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Deadline</th>
+              <th>Start</th>
             </tr>
           </thead>
 
@@ -61,14 +50,15 @@ const Users = () => {
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan={6}>
+                <td colSpan={5}>
                   <h2 className="text-2xl font-semibold">Loading...</h2>
                 </td>
               </tr>
             ) : (
-              users.length > 0 &&
-              users.map((user, index) => {
-                const { _id, displayName, email, photoURL, role } = user;
+              assignments.length > 0 &&
+              assignments.map((assignment, index) => {
+                const { _id, title, description, deadline, classId } =
+                  assignment;
 
                 return (
                   <tr
@@ -80,26 +70,18 @@ const Users = () => {
                     <td className="text-nowrap">
                       {index + 1 + (currentPage - 1) * 10}
                     </td>
+                    <td className="text-nowrap">{title}</td>
                     <td className="text-nowrap">
-                      <img
-                        className="max-w-10 aspect-square object-cover rounded-lg"
-                        referrerPolicy="no-referrer"
-                        src={photoURL}
-                        alt="img"
-                      />
+                      {description.slice(0, 20) +
+                        (description.length > 20 && '...')}
                     </td>
-                    <td className="text-nowrap">{displayName}</td>
-                    <td className="text-nowrap">{email}</td>
-                    <td className="text-nowrap">
-                      {role.charAt(0).toUpperCase() + role.slice(1)}
-                    </td>
+                    <td className="text-nowrap">{deadline}</td>
                     <td>
                       <button
-                        onClick={() => handleAdmin(email)}
-                        className="text-green-300 hover:text-green-500 text-nowrap"
-                        disabled={role === 'admin'}
+                        // onClick={() => handleClassStatus(_id, 'approved')}
+                        className="text-green-300 hover:text-green-500"
                       >
-                        Make Admin
+                        Start
                       </button>
                     </td>
                   </tr>
@@ -111,7 +93,7 @@ const Users = () => {
           {/* foot */}
           <tfoot>
             <tr>
-              <td colSpan={6} className="bg-[#d3d3d3] text-base">
+              <td colSpan={5} className="bg-[#d3d3d3] text-base">
                 <div className="flex justify-end items-center gap-4">
                   <button
                     onClick={() => {
@@ -149,4 +131,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default EnrollClassDetails;

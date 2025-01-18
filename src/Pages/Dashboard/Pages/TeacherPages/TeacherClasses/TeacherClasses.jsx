@@ -27,13 +27,6 @@ const TeacherClasses = () => {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
-  // Load My Total Classes
-  useEffect(() => {
-    axiosSecure
-      .get('/my_class_count')
-      .then(res => setTotalData(res.data.count));
-  }, [axiosSecure]);
-
   // Load all Classes
   const { data: myClasses = [], refetch } = useQuery({
     queryKey: ['myClasses', currentPage],
@@ -41,7 +34,8 @@ const TeacherClasses = () => {
       const { data } = await axiosSecure.get(
         `/my_classes?page=${currentPage}&data=${dataPerPage}`
       );
-      return data;
+      setTotalData(data.count);
+      return data.teacherClasses;
     },
   });
 

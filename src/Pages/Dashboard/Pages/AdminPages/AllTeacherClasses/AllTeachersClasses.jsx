@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
+import ClassProgress from '../../../Components/ClassProgress';
 
 const AllTeacherClasses = () => {
   const [totalData, setTotalData] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [progressId, setProgressId] = useState(null);
 
   const dataPerPage = 10;
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
 
   const axiosSecure = useAxiosSecure();
-
-  // Load Total Classes
-  useEffect(() => {
-    axiosSecure.get('/classes_count').then(res => setTotalData(res.data.count));
-  }, [axiosSecure]);
 
   // Load all Classes
   const {
@@ -28,7 +25,8 @@ const AllTeacherClasses = () => {
       const { data } = await axiosSecure.get(
         `/all_classes?page=${currentPage}&data=${dataPerPage}`
       );
-      return data;
+      setTotalData(data.count);
+      return data.classes;
     },
   });
 
@@ -66,7 +64,7 @@ const AllTeacherClasses = () => {
           <tbody>
             {isLoading ? (
               <tr>
-                <td colSpan={8}>
+                <td colSpan={7}>
                   <h2 className="text-2xl font-semibold">Loading...</h2>
                 </td>
               </tr>
@@ -127,6 +125,10 @@ const AllTeacherClasses = () => {
                     </td>
                     <td className="text-nowrap">
                       <button
+                        onClick={() => {
+                          setProgressId(_id);
+                          document.getElementById('progress_modal').showModal();
+                        }}
                         className="text-blue-300 hover:text-blue-500 px-2 rounded-md"
                         disabled={status !== 'approved'}
                       >
@@ -142,7 +144,7 @@ const AllTeacherClasses = () => {
           {/* foot */}
           <tfoot>
             <tr>
-              <td colSpan={8} className="bg-[#d3d3d3] text-base">
+              <td colSpan={7} className="bg-[#d3d3d3] text-base">
                 <div className="flex justify-end items-center gap-4">
                   <button
                     onClick={() => {
@@ -176,6 +178,22 @@ const AllTeacherClasses = () => {
           </tfoot>
         </table>
       </div>
+
+      {/* Progress Modal */}
+      <dialog id="progress_modal" className="modal">
+        <div className="modal-box w-11/12 max-w-5xl">
+          <h2 className="text-2xl font-semibold mb-6">Progress</h2>
+          {progressId && <ClassProgress id={progressId} />}
+
+          <div className="modal-action">
+            <form method="dialog">
+              <button onClick={() => setProgressId(null)} className="btn">
+                Close
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 };

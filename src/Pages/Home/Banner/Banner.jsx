@@ -29,7 +29,9 @@ const Banner = () => {
   return (
     <section className="bg-greenBg">
       <Container>
-        {!isLoading ? (
+        {isLoading ? (
+          <Loading />
+        ) : (
           <Swiper
             slidesPerView={1}
             spaceBetween={30}
@@ -48,8 +50,6 @@ const Banner = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-        ) : (
-          <Loading />
         )}
       </Container>
     </section>

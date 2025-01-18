@@ -7,7 +7,8 @@ import AdminNavigator from './AdminNavigator';
 import Users from '../Pages/Dashboard/Pages/AdminPages/Users/Users';
 import AllTeacherClasses from '../Pages/Dashboard/Pages/AdminPages/AllTeacherClasses/AllTeachersClasses';
 import DashboardDefault from './dashboardDefault';
-import TeachClassDetails from '../Pages/Dashboard/Pages/TeacherPages/TeacherClasses/TeachClassDetails';
+import TeachClassDetails from '../Pages/Dashboard/Pages/TeacherPages/ClassDetails/TeachClassDetails';
+import EnrollClassDetails from '../Pages/Dashboard/Pages/StudentPages/EnrollClassDetails/EnrollClassDetails';
 
 const dashboardRouter = {
   path: '/dashboard',
@@ -44,6 +45,10 @@ const dashboardRouter = {
           <AllTeacherClasses />
         </AdminNavigator>
       ),
+    },
+    {
+      path: 'enroll_class_details/:id',
+      element: <EnrollClassDetails />,
     },
     {
       path: 'teach_class_details/:id',

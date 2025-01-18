@@ -9,11 +9,9 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import auth from '../firebase/firebase.config';
-import useAxiosSecure from '../Hooks/useAxiosSecure';
 import useAxiosPublic from '../Hooks/useAxiosPublic';
 
 const googleProvider = new GoogleAuthProvider();
-const serverUrl = import.meta.env.VITE_ServerUrl;
 
 export const ContextValue = () => {
   const [loading, setLoading] = useState(true);
@@ -81,13 +79,12 @@ export const ContextValue = () => {
   }, [axiosPublic]);
 
   return {
-    loading,
-    setLoading,
-    serverUrl,
     user,
     role,
-    emailPassSignUp,
+    loading,
+    setLoading,
     googleSignIn,
+    emailPassSignUp,
     emailPassSignIn,
     updateUserProfile,
     signOutUser,

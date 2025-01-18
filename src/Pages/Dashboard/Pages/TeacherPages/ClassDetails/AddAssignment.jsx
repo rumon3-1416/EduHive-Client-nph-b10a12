@@ -1,8 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import DatePicker from 'react-datepicker';
 import { useForm } from 'react-hook-form';
 
-const UpdateClass = ({ classData, handleUpdate }) => {
-  const { _id, title, image, price, description } = classData;
+import 'react-datepicker/dist/react-datepicker.css';
+
+const AddAssignment = ({ addAssignment }) => {
+  const [startDate, setStartDate] = useState(new Date());
+  const { register, handleSubmit } = useForm();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -12,10 +16,8 @@ const UpdateClass = ({ classData, handleUpdate }) => {
     };
   }, []);
 
-  const { register, handleSubmit } = useForm();
-
-  const updateClass = async data => {
-    await handleUpdate({ _id, ...data });
+  const handleAdd = async data => {
+    await addAssignment({ ...data, deadline: startDate });
   };
 
   return (
@@ -24,58 +26,38 @@ const UpdateClass = ({ classData, handleUpdate }) => {
         className={`animate__animated animate__zoomIn px-8 py-10 max-h-full w-full max-w-[1232px] mx-auto shadow-lg overflow-y-auto rounded-xl bg-[#ebecef]`}
       >
         <h3 className={`text-3xl font-bold text-center mb-12text-gray-800`}>
-          Update Class
+          Add Assignment
         </h3>
 
-        <form onSubmit={handleSubmit(updateClass)}>
-          {/* Title */}
-          <div className="mb-6 flex flex-col">
-            <label htmlFor="title" className={`font-semibold mb-2`}>
-              Title
-            </label>
-            <input
-              {...register('title')}
-              className={`w-full px-4 py-3 rounded-lg outline-none `}
-              id="title"
-              type="text"
-              name="title"
-              placeholder="Title"
-              defaultValue={title}
-              required
-            />
-          </div>
-
+        <form onSubmit={handleSubmit(handleAdd)} className="mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Image */}
+            {/* Title */}
             <div className="mb-6 flex flex-col">
-              <label htmlFor="image" className={`font-semibold mb-2`}>
-                Image
+              <label htmlFor="title" className={`font-semibold mb-2`}>
+                Title
               </label>
               <input
-                {...register('image')}
+                {...register('title')}
                 className={`w-full px-4 py-3 rounded-lg outline-none `}
-                id="image"
+                id="title"
                 type="text"
-                name="image"
-                placeholder="Image"
-                defaultValue={image}
+                name="title"
+                placeholder="Title"
                 required
               />
             </div>
-            {/* Price */}
+
+            {/* Deadline */}
             <div className="mb-6 flex flex-col">
-              <label htmlFor="price" className={`font-semibold mb-2`}>
-                Price
+              <label htmlFor="deadline" className={`font-semibold mb-2`}>
+                Deadline
               </label>
-              <input
-                {...register('price')}
+              <DatePicker
                 className={`w-full px-4 py-3 rounded-lg outline-none `}
-                id="price"
-                type="number"
-                name="price"
-                placeholder="Price"
-                defaultValue={price}
-                required
+                id="deadline"
+                name="deadline"
+                selected={startDate}
+                onChange={date => setStartDate(date)}
               />
             </div>
           </div>
@@ -91,7 +73,6 @@ const UpdateClass = ({ classData, handleUpdate }) => {
               id="description"
               name="description"
               placeholder="Write a short description"
-              defaultValue={description}
               rows="4"
               required
             ></textarea>
@@ -103,7 +84,7 @@ const UpdateClass = ({ classData, handleUpdate }) => {
               type="submit"
               className="bg-green-500 text-white hover:bg-gold2 text-xl font-semibold px-12 py-2.5 rounded-xl"
             >
-              Update
+              Add
             </button>
           </div>
         </form>
@@ -112,4 +93,4 @@ const UpdateClass = ({ classData, handleUpdate }) => {
   );
 };
 
-export default UpdateClass;
+export default AddAssignment;

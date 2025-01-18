@@ -12,13 +12,6 @@ const TeacherRequests = () => {
 
   const axiosSecure = useAxiosSecure();
 
-  // Get Total Requests
-  useEffect(() => {
-    axiosSecure
-      .get('/teacher_requests_count')
-      .then(res => setTotalData(res.data.count));
-  }, [axiosSecure]);
-
   // Load Teacher Requests
   const {
     data: teacherRequests = [],
@@ -30,7 +23,9 @@ const TeacherRequests = () => {
       const { data } = await axiosSecure.get(
         `/teacher_requests?page=${currentPage}&data=${dataPerPage}`
       );
-      return data;
+      setTotalData(data.count);
+
+      return data.requests;
     },
   });
 

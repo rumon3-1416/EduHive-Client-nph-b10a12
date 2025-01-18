@@ -6,7 +6,7 @@ const ClassProgress = ({ id }) => {
   const axiosSecure = useAxiosSecure();
 
   const { data: progress = {} } = useQuery({
-    queryKey: ['progress'],
+    queryKey: ['progress', id],
     queryFn: async () => {
       const { data } = await axiosSecure.get(`/class_progress/${id}`);
       return data;
