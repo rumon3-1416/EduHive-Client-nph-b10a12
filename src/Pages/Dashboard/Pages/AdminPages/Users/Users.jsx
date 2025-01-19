@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
+import SearchUsers from './SearchUsers';
 
 const Users = () => {
   const [totalData, setTotalData] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [search, setSearch] = useState('');
   const dataPerPage = 10;
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
@@ -20,10 +21,10 @@ const Users = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['users', currentPage],
+    queryKey: ['users', currentPage, search],
     queryFn: async () => {
       const { data } = await axiosSecure.get(
-        `/users?page=${currentPage}&data=${dataPerPage}`
+        `/users?page=${currentPage}&data=${dataPerPage}&search=${search}`
       );
       setTotalData(data.count);
       return data.users;
@@ -44,6 +45,9 @@ const Users = () => {
   return (
     <div>
       <h2 className="text-3xl font-semibold">All Users</h2>
+
+      {/* Search */}
+      <SearchUsers setSearch={setSearch} />
 
       {/* Table */}
       <div className="bg-[#fffcfc] overflow-x-auto mt-4">

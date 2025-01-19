@@ -5,6 +5,7 @@ import useImgUrl from '../../Hooks/useImgUrl';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const ApplyTeacher = () => {
   const { register, handleSubmit } = useForm();
@@ -14,14 +15,14 @@ const ApplyTeacher = () => {
 
   // Load Status
   const {
-    data: status = 'no',
+    data: status = null,
     isLoading,
     refetch,
   } = useQuery({
     queryKey: ['requested'],
     queryFn: async () => {
-      const { data } = await axiosSecure.get('check_request');
-      return data.status;
+      const { data } = await axiosSecure.get('/check_request');
+      return data.status || null;
     },
   });
 
@@ -54,6 +55,7 @@ const ApplyTeacher = () => {
       <Container>
         <section>
           <h1 className="text-4xl font-semibold">Teach on EduHive</h1>
+          {status && <Link to="/dashboard/my_request">My Request</Link>}
 
           {role === 'admin' ? (
             <div>

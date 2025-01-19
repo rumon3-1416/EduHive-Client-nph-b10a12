@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import Container from '../../components/Container/Container';
@@ -6,14 +6,23 @@ import { useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const AllClasses = () => {
+  const [totalData, setTotalData] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const dataPerPage = 12;
+  const totalPages = Math.ceil(totalData / dataPerPage);
+  const pagesArray = [...Array(totalPages).keys()];
+
   const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
 
   const { data: classes = [] } = useQuery({
-    queryKey: ['classes'],
+    queryKey: ['classes', currentPage],
     queryFn: async (req, res) => {
-      const { data } = await axiosPublic.get(`/classes`);
-      return data;
+      const { data } = await axiosPublic.get(
+        `/classes?page=${currentPage}&limit=${dataPerPage}`
+      );
+      setTotalData(data.count);
+      return data.classes;
     },
   });
 
@@ -56,6 +65,35 @@ const AllClasses = () => {
                 </div>
               );
             })}
+          </div>
+
+          {/* Pagination */}
+          <div className="mt-6 flex justify-end items-center gap-4">
+            <button
+              onClick={() => {
+                currentPage > 1 && setCurrentPage(currentPage - 1);
+              }}
+              className="bg-slate-50 px-3 py-1 rounded-md"
+            >{`<`}</button>
+            {pagesArray.map(num => (
+              <button
+                onClick={() => setCurrentPage(num + 1)}
+                className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-light-green ${
+                  currentPage === num + 1
+                    ? 'bg-green-200 text-green-500'
+                    : 'bg-white'
+                }`}
+                key={num}
+              >
+                {num + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => {
+                currentPage < totalPages && setCurrentPage(currentPage + 1);
+              }}
+              className="bg-slate-50 px-3 py-1 rounded-md"
+            >{`>`}</button>
           </div>
         </div>
       </Container>

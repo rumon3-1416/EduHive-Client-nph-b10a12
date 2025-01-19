@@ -11,6 +11,7 @@ import TeacherClasses from '../Pages/Dashboard/Pages/TeacherPages/TeacherClasses
 import TeachClassDetails from '../Pages/Dashboard/Pages/TeacherPages/ClassDetails/TeachClassDetails';
 import AllTeacherClasses from '../Pages/Dashboard/Pages/AdminPages/AllTeacherClasses/AllTeachersClasses';
 import EnrollClassDetails from '../Pages/Dashboard/Pages/StudentPages/EnrollClassDetails/EnrollClassDetails';
+import MyRequest from '../Pages/Home/BecomeTeacher/MyRequest';
 
 const dashboardRouter = {
   path: '/dashboard',
@@ -23,6 +24,10 @@ const dashboardRouter = {
     {
       index: true,
       element: <DashboardDefault />,
+    },
+    {
+      path: 'my_request',
+      element: <MyRequest />,
     },
     {
       path: 'my_classes',

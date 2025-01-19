@@ -13,7 +13,7 @@ const PopularClasses = () => {
     queryFn: async () => {
       const { data } = await axiosPublic.get(`/classes?popular=true&limit=6`);
 
-      return data;
+      return data.classes;
     },
   });
 

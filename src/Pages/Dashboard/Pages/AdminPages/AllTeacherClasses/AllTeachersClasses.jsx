@@ -77,17 +77,8 @@ const AllTeacherClasses = () => {
             ) : (
               allClasses.length > 0 &&
               allClasses.map((request, index) => {
-                const {
-                  _id,
-                  name,
-                  email,
-                  image,
-                  title,
-                  price,
-                  status,
-                  total_enrolment,
-                  description,
-                } = request;
+                const { _id, email, image, title, status, description } =
+                  request;
 
                 return (
                   <tr
@@ -109,7 +100,9 @@ const AllTeacherClasses = () => {
                     <td className="text-nowrap">{title}</td>
                     <td className="text-nowrap">{email}</td>
                     <td className="text-nowrap">
-                      {description.slice(0, 20)}...
+                      {description?.slice(0, 20) +
+                        (description?.length > 20 && '...') +
+                        ''}
                     </td>
                     <td>
                       <div className="flex justify-center items-center gap-4">
