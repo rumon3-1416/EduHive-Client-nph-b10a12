@@ -24,7 +24,7 @@ const PopularClasses = () => {
   });
 
   return (
-    <div className="bg-lightGray pt-14 pb-6">
+    <div className="bg-greenBg pt-14 pb-6">
       <Container>
         <section id="popular_classes">
           <SectionHeading

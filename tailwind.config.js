@@ -6,10 +6,12 @@ export default {
     extend: {
       colors: {
         skyBlue: '#3498db',
+        blueBg: '#3498db0e',
         blueTrans: '#3498db1e',
-        darkBlue: '#2c3e50',
+        darkBlue: '#21608b',
         lightBlue: '#9ec3dc',
         green: '#2ecc71',
+        greenBg: '#2ecc700e',
         hoverGreen: '#1abc9c',
         lightGray: '#eeeef2ab',
         darkGray: '#34495e',

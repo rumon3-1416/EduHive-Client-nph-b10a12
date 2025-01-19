@@ -17,10 +17,10 @@ const Overview = () => {
   });
 
   return (
-    <div className="bg-lightGray">
+    <div className="bg-greenBg">
       <Container>
         <section className="pt-14 pb-10">
-          <div className="grid grid-cols-1 md:grid-cols-[4fr,_3fr] lg:grid-cols-2 items-center gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-[4fr,_3fr] lg:grid-cols-2 items-center gap-2 lg:gap-6">
             <div className="w-full p-6">
               <div className="bg-white shadow-lg rounded-lg p-8 text-center">
                 <h2 className="text-3xl font-bold text-green-600 mb-4">
@@ -32,19 +32,19 @@ const Overview = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div>
-                    <h3 className="text-gray-800 text-4xl font-extrabold">
+                    <h3 className="text-successGreen text-4xl font-extrabold">
                       {overview.totalUsers}+
                     </h3>
                     <p className="text-gray-500">Total Users</p>
                   </div>
                   <div>
-                    <h3 className="text-gray-800 text-4xl font-extrabold">
+                    <h3 className="text-successGreen text-4xl font-extrabold">
                       {overview.totalClass}+
                     </h3>
                     <p className="text-gray-500">Classes Offered</p>
                   </div>
                   <div>
-                    <h3 className="text-gray-800 text-4xl font-extrabold">
+                    <h3 className="text-successGreen text-4xl font-extrabold">
                       {overview.totalEnrolled}+
                     </h3>
                     <p className="text-gray-500">Enrollments</p>

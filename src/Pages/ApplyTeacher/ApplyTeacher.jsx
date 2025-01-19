@@ -6,6 +6,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import SectionHeading from '../Home/Shared/SectionHeading';
 
 const ApplyTeacher = () => {
   const { register, handleSubmit } = useForm();
@@ -51,113 +52,203 @@ const ApplyTeacher = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-blueBg min-h-[80vh]">
       <Container>
-        <section>
-          <h1 className="text-4xl font-semibold">Teach on EduHive</h1>
-          {status && <Link to="/dashboard/my_request">My Request</Link>}
+        <section className="py-8">
+          <SectionHeading heading={['Teach on EduHive']} />
 
-          {role === 'admin' ? (
-            <div>
-              <h2 className="text-4xl font-semibold">
-                You are already a Admin.
-              </h2>
-              <h3 className="text-3xl font-semibold">{`You Can't be a Teacher.`}</h3>
-            </div>
-          ) : status === 'pending' && role === 'student' ? (
-            <div>
-              <h2 className="text-4xl font-semibold">
-                Your Request is Pending.
-              </h2>
-              <h3 className="text-3xl font-semibold">
-                Wait for admin response.
-              </h3>
-            </div>
-          ) : status === 'approved' || role === 'teacher' ? (
-            <div>
-              <h2 className="text-3xl font-semibold">
-                You are already a Teacher
-              </h2>
-              <h1 className="text-4xl font-medium">Good Luck!</h1>
-            </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit(handleTeacher)}
-              className="grid grid-cols-1"
-            >
-              <input
-                {...register('name')}
-                name="name"
-                id="name"
-                type="text"
-                placeholder="Name"
-                required
-              />
-              <label htmlFor="image">
-                <input
-                  {...register('image')}
-                  name="image"
-                  id="image"
-                  type="file"
-                  accept="image/*"
-                  required
-                />
-              </label>
-              <input
-                {...register('email')}
-                name="email"
-                id="email"
-                type="email"
-                placeholder="Email"
-                value={user.email}
-                readOnly
-                required
-              />
-              <input
-                {...register('title')}
-                name="title"
-                id="title"
-                type="text"
-                placeholder="Title"
-                required
-              />
-              <select
-                {...register('experience')}
-                defaultValue=""
-                name="experience"
-                id="experience"
-                required
+          <div className="">
+            {(status === 'pending' || status === 'rejected') && (
+              <div className="mb-2">
+                <Link to="/dashboard/my_request">
+                  <button className="text-white bg-green hover:bg-hoverGreen px-4 py-2 rounded-full">
+                    My Request
+                  </button>
+                </Link>
+              </div>
+            )}
+
+            {role === 'admin' ? (
+              <div className="text-center">
+                <h2 className="text-infoBlue text-2xl font-semibold">
+                  You are already an Admin.
+                </h2>
+                <h3 className="text-errorRed text-xl font-semibold mt-2">{`You Can't be a Teacher.`}</h3>
+              </div>
+            ) : status === 'pending' && role === 'student' ? (
+              <div className="text-center">
+                <h2 className="text-yellow-400 text-2xl font-semibold">
+                  Your Request is Pending.
+                </h2>
+                <h3 className="text-infoBlue text-xl font-semibold mt-2">
+                  Wait for admin response.
+                </h3>
+              </div>
+            ) : status === 'approved' || role === 'teacher' ? (
+              <div className="text-center">
+                <h2 className="text-infoBlue text-2xl font-semibold">
+                  You are already a Teacher
+                </h2>
+                <h3 className="text-successGreen text-xl font-semibold mt-2">
+                  Good Luck!
+                </h3>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubmit(handleTeacher)}
+                className="bg-white px-8 py-10 mt-8 rounded-xl grid grid-cols-1"
               >
-                <option value="" disabled>
-                  Select Experience
-                </option>
-                <option value="beginner">Beginner</option>
-                <option value="mid-level">Mid Level</option>
-                <option value="experienced">Experienced</option>
-              </select>
-              <select
-                {...register('category')}
-                defaultValue=""
-                name="category"
-                id="category"
-                required
-              >
-                <option value="" disabled>
-                  Select Category
-                </option>
-                <option value="web-development">Web Development</option>
-                <option value="app-development">App Development</option>
-                <option value="digital-marketing">Digital-Marketing</option>
-                <option value="graphic-design">Graphic Design</option>
-                <option value="data-science">Data Science</option>
-              </select>
-              <button disabled={isLoading} type="submit">
-                {status === 'rejected'
-                  ? 'Request to Another'
-                  : 'Submit For Review'}
-              </button>
-            </form>
-          )}
+                {/* Name */}
+                <div className="flex flex-col">
+                  <label
+                    htmlFor="name"
+                    className="text-gray-700 font-semibold mb-2"
+                  >
+                    Name
+                  </label>
+                  <input
+                    {...register('name')}
+                    className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                    name="name"
+                    id="name"
+                    type="text"
+                    placeholder="Name"
+                    required
+                  />
+                </div>
+
+                {/* Title */}
+                <div className="flex flex-col">
+                  <label
+                    className="text-gray-700 font-semibold mb-2"
+                    htmlFor="title"
+                  >
+                    Title
+                  </label>
+                  <input
+                    {...register('title')}
+                    className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                    name="title"
+                    id="title"
+                    type="text"
+                    placeholder="Title"
+                    required
+                  />
+                </div>
+
+                {/* Image & Email */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Image */}
+                  <div className="flex flex-col">
+                    <label
+                      className="text-gray-700 font-semibold mb-2"
+                      htmlFor="image"
+                    >
+                      Image
+                    </label>
+                    <input
+                      {...register('image')}
+                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                      name="image"
+                      id="image"
+                      type="file"
+                      accept="image/*"
+                      required
+                    />
+                  </div>
+                  {/* Email */}
+                  <div className="flex flex-col">
+                    <label
+                      className="text-gray-700 font-semibold mb-2"
+                      htmlFor="email"
+                    >
+                      Email
+                    </label>
+                    <input
+                      {...register('email')}
+                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                      name="email"
+                      id="email"
+                      type="email"
+                      placeholder="Email"
+                      value={user.email}
+                      readOnly
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Experience & Category */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Experience */}
+                  <div className="flex flex-col">
+                    <label
+                      className="text-gray-700 font-semibold mb-2"
+                      htmlFor="experience"
+                    >
+                      Experience
+                    </label>
+                    <select
+                      {...register('experience')}
+                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                      defaultValue=""
+                      name="experience"
+                      id="experience"
+                      required
+                    >
+                      <option value="" disabled>
+                        Select Experience
+                      </option>
+                      <option value="beginner">Beginner</option>
+                      <option value="mid-level">Mid Level</option>
+                      <option value="experienced">Experienced</option>
+                    </select>
+                  </div>
+                  {/* Category */}
+                  <div className="flex flex-col">
+                    <label
+                      className="text-gray-700 font-semibold mb-2"
+                      htmlFor="category"
+                    >
+                      Category
+                    </label>
+                    <select
+                      {...register('category')}
+                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                      defaultValue=""
+                      name="category"
+                      id="category"
+                      required
+                    >
+                      <option value="" disabled>
+                        Select Category
+                      </option>
+                      <option value="web-development">Web Development</option>
+                      <option value="app-development">App Development</option>
+                      <option value="digital-marketing">
+                        Digital-Marketing
+                      </option>
+                      <option value="graphic-design">Graphic Design</option>
+                      <option value="data-science">Data Science</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Submit */}
+                <div className="text-center">
+                  <button
+                    className="bg-green text-white hover:bg-hoverGreen text-xl font-semibold px-12 py-2.5 rounded-full"
+                    disabled={isLoading}
+                    type="submit"
+                  >
+                    {status === 'rejected'
+                      ? 'Request to Another'
+                      : 'Submit For Review'}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
         </section>
       </Container>
     </div>

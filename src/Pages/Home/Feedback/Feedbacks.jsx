@@ -24,7 +24,7 @@ const Feedbacks = () => {
   });
 
   return (
-    <div>
+    <div className="bg-blueBg">
       <Container>
         <section className="pt-14 pb-6">
           <SectionHeading
@@ -65,7 +65,7 @@ const Feedbacks = () => {
                       className="h-full aspect-auto rounded-xl shadow-lg"
                       key={_id}
                     >
-                      <div className="bg-white min-h-[15rem] p-6 rounded-xl">
+                      <div className="bg-white min-h-[17.5rem] p-6 rounded-xl">
                         <div className="mb-2 flex gap-4">
                           <img
                             className="w-12 h-12 aspect-square object-cover border-2 border-lightBlue p-0.5 rounded-full"
@@ -74,7 +74,7 @@ const Feedbacks = () => {
                           />
                           <div>
                             <p className="poppins-font font-semibold">{name}</p>
-                            <p className="text-sm font-medium">
+                            <p className="text-xs font-medium">
                               Student of EduHive
                             </p>
                           </div>

@@ -17,11 +17,11 @@ const PopClassCard = ({ popClass }) => {
           <h4 className="text-xl font-semibold mt-3 mb-1">{title}</h4>
           <p className="font-medium">
             Teacher :{' '}
-            <span className="text-darkGray font-semibold">{name}</span>
+            <span className="text-darkBlue font-semibold">{name}</span>
           </p>
           <p className="font-medium">
             Enrolled :{' '}
-            <span className="text-darkGray font-semibold">
+            <span className="text-darkBlue font-semibold">
               {total_enrolment}
             </span>
           </p>

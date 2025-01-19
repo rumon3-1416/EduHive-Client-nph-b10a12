@@ -25,25 +25,35 @@ const ClassDetails = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-blueBg pt-12 pb-24">
       <Container>
-        <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <img src={image} alt="" />
+        <div className="bg-greenBg p-6 shadow-lg rounded-xl grid grid-cols-1 md:grid-cols-2 gap-8">
+          <img
+            className="
+        w-full aspect-video object-cover rounded-xl"
+            src={image}
+            alt=""
+          />
 
-            <div>
-              <p>{title}</p>
-              <p>Teacher : {name}</p>
-              <p>Enrolled : {total_enrolment}</p>
-              <p>Price : {price}</p>
-              <p>{description}</p>
-              <button
-                onClick={() => navigate(`/payment/${_id}`)}
-                className="btn"
-              >
-                Pay Now
-              </button>
-            </div>
+          <div>
+            <p className="text-gray-800 text-2xl font-bold mb-4">{title}</p>
+            <p className="text-gray-600">
+              Teacher : <span className="font-semibold">{name}</span>
+            </p>
+            <p className="text-gray-600">
+              Enrolled :{' '}
+              <span className="font-semibold">{total_enrolment}</span>
+            </p>
+            <p className="text-gray-600 mb-2">
+              Price : <span className="font-semibold">{price}</span>
+            </p>
+            <p className="mb-6">{description}</p>
+            <button
+              onClick={() => navigate(`/payment/${_id}`)}
+              className="bg-green text-white hover:bg-hoverGreen font-medium px-9 py-2 mb-2 rounded-full"
+            >
+              Pay Now
+            </button>
           </div>
         </div>
       </Container>

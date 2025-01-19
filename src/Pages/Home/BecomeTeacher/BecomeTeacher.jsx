@@ -2,34 +2,62 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../../../components/Container/Container';
 
+import instructorImg from '../../../assets/images/instructor.png';
+
 const BecomeTeacher = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="bg-blueBg">
       <Container>
-        <section className="grid grid-cols-1 md:grid-cols-2 items-center gap-8">
-          <div className="flex justify-center">
-            <img
-              className="max-h-96"
-              src="https://static.vecteezy.com/system/resources/previews/023/254/079/non_2x/smiling-male-teacher-character-pointing-free-png.png"
-              alt=""
-            />
-          </div>
+        <section className="pt-14 pb-10">
+          <div className="grid grid-cols-1 md:grid-cols-[3fr,_4fr] lg:grid-cols-2 items-center gap-6">
+            <div className="">
+              <img
+                className="w-4/5 md:w-full max-w-[30rem] mx-auto md:mx-0"
+                src={instructorImg}
+                alt=""
+              />
+            </div>
 
-          <div>
-            <h2 className="text-3xl font-semibold">Become an Instructor</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deleniti
-              sed fugit consequatur, obcaecati, laboriosam ea cumque minus ut
-              ipsum dolorum iste mollitia magni? Est cupiditate corrupti
-              pariatur commodi iusto. Minus, doloribus suscipit dolore iure
-              magnam soluta atque voluptatibus! Ipsa veritatis temporibus eum
-              corporis quisquam, voluptate reprehenderit ad nemo vel numquam.
-            </p>
-            <button onClick={() => navigate('/apply_teacher')} className="btn">
-              Become an Instructor Today
-            </button>
+            <div className="">
+              <h2 className="text-4xl font-bold mb-4">
+                Share Your Knowledge, Shape Futures
+              </h2>
+              <p className="text-gray-600 text-lg mb-6">
+                Become a part of our growing community of educators. Join us to
+                teach, inspire, and make a difference in students lives around
+                the globe. Your expertise matters!
+              </p>
+
+              <ul className="text-gray-600 space-y-4 mb-6">
+                <li className="flex items-center">
+                  <span className="bg-skyBlue text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                    ✓
+                  </span>
+                  Flexible teaching schedules.
+                </li>
+                <li className="flex items-center">
+                  <span className="bg-skyBlue text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                    ✓
+                  </span>
+                  Access to thousands of eager learners.
+                </li>
+                <li className="flex items-center">
+                  <span className="bg-skyBlue text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                    ✓
+                  </span>
+                  Earn and grow as you teach.
+                </li>
+              </ul>
+
+              <button
+                onClick={() => navigate('/all_classes')}
+                className="bg-green text-white px-6 py-3 rounded-full shadow-lg hover:bg-hoverGreen"
+              >
+                Join as a Teacher
+              </button>
+            </div>
           </div>
         </section>
       </Container>

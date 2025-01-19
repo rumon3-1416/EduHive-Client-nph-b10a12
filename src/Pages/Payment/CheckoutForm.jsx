@@ -96,19 +96,22 @@ const CheckoutForm = () => {
             base: {
               fontSize: '16px',
               color: '#424770',
+              fontFamily: "'Roboto', sans-serif",
+              fontSmoothing: 'antialiased',
               '::placeholder': {
                 color: '#aab7c4',
               },
             },
             invalid: {
               color: '#9e2146',
+              iconColor: '#fa755a',
             },
           },
         }}
       />
       {stripeError && <p className="text-red-500">{stripeError}</p>}
       <button
-        className="btn btn-success"
+        className="bg-green text-white hover:bg-hoverGreen font-medium px-9 py-2 mt-4 rounded-full"
         disabled={!stripe || mutation.isLoading}
         type="submit"
       >

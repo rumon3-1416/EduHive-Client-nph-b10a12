@@ -27,7 +27,7 @@ const Banner = () => {
   });
 
   return (
-    <section className="bg-greenBg">
+    <section className="bg-blueBg">
       <Container>
         {isLoading ? (
           <Loading />

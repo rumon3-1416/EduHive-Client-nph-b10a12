@@ -33,7 +33,7 @@ const Slide = ({ data }) => {
                 ?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
-          className="bg-green hover:bg-gold2 text-lg px-6 py-2 mt-6 rounded-lg font-medium"
+          className="bg-green hover:bg-hoverGreen text-lg px-6 py-3 mt-6 rounded-full font-medium"
         >
           {buttonText}
         </button>
