@@ -1,9 +1,15 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper/modules';
 
 import Container from '../../../components/Container/Container';
 import PopClassCard from './PopClassCard';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import SectionHeading from '../Shared/SectionHeading';
+
+import 'swiper/css';
+import 'swiper/css/free-mode';
 
 const PopularClasses = () => {
   const axiosPublic = useAxiosPublic();
@@ -18,22 +24,45 @@ const PopularClasses = () => {
   });
 
   return (
-    <div className="bg-greenBg pt-16 pb-10">
+    <div className="bg-lightGray pt-14 pb-6">
       <Container>
-        <section id="marathons">
-          <h1
-            className={`text-4xl leading-[44px] font-semibold mb-4 text-dark`}
+        <section id="popular_classes">
+          <SectionHeading
+            heading={['Our Popular Classes', 'Explore Our Popular Classes']}
+          />
+
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={10}
+            grabCursor={true}
+            freeMode={true}
+            modules={[FreeMode]}
+            breakpoints={{
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 17,
+              },
+              768: {
+                slidesPerView: 3,
+                spaceBetween: 23,
+              },
+              1024: {
+                slidesPerView: 4,
+                spaceBetween: 30,
+              },
+            }}
+            className="mySwiper pb-6"
           >
-            Popular Classes
-          </h1>
-          <p className={`text-lg max-w-[480px] mb-10text-[#32443f]`}>
-            Write something about popular classess
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {popularClasses.map(popClass => (
-              <PopClassCard key={popClass._id} popClass={popClass} />
-            ))}
-          </div>
+            {popularClasses.length > 2 &&
+              popularClasses.map(popClass => (
+                <SwiperSlide
+                  className="rounded-2xl aspect-auto h-full shadow-lg"
+                  key={popClass._id}
+                >
+                  <PopClassCard popClass={popClass} />
+                </SwiperSlide>
+              ))}
+          </Swiper>
         </section>
       </Container>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 
@@ -6,13 +7,12 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/autoplay';
-import { useQuery } from '@tanstack/react-query';
 
 import Container from '../../../components/Container/Container';
 import Loading from '../../../components/Loading/Loading';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import Slide from './Slide';
 import './carousel.css';
-import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 const Banner = () => {
   const axiosPublic = useAxiosPublic();
@@ -44,11 +44,12 @@ const Banner = () => {
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             className="mySwiper"
           >
-            {slides.map(data => (
-              <SwiperSlide key={data._id}>
-                <Slide data={data} />
-              </SwiperSlide>
-            ))}
+            {slides.length > 2 &&
+              slides.map(data => (
+                <SwiperSlide key={data._id}>
+                  <Slide data={data} />
+                </SwiperSlide>
+              ))}
           </Swiper>
         )}
       </Container>
