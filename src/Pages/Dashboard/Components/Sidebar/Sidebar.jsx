@@ -17,6 +17,21 @@ const Sidebar = ({ collapse, setCollapse }) => {
 
   const navigate = useNavigate();
 
+  // Handle Resize Screen
+  const handleResize = e => {
+    e.target.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
+  };
+  // Handle Outside Click
+  const handleClick = e => {
+    if (
+      window.innerWidth < 768 &&
+      divRef.current &&
+      !divRef.current.contains(e.target)
+    ) {
+      setCollapse(true);
+    }
+  };
+
   useEffect(() => {
     window.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
 
@@ -28,17 +43,6 @@ const Sidebar = ({ collapse, setCollapse }) => {
       document.removeEventListener('mousedown', handleClick);
     };
   }, []);
-  // Handle Resize Screen
-  const handleResize = e => {
-    e.target.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
-  };
-  // Handle Outside Click
-  const handleClick = e => {
-    window.innerWidth < 768 &&
-      divRef.current &&
-      !divRef.current.contains(e.target) &&
-      setCollapse(true);
-  };
 
   return (
     <div className="min-h-[100vh] max-h-[100vh] sticky top-0 left-0 z-10">
@@ -46,8 +50,8 @@ const Sidebar = ({ collapse, setCollapse }) => {
         {/* Sidebar */}
         <div
           ref={divRef}
-          className={`sidebar bg-[#f4fbffbb] backdrop-blur-md w-max md:h-full absolute md:static top-0 bottom-0 ${
-            collapse ? 'w-0 overflow-hidden' : ''
+          className={`side-bar bg-[#f4fbffbb] backdrop-blur-md w-max md:h-full absolute md:static top-0 bottom-0 transition-all duration-1000 ${
+            collapse ? 'w-0 overflow-hidden' : 'w-max'
           }`}
         >
           <div className="p-3">

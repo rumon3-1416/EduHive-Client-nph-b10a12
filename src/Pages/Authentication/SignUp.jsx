@@ -26,7 +26,7 @@ const SignUp = () => {
   } = useAuthContext();
 
   // Form Submit handler
-  const handleSignup = data => {
+  const handleSignup = async data => {
     const { displayName, email, password, photoURL, terms } = data;
 
     const regex = /^(?=.*[a-z])(?=.*[A-Z])/;
@@ -49,29 +49,26 @@ const SignUp = () => {
         setErrMessage(null);
       }
     } else {
-      // Create & Update user
-      emailPassSignUp(email, password)
-        .then(res => {
-          setErrMessage(null);
-          axiosPublic.post('/users', {
-            email: res.user.email,
-            displayName: displayName,
-            photoURL: photoURL,
-          });
+      try {
+        setErrMessage(null);
+        // Create & Update user
+        const res = await emailPassSignUp(email, password);
+        await updateUserProfile(res.user, { displayName, photoURL });
 
-          updateUserProfile(res.user, { displayName, photoURL })
-            .then(() => {
-              setLoading(false);
-              setErrMessage(null);
-              notify('success', 'Registration Successful');
-              navigate('/');
-            })
-            .catch(err => setErrMessage(err.message));
-        })
-        .catch(err => {
-          setErrMessage(err.message);
-          notify('error', 'Registration Failed!');
+        await axiosPublic.post('/users', {
+          email: res.user.email,
+          displayName,
+          photoURL,
         });
+
+        setLoading(false);
+        setErrMessage(null);
+        notify('success', 'Registration Successful');
+        navigate('/');
+      } catch (err) {
+        setErrMessage(err.message);
+        notify('error', 'Registration Failed!');
+      }
     }
   };
 
