@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { useForm } from 'react-hook-form';
-
 import 'react-datepicker/dist/react-datepicker.css';
 
 const AddAssignment = ({ addAssignment }) => {
@@ -23,7 +22,7 @@ const AddAssignment = ({ addAssignment }) => {
   return (
     <div className="bg-[#00000053] w-full min-h-screen max-h-screen backdrop-blur-sm p-8 sm:p-10 md:p-12 fixed inset-0 overflow-hidden flex flex-col justify-center items-center z-50">
       <div
-        className={`animate__animated animate__zoomIn px-8 py-10 max-h-full w-full max-w-[1232px] mx-auto shadow-lg overflow-y-auto rounded-xl bg-[#ebecef]`}
+        className={`animate__animated animate__zoomIn px-8 bg-white py-10 max-h-full w-full max-w-[1232px] mx-auto shadow-lg overflow-y-auto rounded-xl`}
       >
         <h3 className={`text-3xl font-bold text-center mb-12text-gray-800`}>
           Add Assignment
@@ -38,7 +37,7 @@ const AddAssignment = ({ addAssignment }) => {
               </label>
               <input
                 {...register('title')}
-                className={`w-full px-4 py-3 rounded-lg outline-none `}
+                className={`bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 rounded-lg outline-none`}
                 id="title"
                 type="text"
                 name="title"
@@ -53,7 +52,7 @@ const AddAssignment = ({ addAssignment }) => {
                 Deadline
               </label>
               <DatePicker
-                className={`w-full px-4 py-3 rounded-lg outline-none `}
+                className={`bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 rounded-lg outline-none`}
                 id="deadline"
                 name="deadline"
                 selected={startDate}
@@ -69,7 +68,7 @@ const AddAssignment = ({ addAssignment }) => {
             </label>
             <textarea
               {...register('description')}
-              className={`w-full px-4 py-3 rounded-lg outline-none resize-none`}
+              className={`bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 rounded-lg outline-none resize-none`}
               id="description"
               name="description"
               placeholder="Write a short description"
@@ -82,7 +81,7 @@ const AddAssignment = ({ addAssignment }) => {
           <div className="text-center">
             <button
               type="submit"
-              className="bg-green-500 text-white hover:bg-gold2 text-xl font-semibold px-12 py-2.5 rounded-xl"
+              className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
             >
               Add
             </button>

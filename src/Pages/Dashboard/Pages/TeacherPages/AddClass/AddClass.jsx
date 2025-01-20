@@ -4,6 +4,7 @@ import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const AddClass = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -29,79 +30,139 @@ const AddClass = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold">Add Class</h2>
+      <div className="hidden md:block">
+        <SectionHeading heading={['Add Class']} />
+      </div>
 
       <div>
         <form
           onSubmit={handleSubmit(handleAddClass)}
-          className="flex flex-col gap-3"
+          className="bg-white px-8 py-10 mt-8 rounded-xl shadow-xl grid grid-cols-1"
         >
-          <input
-            {...register('title')}
-            className="px-4 py-2 border-2 border-gray-300 rounded-md outline-none"
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Title"
-            required
-          />
-          <div>
+          {/* Title */}
+          <div className="flex flex-col">
+            <label className="text-gray-700 font-semibold mb-2" htmlFor="title">
+              Title
+            </label>
             <input
-              {...register('image')}
-              className="px-4 py-2 border-2 border-gray-300 rounded-md outline-none"
+              {...register('title')}
+              className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
               type="text"
-              name="image"
-              id="image"
-              placeholder="Image"
-              required
-            />
-            <input
-              {...register('price')}
-              className="px-4 py-2 border-2 border-gray-300 rounded-md outline-none"
-              type="number"
-              name="price"
-              id="price"
-              placeholder="Price"
+              name="title"
+              id="title"
+              placeholder="Title"
               required
             />
           </div>
-          <div>
-            <input
-              {...register('name')}
-              className="px-4 py-2 border-2 border-gray-300 rounded-md outline-none"
-              type="text"
-              name="name"
-              id="name"
-              value={user.displayName}
-              readOnly
-              required
-            />
-            <input
-              {...register('email')}
-              className="px-4 py-2 border-2 border-gray-300 rounded-md outline-none"
-              type="text"
-              name="email"
-              id="email"
-              value={user.email}
-              readOnly
-              required
-            />
+
+          {/* Image & Price */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="flex flex-col">
+              <label
+                className="text-gray-700 font-semibold mb-2"
+                htmlFor="image"
+              >
+                Image
+              </label>
+              <input
+                {...register('image')}
+                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                type="text"
+                name="image"
+                id="image"
+                placeholder="Image"
+                required
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label
+                className="text-gray-700 font-semibold mb-2"
+                htmlFor="price"
+              >
+                Price
+              </label>
+              <input
+                {...register('price')}
+                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                type="number"
+                name="price"
+                id="price"
+                placeholder="Price"
+                required
+              />
+            </div>
           </div>
-          <textarea
-            {...register('description')}
-            className="px-4 py-2 border-2 border-gray-300 rounded-md outline-none resize-none"
-            rows={4}
-            name="description"
-            id="description"
-            placeholder="Description"
-            required
-          ></textarea>
-          <button
-            className="px-4 py-2 border-2 border-green-300 rounded-md"
-            type="submit"
-          >
-            {mutation.isPending ? 'Adding...' : 'Add Class'}
-          </button>
+
+          {/* Name & Email */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="flex flex-col">
+              <label
+                className="text-gray-700 font-semibold mb-2"
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <input
+                {...register('name')}
+                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                type="text"
+                name="name"
+                id="name"
+                value={user.displayName}
+                readOnly
+                required
+              />
+            </div>
+
+            <div className="flex flex-col">
+              <label
+                className="text-gray-700 font-semibold mb-2"
+                htmlFor="email"
+              >
+                Email
+              </label>
+              <input
+                {...register('email')}
+                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                type="text"
+                name="email"
+                id="email"
+                value={user.email}
+                readOnly
+                required
+              />
+            </div>
+          </div>
+
+          {/* Description */}
+          <div className="flex flex-col">
+            <label
+              className="text-gray-700 font-semibold mb-2"
+              htmlFor="description"
+            >
+              Description
+            </label>
+            <textarea
+              {...register('description')}
+              className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none resize-none"
+              rows={4}
+              name="description"
+              id="description"
+              placeholder="Description"
+              required
+            ></textarea>
+          </div>
+
+          {/* Submit */}
+          <div className="text-center">
+            <button
+              className="bg-skyBlue text-white hover:bg-green text-xl font-semibold px-12 py-2.5 rounded-full"
+              type="submit"
+            >
+              {mutation.isPending ? 'Adding...' : 'Add Class'}
+            </button>
+          </div>
         </form>
       </div>
     </div>

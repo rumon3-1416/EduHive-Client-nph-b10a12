@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import AddAssignment from './AddAssignment';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
+import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const TeachClassDetails = () => {
   const [showForm, setShowForm] = useState(false);
@@ -45,22 +46,25 @@ const TeachClassDetails = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold">Class Details</h2>
+      <div className="hidden md:block">
+        <SectionHeading heading={['Class Details']} />
+      </div>
+
       {/* Progress */}
-      <div className="grid grid-cols-3 gap-3 sm:gap-6">
-        <div className="text-center p-3 border-[3px] border-gray-700 rounded-lg">
-          <h3 className="text-3xl font-semibold">Total Enrollment</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6">
+        <div className="bg-white text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1">
           <p className="text-3xl font-bold">{total_enrolment}</p>
+          <h3 className="text-xl font-semibold">Total Enrollment</h3>
         </div>
 
-        <div className="text-center p-3 border-[3px] border-gray-700 rounded-lg">
-          <h3 className="text-3xl font-semibold">Total Assignment</h3>
+        <div className="bg-white text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1">
           <p className="text-3xl font-bold">{total_assignment}</p>
+          <h3 className="text-xl font-semibold">Total Assignment</h3>
         </div>
 
-        <div className="text-center p-3 border-[3px] border-gray-700 rounded-lg">
-          <h3 className="text-3xl font-semibold">Total Submission</h3>
+        <div className="bg-white text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1">
           <p className="text-3xl font-bold">{total_submission}</p>
+          <h3 className="text-xl font-semibold">Total Submission</h3>
         </div>
       </div>
 
@@ -68,7 +72,7 @@ const TeachClassDetails = () => {
       <div className="mt-6">
         <button
           onClick={() => setShowForm(true)}
-          className="btn btn-success text-white"
+          className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
         >
           Create Assignment
         </button>

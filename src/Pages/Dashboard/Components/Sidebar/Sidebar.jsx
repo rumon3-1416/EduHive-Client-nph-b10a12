@@ -46,7 +46,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
         {/* Sidebar */}
         <div
           ref={divRef}
-          className={`sidebar bg-[#f4fbff8e] backdrop-blur-md w-max md:h-full absolute md:static top-0 bottom-0 ${
+          className={`sidebar bg-[#f4fbffbb] backdrop-blur-md w-max md:h-full absolute md:static top-0 bottom-0 ${
             collapse ? 'w-0 overflow-hidden' : ''
           }`}
         >
@@ -61,10 +61,10 @@ const Sidebar = ({ collapse, setCollapse }) => {
             </div>
 
             {/* Border */}
-            <div className="my-2 border border-gray-300"></div>
+            <div className="my-2 border border-[#00000027]"></div>
 
             {/* Sidebar Links */}
-            <ul className="side-ul text-gray font-medium pt-2">
+            <ul className="side-ul text-darkGray font-medium pt-2">
               {role === 'student' ? (
                 <StudentMenu />
               ) : role === 'teacher' ? (
@@ -89,13 +89,15 @@ const Sidebar = ({ collapse, setCollapse }) => {
               </li>
 
               {/* Border */}
-              <div className="my-2 border border-gray-300"></div>
+              <div className="my-2 border border-[#00000027]"></div>
 
+              {/* Home */}
               <li className="hover:bg-skyBlue hover:text-white">
                 <NavLink className="w-full inline-block" to="/">
                   Home
                 </NavLink>
               </li>
+              {/* Logout */}
               {user && (
                 <li className="hover:bg-orange-500 hover:text-white">
                   <button

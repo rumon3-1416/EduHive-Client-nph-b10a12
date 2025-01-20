@@ -6,7 +6,7 @@ const Rating = ({ setRating }) => {
     <ReactStars
       count={5}
       onChange={rate => setRating(rate)}
-      size={24}
+      size={28}
       activeColor="#ffd700"
     />
   );

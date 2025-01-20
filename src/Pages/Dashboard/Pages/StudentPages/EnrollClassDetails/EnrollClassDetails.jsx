@@ -2,9 +2,14 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowForward } from 'react-icons/io';
+
 import Rating from './Rating';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
+import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const EnrollClassDetails = () => {
   const [totalData, setTotalData] = useState(0);
@@ -82,15 +87,17 @@ const EnrollClassDetails = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold">Class Details</h2>
+      <div className="hidden md:block">
+        <SectionHeading heading={['Class Details']} />
+      </div>
 
       {/* Feedback Button */}
-      <div className="my-4">
+      <div className="mb-4">
         <button
           onClick={() => {
             document.getElementById('feedback_modal').showModal();
           }}
-          className="btn btn-success text-white"
+          className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
         >
           Teaching Evaluation Report
         </button>
@@ -150,7 +157,7 @@ const EnrollClassDetails = () => {
                             .getElementById('assignment_modal')
                             .showModal();
                         }}
-                        className="text-green-300 hover:text-green-500"
+                        className="text-green hover:text-hoverGreen"
                       >
                         Start
                       </button>
@@ -170,15 +177,17 @@ const EnrollClassDetails = () => {
                     onClick={() => {
                       currentPage > 1 && setCurrentPage(currentPage - 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`<`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowBack />
+                  </button>
                   {pagesArray.map(num => (
                     <button
                       onClick={() => setCurrentPage(num + 1)}
-                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-light-green ${
+                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-lightBlue ${
                         currentPage === num + 1
-                          ? 'bg-green-200 text-green-500'
-                          : 'bg-white'
+                          ? 'bg-lightBlue text-white cursor-default'
+                          : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'
                       }`}
                       key={num}
                     >
@@ -190,8 +199,10 @@ const EnrollClassDetails = () => {
                       currentPage < totalPages &&
                         setCurrentPage(currentPage + 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`>`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowForward />
+                  </button>
                 </div>
               </td>
             </tr>
@@ -224,7 +235,9 @@ const EnrollClassDetails = () => {
                 ></textarea>
               )}
 
-              <button className="btn">Submit</button>
+              <button className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full">
+                Submit
+              </button>
             </form>
           </div>
         </div>
@@ -233,7 +246,9 @@ const EnrollClassDetails = () => {
       {/* Feedback Modal */}
       <dialog id="feedback_modal" className="modal">
         <div className="modal-box w-4/5 max-w-5xl bg-gray-200">
-          <h2 className="text-center text-2xl font-semibold mb-6">Feedback</h2>
+          <h2 className="text-center text-2xl font-semibold mb-6">
+            Feedback Us
+          </h2>
 
           <div className="modal-action">
             <form
@@ -254,7 +269,9 @@ const EnrollClassDetails = () => {
                 <Rating setRating={setRating} />
               </div>
 
-              <button className="btn">Submit</button>
+              <button className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full">
+                Submit
+              </button>
             </form>
           </div>
         </div>

@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowForward } from 'react-icons/io';
+
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
+import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const TeacherRequests = () => {
   const [totalData, setTotalData] = useState(0);
@@ -48,7 +53,9 @@ const TeacherRequests = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold">Teacher Requests</h2>
+      <div className="hidden md:block">
+        <SectionHeading heading={['Teacher Requests']} />
+      </div>
 
       {/* Table */}
       <div className="bg-[#fffcfc] overflow-x-auto mt-4">
@@ -117,10 +124,10 @@ const TeacherRequests = () => {
                     <td
                       className={`text-nowrap ${
                         status === 'approved'
-                          ? 'text-green-500'
+                          ? 'text-green'
                           : status === 'rejected'
                           ? 'text-red-500'
-                          : 'text-yellow-500'
+                          : 'text-orange-500'
                       }`}
                     >
                       {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -131,7 +138,7 @@ const TeacherRequests = () => {
                           onClick={() =>
                             handleReqAction(_id, email, 'approved')
                           }
-                          className="text-green-300 hover:text-green-500"
+                          className="text-green hover:text-hoverGreen"
                           disabled={status !== 'pending'}
                         >
                           Approve
@@ -162,15 +169,17 @@ const TeacherRequests = () => {
                     onClick={() => {
                       currentPage > 1 && setCurrentPage(currentPage - 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`<`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowBack />
+                  </button>
                   {pagesArray.map(num => (
                     <button
                       onClick={() => setCurrentPage(num + 1)}
-                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-light-green ${
+                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-lightBlue ${
                         currentPage === num + 1
-                          ? 'bg-green-200 text-green-500'
-                          : 'bg-white'
+                          ? 'bg-lightBlue text-white cursor-default'
+                          : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'
                       }`}
                       key={num}
                     >
@@ -182,8 +191,10 @@ const TeacherRequests = () => {
                       currentPage < totalPages &&
                         setCurrentPage(currentPage + 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`>`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowForward />
+                  </button>
                 </div>
               </td>
             </tr>

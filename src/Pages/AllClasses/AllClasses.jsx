@@ -21,7 +21,7 @@ const AllClasses = () => {
 
   const { data: classes = [] } = useQuery({
     queryKey: ['classes', currentPage],
-    queryFn: async (req, res) => {
+    queryFn: async () => {
       const { data } = await axiosPublic.get(
         `/classes?page=${currentPage}&limit=${dataPerPage}`
       );
@@ -70,7 +70,7 @@ const AllClasses = () => {
                   {/* Desc */}
                   <div className="px-6 pb-8 grow flex flex-col items-start">
                     <div className="grow">
-                      <h4 className="text-xl font-semibold mb-3">{title}</h4>
+                      <h4 className="text-lg font-semibold mb-3">{title}</h4>
 
                       <p className="flex flex-wrap items-center">
                         <span className="font-medium">Teacher :</span>

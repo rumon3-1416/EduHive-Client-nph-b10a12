@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowForward } from 'react-icons/io';
+
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import ClassProgress from '../../../Components/ClassProgress';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
+import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const AllTeacherClasses = () => {
   const [totalData, setTotalData] = useState(0);
@@ -48,7 +53,9 @@ const AllTeacherClasses = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold">All Classes</h2>
+      <div className="hidden md:block">
+        <SectionHeading heading={['All Classes']} />
+      </div>
 
       {/* Table */}
       <div className="bg-[#fffcfc] overflow-x-auto mt-4">
@@ -104,11 +111,12 @@ const AllTeacherClasses = () => {
                         (description?.length > 20 && '...') +
                         ''}
                     </td>
+                    {/* Buttons */}
                     <td>
                       <div className="flex justify-center items-center gap-4">
                         <button
                           onClick={() => handleClassStatus(_id, 'approved')}
-                          className="text-green-300 hover:text-green-500"
+                          className="text-green hover:text-hoverGreen"
                           disabled={status !== 'pending'}
                         >
                           Approve{status === 'approved' ? 'd' : ''}
@@ -128,7 +136,7 @@ const AllTeacherClasses = () => {
                           setProgressId(_id);
                           document.getElementById('progress_modal').showModal();
                         }}
-                        className="text-blue-300 hover:text-blue-500 px-2 rounded-md"
+                        className="text-blue-400 hover:text-infoBlue px-2 rounded-md"
                         disabled={status !== 'approved'}
                       >
                         Progress
@@ -149,15 +157,17 @@ const AllTeacherClasses = () => {
                     onClick={() => {
                       currentPage > 1 && setCurrentPage(currentPage - 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`<`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowBack />
+                  </button>
                   {pagesArray.map(num => (
                     <button
                       onClick={() => setCurrentPage(num + 1)}
-                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-light-green ${
+                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-lightBlue ${
                         currentPage === num + 1
-                          ? 'bg-green-200 text-green-500'
-                          : 'bg-white'
+                          ? 'bg-lightBlue text-white cursor-default'
+                          : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'
                       }`}
                       key={num}
                     >
@@ -169,8 +179,10 @@ const AllTeacherClasses = () => {
                       currentPage < totalPages &&
                         setCurrentPage(currentPage + 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`>`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowForward />
+                  </button>
                 </div>
               </td>
             </tr>
@@ -186,7 +198,10 @@ const AllTeacherClasses = () => {
 
           <div className="modal-action">
             <form method="dialog">
-              <button onClick={() => setProgressId(null)} className="btn">
+              <button
+                onClick={() => setProgressId(null)}
+                className="bg-skyBlue text-white hover:bg-green text-xl font-semibold px-12 py-2.5 rounded-full"
+              >
                 Close
               </button>
             </form>

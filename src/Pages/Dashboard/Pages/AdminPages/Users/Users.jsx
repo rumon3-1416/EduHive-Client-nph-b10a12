@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowForward } from 'react-icons/io';
+
+import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 import SearchUsers from './SearchUsers';
+import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const Users = () => {
   const [totalData, setTotalData] = useState(0);
@@ -44,7 +49,9 @@ const Users = () => {
 
   return (
     <div>
-      <h2 className="text-3xl font-semibold">All Users</h2>
+      <div className="hidden md:block">
+        <SectionHeading heading={['All Users']} />
+      </div>
 
       {/* Search */}
       <SearchUsers setSearch={setSearch} />
@@ -97,13 +104,21 @@ const Users = () => {
                     </td>
                     <td className="text-nowrap">{displayName}</td>
                     <td className="text-nowrap">{email}</td>
-                    <td className="text-nowrap">
-                      {role.charAt(0).toUpperCase() + role.slice(1)}
+                    <td
+                      className={`text-nowrap ${
+                        role === 'admin'
+                          ? 'text-green'
+                          : role === 'teacher'
+                          ? 'text-skyBlue'
+                          : 'text-orange-500'
+                      }`}
+                    >
+                      {role.charAt(0)?.toUpperCase() + role?.slice(1) + ''}
                     </td>
                     <td>
                       <button
                         onClick={() => handleAdmin(email)}
-                        className="text-green-300 hover:text-green-500 text-nowrap"
+                        className="text-green hover:text-hoverGreen text-nowrap"
                         disabled={role === 'admin'}
                       >
                         Make Admin
@@ -124,15 +139,17 @@ const Users = () => {
                     onClick={() => {
                       currentPage > 1 && setCurrentPage(currentPage - 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`<`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowBack />
+                  </button>
                   {pagesArray.map(num => (
                     <button
                       onClick={() => setCurrentPage(num + 1)}
-                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-light-green ${
+                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-lightBlue ${
                         currentPage === num + 1
-                          ? 'bg-green-200 text-green-500'
-                          : 'bg-white'
+                          ? 'bg-lightBlue text-white cursor-default'
+                          : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'
                       }`}
                       key={num}
                     >
@@ -144,8 +161,10 @@ const Users = () => {
                       currentPage < totalPages &&
                         setCurrentPage(currentPage + 1);
                     }}
-                    className="bg-slate-50 px-3 py-1 rounded-md"
-                  >{`>`}</button>
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                  >
+                    <IoIosArrowForward />
+                  </button>
                 </div>
               </td>
             </tr>

@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useNavigate } from 'react-router-dom';
+import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const StudentEnrolls = () => {
   const axiosSecure = useAxiosSecure();
@@ -16,31 +17,51 @@ const StudentEnrolls = () => {
   });
 
   return (
-    <div className="border border-blue-500">
-      <h2 className="text-3xl font-semibold">My Enrolls</h2>
+    <div className="">
+      <div className="hidden md:block">
+        <SectionHeading heading={['My Enrolls']} />
+      </div>
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
         {studentEnrolls.length > 0 ? (
           studentEnrolls.map(enroll => {
             const { _id, title, name, image } = enroll;
 
             return (
-              <div className="bg-gray-200 p-4 rounded-xl shadow-xl" key={_id}>
-                <img
-                  className="aspect-video object-cover rounded-lg"
-                  src={image}
-                  alt={title}
-                />
-                <p>{title}</p>
-                <p>Teacher : {name}</p>
-                <button
-                  onClick={() =>
-                    navigate(`/dashboard/enroll_class_details/${_id}`)
-                  }
-                  className="btn btn-primary text-white"
-                >
-                  Continue
-                </button>
+              <div
+                className="bg-white rounded-2xl shadow-lg flex flex-col items-start"
+                key={_id}
+              >
+                <div className="w-full p-4">
+                  <img
+                    className="w-full aspect-[4/3] object-cover rounded-xl"
+                    src={image}
+                    alt={title}
+                  />
+                </div>
+
+                {/* Desc */}
+                <div className="px-6 pb-8 grow flex flex-col items-start">
+                  <div className="grow">
+                    <h4 className="text-xl font-semibold">{title}</h4>
+
+                    <p className="mb-2  mt-1 flex flex-wrap items-center">
+                      <span className="text-dark-green font-medium">
+                        Teacher :
+                      </span>
+                      <span className="font-medium ms-2">{name}</span>
+                    </p>
+                  </div>
+
+                  <button
+                    onClick={() =>
+                      navigate(`/dashboard/enroll_class_details/${_id}`)
+                    }
+                    className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
+                  >
+                    Continue
+                  </button>
+                </div>
               </div>
             );
           })
