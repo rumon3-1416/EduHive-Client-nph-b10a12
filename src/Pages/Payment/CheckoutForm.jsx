@@ -111,7 +111,7 @@ const CheckoutForm = () => {
       />
       {stripeError && <p className="text-red-500">{stripeError}</p>}
       <button
-        className="bg-green text-white hover:bg-hoverGreen font-medium px-9 py-2 mt-4 rounded-full"
+        className="bg-skyBlue text-white hover:bg-green font-medium px-9 py-2 mt-4 rounded-full"
         disabled={!stripe || mutation.isLoading}
         type="submit"
       >

@@ -94,7 +94,7 @@ const SignUp = () => {
   }, []);
 
   return (
-    <div className="bg-greenBg pb-24">
+    <div className="bg-blueBg pb-24">
       <Container>
         <section className="min-h-[80vh] p-6 md:p-10 flex justify-center items-center">
           <div className="text-[#403F3F bg-[#fffcfc] w-full md:w-4/5 lg:w-3/5 px-6 md:px-14 pt-12 md:pt-16 pb-16 rounded-2xl shadow-lg">
@@ -176,7 +176,7 @@ const SignUp = () => {
               <div className="flex items-center gap-2.5">
                 <input
                   {...register('terms')}
-                  className="w-6 h-6 outline-none accent-green"
+                  className="w-6 h-6 outline-none accent-skyBlue"
                   type="checkbox"
                   name="terms"
                   id="terms"
@@ -190,7 +190,7 @@ const SignUp = () => {
               {errMessage && <p className="text-red-500">{errMessage}</p>}
               {/* Submit */}
               <button
-                className="bg-green-500 hover:bg-gold2 text-white text-xl font-semibold px-5 py-4 mt-6 rounded-xl"
+                className="bg-skyBlue hover:bg-green text-white text-xl font-semibold px-5 py-4 mt-6 rounded-full"
                 type="submit"
               >
                 Register
@@ -199,7 +199,7 @@ const SignUp = () => {
 
             <p className="text-[#706F6F] text-center font-semibold mt-7">
               Already Have An Account ?{' '}
-              <Link className="text-orange whitespace-nowrap" to="/signin">
+              <Link className="text-green whitespace-nowrap" to="/signin">
                 Log In
               </Link>
             </p>

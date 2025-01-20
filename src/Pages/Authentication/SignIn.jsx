@@ -60,7 +60,7 @@ const SignIn = () => {
   }, []);
 
   return (
-    <div className="bg-greenBg pb-24">
+    <div className="bg-blueBg pb-24">
       <Container>
         <section className="min-h-[80vh] p-6 md:p-10 flex justify-center items-center">
           <div className="text-[#403F3F bg-[#fffcfc] w-full md:w-4/5 lg:w-3/5 px-6 md:px-14 pt-12 md:pt-16 pb-16 rounded-2xl shadow-lg">
@@ -119,7 +119,7 @@ const SignIn = () => {
 
               {/* Submit */}
               <button
-                className="bg-green-500 hover:bg-gold2 text-white text-xl font-semibold px-5 py-4 rounded-xl"
+                className="bg-skyBlue hover:bg-green text-white text-xl font-semibold px-5 py-4 rounded-full"
                 type="submit"
               >
                 Signin
@@ -128,7 +128,7 @@ const SignIn = () => {
 
             <p className="text-[#706F6F] text-center font-semibold mt-7">
               Don’t Have An Account ?{' '}
-              <Link className="text-orange whitespace-nowrap" to="/signup">
+              <Link className="text-green whitespace-nowrap" to="/signup">
                 Register
               </Link>
             </p>

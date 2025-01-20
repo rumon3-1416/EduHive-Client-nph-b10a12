@@ -61,7 +61,7 @@ const ApplyTeacher = () => {
             {(status === 'pending' || status === 'rejected') && (
               <div className="mb-2">
                 <Link to="/dashboard/my_request">
-                  <button className="text-white bg-green hover:bg-hoverGreen px-4 py-2 rounded-full">
+                  <button className="text-white bg-skyBlue hover:bg-green px-4 py-2 rounded-full shadow-lg">
                     My Request
                   </button>
                 </Link>
@@ -96,7 +96,7 @@ const ApplyTeacher = () => {
             ) : (
               <form
                 onSubmit={handleSubmit(handleTeacher)}
-                className="bg-white px-8 py-10 mt-8 rounded-xl grid grid-cols-1"
+                className="bg-white px-8 py-10 mt-8 rounded-xl shadow-xl grid grid-cols-1"
               >
                 {/* Name */}
                 <div className="flex flex-col">
@@ -237,7 +237,7 @@ const ApplyTeacher = () => {
                 {/* Submit */}
                 <div className="text-center">
                   <button
-                    className="bg-green text-white hover:bg-hoverGreen text-xl font-semibold px-12 py-2.5 rounded-full"
+                    className="bg-skyBlue text-white hover:bg-green text-xl font-semibold px-12 py-2.5 rounded-full"
                     disabled={isLoading}
                     type="submit"
                   >

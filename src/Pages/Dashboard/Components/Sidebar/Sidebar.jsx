@@ -1,47 +1,70 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, NavLink } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { useLocation, NavLink, useNavigate } from 'react-router-dom';
 
-import sidebarIcon from '../../../../assets/icons/sidebar.png';
 import { useAuthContext } from '../../../../Hooks/useAuthContext';
 import StudentMenu from './StudentMenu';
 import TeacherMenu from './TeacherMenu';
 import AdminMenu from './AdminMenu';
 
-const Sidebar = () => {
-  const [collapse, setCollapse] = useState(false);
+import './sidebar.css';
+import logo from '../../../../assets/icons/logo.png';
+
+const Sidebar = ({ collapse, setCollapse }) => {
+  const divRef = useRef(null);
+
   const { pathname } = useLocation();
   const { user, role, signOutUser } = useAuthContext();
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
+
+    window.addEventListener('resize', handleResize);
+    document.addEventListener('mousedown', handleClick);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.removeEventListener('mousedown', handleClick);
+    };
   }, []);
-  window.addEventListener('resize', e => {
-    e.target.innerWidth < 768 && setCollapse(true);
-  });
+  // Handle Resize Screen
+  const handleResize = e => {
+    e.target.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
+  };
+  // Handle Outside Click
+  const handleClick = e => {
+    window.innerWidth < 768 &&
+      divRef.current &&
+      !divRef.current.contains(e.target) &&
+      setCollapse(true);
+  };
 
   return (
-    <div className="min-h-[13.5rem] max-h-[calc(100vh-96px)] sticky top-24 left-0 z-10">
+    <div className="min-h-[100vh] max-h-[100vh] sticky top-0 left-0 z-10">
       <div className="h-full relative">
+        {/* Sidebar */}
         <div
-          className={
-            'bg-[#3db05828] backdrop-blur-md w-max h-full absolute md:static'
-          }
+          ref={divRef}
+          className={`sidebar bg-[#f4fbff8e] backdrop-blur-md w-max md:h-full absolute md:static top-0 bottom-0 ${
+            collapse ? 'w-0 overflow-hidden' : ''
+          }`}
         >
-          <div
-            className={`ps-3 md:ps-6 pt-20 pb-8 relative ${
-              collapse ? 'pe-3.5 md:pe-6' : 'pe-6 md:pe-8'
-            }`}
-          >
-            {/* Sidebar Button */}
-            <button
-              onClick={() => setCollapse(!collapse)}
-              className="bg-[#DDF1E2] rounded-md shadow-md shadow-gray absolute top-6 -right-4"
+          <div className="p-3">
+            {/* Logo */}
+            <div
+              onClick={() => navigate('/')}
+              className="py-2 cursor-pointer flex items-center gap-1"
             >
-              <img className="w-8" src={sidebarIcon} alt="" />
-            </button>
+              <h2 className="text-skyBlue text-xl font-bold">EduHive</h2>
+              <img className="h-8" src={logo} alt="" />
+            </div>
+
+            {/* Border */}
+            <div className="my-2 border border-gray-300"></div>
 
             {/* Sidebar Links */}
-            <ul className="text-gray font-medium">
+            <ul className="side-ul text-gray font-medium pt-2">
               {role === 'student' ? (
                 <StudentMenu />
               ) : role === 'teacher' ? (
@@ -52,14 +75,35 @@ const Sidebar = () => {
 
               <li
                 className={`${
-                  pathname === '/dashboard/profile' ? 'text-blue-500' : ''
+                  pathname === '/dashboard/profile'
+                    ? 'bg-infoBlue text-white opacity-70'
+                    : 'hover:bg-skyBlue hover:text-white'
                 }`}
               >
-                <NavLink to="/dashboard/profile">Profile</NavLink>
+                <NavLink
+                  className="w-full inline-block"
+                  to="/dashboard/profile"
+                >
+                  Profile
+                </NavLink>
+              </li>
+
+              {/* Border */}
+              <div className="my-2 border border-gray-300"></div>
+
+              <li className="hover:bg-skyBlue hover:text-white">
+                <NavLink className="w-full inline-block" to="/">
+                  Home
+                </NavLink>
               </li>
               {user && (
-                <li>
-                  <button onClick={() => signOutUser()}>Logout</button>
+                <li className="hover:bg-orange-500 hover:text-white">
+                  <button
+                    className=" w-full text-left"
+                    onClick={() => signOutUser()}
+                  >
+                    Logout
+                  </button>
                 </li>
               )}
             </ul>

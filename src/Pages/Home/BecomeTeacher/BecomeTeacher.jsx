@@ -53,7 +53,7 @@ const BecomeTeacher = () => {
 
               <button
                 onClick={() => navigate('/all_classes')}
-                className="bg-green text-white px-6 py-3 rounded-full shadow-lg hover:bg-hoverGreen"
+                className="bg-skyBlue hover:bg-green text-white px-6 py-3 rounded-full shadow-lg"
               >
                 Join as a Teacher
               </button>

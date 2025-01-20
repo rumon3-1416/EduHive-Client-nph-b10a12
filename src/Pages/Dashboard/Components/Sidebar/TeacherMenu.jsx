@@ -6,15 +6,27 @@ const TeacherMenu = () => {
 
   return (
     <>
-      <li className={`${pathname === '/dashboard' ? 'text-blue-500' : ''}`}>
-        <NavLink to="/dashboard">Add Class</NavLink>
+      <li
+        className={`${
+          pathname === '/dashboard'
+            ? 'bg-infoBlue text-white opacity-70'
+            : 'hover:bg-skyBlue hover:text-white'
+        }`}
+      >
+        <NavLink className="w-full inline-block" to="/dashboard">
+          Add Class
+        </NavLink>
       </li>
       <li
         className={`${
-          pathname === '/dashboard/my_classes' ? 'text-blue-500' : ''
+          pathname === '/dashboard/my_classes'
+            ? 'bg-infoBlue text-white opacity-70'
+            : 'hover:bg-skyBlue hover:text-white'
         }`}
       >
-        <NavLink to="/dashboard/my_classes">My Classes</NavLink>
+        <NavLink className="w-full inline-block" to="/dashboard/my_classes">
+          My Classes
+        </NavLink>
       </li>
     </>
   );

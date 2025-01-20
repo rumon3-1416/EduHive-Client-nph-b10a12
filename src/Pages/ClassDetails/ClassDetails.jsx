@@ -50,7 +50,7 @@ const ClassDetails = () => {
             <p className="mb-6">{description}</p>
             <button
               onClick={() => navigate(`/payment/${_id}`)}
-              className="bg-green text-white hover:bg-hoverGreen font-medium px-9 py-2 mb-2 rounded-full"
+              className="bg-skyBlue text-white hover:bg-green font-medium px-9 py-2 mb-2 rounded-full"
             >
               Pay Now
             </button>

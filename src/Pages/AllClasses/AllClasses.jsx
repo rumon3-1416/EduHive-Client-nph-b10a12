@@ -95,7 +95,7 @@ const AllClasses = () => {
 
                     <button
                       onClick={() => navigate(`/class_details/${_id}`)}
-                      className="bg-green text-white hover:bg-hoverGreen font-medium px-6 py-2.5 rounded-full"
+                      className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
                     >
                       Enroll
                     </button>
