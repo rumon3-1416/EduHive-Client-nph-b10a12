@@ -50,7 +50,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
         {/* Sidebar */}
         <div
           ref={divRef}
-          className={`side-bar bg-[#f4fbffbb] backdrop-blur-md w-max md:h-full absolute md:static top-0 bottom-0 transition-all duration-1000 ${
+          className={`side-bar bg-[#f4fbffbb] backdrop-blur-md md:h-full absolute md:static top-0 bottom-0 transition-all duration-1000 ${
             collapse ? 'w-0 overflow-hidden' : 'w-max'
           }`}
         >
