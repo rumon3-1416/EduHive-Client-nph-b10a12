@@ -176,7 +176,7 @@ const TeacherRequests = () => {
                   {pagesArray.map(num => (
                     <button
                       onClick={() => setCurrentPage(num + 1)}
-                      className={`px-2 sm:px-3.5 sm:py-1 rounded-lg border-2 border-lightBlue ${
+                      className={`px-3 py-1 rounded-lg border-2 border-lightBlue ${
                         currentPage === num + 1
                           ? 'bg-lightBlue text-white cursor-default'
                           : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'

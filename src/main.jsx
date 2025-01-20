@@ -6,9 +6,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import router from './Routes/router';
 import AuthProvider from './Providers/AuthProvider';
 
-import 'animate.css';
 import './styles/index.css';
 import './styles/App.css';
+import 'animate.css';
 
 const queryClient = new QueryClient();
 

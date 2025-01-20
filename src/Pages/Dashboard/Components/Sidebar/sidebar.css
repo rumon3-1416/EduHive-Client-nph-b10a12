@@ -1,4 +1,4 @@
-.side-bar {
+.sidebar {
   box-shadow: 0.25rem 0 1rem #0000003a;
 }
 
@@ -7,5 +7,4 @@
   padding: 0.3rem 1rem;
   border-radius: 3rem;
   margin-bottom: 0.1rem;
-  /* border: 1px solid red; */
 }
