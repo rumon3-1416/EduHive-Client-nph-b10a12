@@ -4,26 +4,26 @@
 
 [https://assignment-12-26ee0.web.app](https://assignment-12-26ee0.web.app)
 
-RunSphere is a modern and intuitive website for organizing and participating in marathon events. Whether you're an event organizer or a participant, RunSphere offers an easy way to manage and explore marathons.
-
----
+EduHive is an all-in-one educational platform where students, teachers, and admins can seamlessly interact to achieve their educational goals. Whether it's viewing and enrolling in classes, managing assignments, or handling administrative tasks, EduHive provides an intuitive and user-friendly experience for all users.
 
 ## Features
 
-- **Browse Marathon Events**: Users can explore marathon events and view essential details such as description, location, registration deadlines, and time remaining until the event.
-- **Detailed Event Information**: Each event includes comprehensive information to help participants make informed decisions.
+- **Responsive Design**: Optimized for all devices, ensuring accessibility from smartphones to desktops.
+- **Student Dashboard**: Students can view available classes, enroll in desired classes, and track their enrolled classes.
+- **Teacher Applications**: Individuals can request to join the platform as teachers with a streamlined approval process.
+- **Class Management for Teachers**: Teachers can add new classes, update class details, and delete classes when necessary.
+- **Assignment Management**: Students can submit assignments and teachers can add, update, and review assignments effortlessly.
+- **Admin Controls**: Admins have the ability to approve or reject teacher applications and class requests, ensuring a controlled and quality learning environment.
+- **User Role Management**: Admins can update user roles to grant appropriate permissions across the platform.
+- **Profile Management**: All users can view their profiles.
+- **Engaging User Experience**: A modern, intuitive interface designed for seamless navigation and productivity.
+- **User-Friendly Interface**: Intuitive design ensuring smooth navigation and usability.
+- **Secure Payments**: Students can enroll in paid classes using secure online payment methods.
 
-- **Apply to Marathons**: Users can easily register for marathons they’re interested in by submitting their applications.
+## Technologies Used
 
-- **Manage Your Events**: Event organizers can add new marathon events, update event details, or delete events they created.
-
-- **Control Your Applications**: Participants can manage their marathon applications, including updating or canceling them as needed.
-
----
-
-## Technology Stack
-
-- **Frontend**: React.js with Tailwind CSS
-- **Backend**: Express.js
+- **Frontend**: React.js, Tailwind CSS
+- **Backend**: Node.js, Express.js
 - **Database**: MongoDB
 - **Authentication**: Firebase Authentication
+- **Payments**: Stripe
