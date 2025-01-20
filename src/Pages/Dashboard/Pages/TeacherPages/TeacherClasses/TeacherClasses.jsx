@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { IoIosArrowBack } from 'react-icons/io';
@@ -73,6 +73,10 @@ const TeacherClasses = () => {
       notify('success', 'Class Deleted'),
       setModal({ show: false, res: '', title: '' }));
   };
+
+  useEffect(() => {
+    document.title = 'My Classes | EduHive';
+  }, []);
 
   return (
     <div>

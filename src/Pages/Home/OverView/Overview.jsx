@@ -17,13 +17,13 @@ const Overview = () => {
   });
 
   return (
-    <div className="bg-greenBg">
+    <div className="bg-blueBg">
       <Container>
         <section className="pt-14 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-[4fr,_3fr] lg:grid-cols-2 items-center gap-2 lg:gap-6">
             <div className="w-full p-6">
               <div className="bg-white shadow-lg rounded-lg p-8 text-center">
-                <h2 className="text-3xl font-bold text-green-600 mb-4">
+                <h2 className="poppins-font text-3xl leading-[44px] font-bold mb-2 text-dark4">
                   Our Growing Community
                 </h2>
                 <p className="text-gray-600 mb-6">

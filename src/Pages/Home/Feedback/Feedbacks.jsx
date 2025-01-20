@@ -27,9 +27,11 @@ const Feedbacks = () => {
     <div className="bg-blueBg">
       <Container>
         <section className="pt-14 pb-6">
-          <SectionHeading
-            heading={['Student Feedback', 'Review Our Students Feedbacks']}
-          />
+          <div className="text-center">
+            <SectionHeading
+              heading={['Student Feedback', 'Review Our Students Feedbacks']}
+            />
+          </div>
 
           <div>
             {feedbacks.length > 2 && (

@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -85,6 +85,10 @@ const EnrollClassDetails = () => {
     document.getElementById('feedback_modal').close();
   };
 
+  useEffect(() => {
+    document.title = 'Class Assignment | EduHive';
+  }, []);
+
   return (
     <div>
       <div className="hidden md:block">
@@ -104,7 +108,7 @@ const EnrollClassDetails = () => {
       </div>
 
       {/* Assignments */}
-      <div>
+      <div className="bg-[#fffcfc] overflow-x-auto mt-4">
         <table className="table">
           {/* head */}
           <thead>

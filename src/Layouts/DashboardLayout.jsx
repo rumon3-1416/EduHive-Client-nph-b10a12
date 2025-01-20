@@ -8,7 +8,7 @@ const DashboardLayout = () => {
   const [collapse, setCollapse] = useState(false);
 
   return (
-    <div className="bg-blueBg pb-16">
+    <div className="bg-blueBg">
       <div className="flex">
         {/* Navbar */}
         <Sidebar collapse={collapse} setCollapse={setCollapse} />

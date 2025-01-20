@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import AddAssignment from './AddAssignment';
@@ -43,6 +43,10 @@ const TeachClassDetails = () => {
     refetch();
     setShowForm(false);
   };
+
+  useEffect(() => {
+    document.title = 'Class Details | EduHive';
+  }, []);
 
   return (
     <div>

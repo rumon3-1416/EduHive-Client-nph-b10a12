@@ -27,7 +27,7 @@ const ClassDetails = () => {
   return (
     <div className="bg-blueBg pt-12 pb-24">
       <Container>
-        <div className="bg-greenBg p-6 shadow-lg rounded-xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white p-6 shadow-lg rounded-xl grid grid-cols-1 md:grid-cols-2 gap-8">
           <img
             className="
         w-full aspect-video object-cover rounded-xl"

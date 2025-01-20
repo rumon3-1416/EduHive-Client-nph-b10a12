@@ -8,9 +8,7 @@ const SectionHeading = ({ heading }) => {
       >
         {heading[0] || ''}
       </h1>
-      <p className={`text-lg max-w-[480px] mb-10 text-[#32443f]`}>
-        {heading[1] || ''}
-      </p>
+      <p className={`text-lg mb-10 text-[#32443f]`}>{heading[1] || ''}</p>
     </>
   );
 };

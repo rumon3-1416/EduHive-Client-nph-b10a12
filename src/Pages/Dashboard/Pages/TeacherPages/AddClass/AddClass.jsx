@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
@@ -27,6 +27,10 @@ const AddClass = () => {
         navigate('/dashboard/my_classes'))
       : notify('error', 'Class add Failed!');
   };
+
+  useEffect(() => {
+    document.title = 'Add Class | EduHive';
+  }, []);
 
   return (
     <div>

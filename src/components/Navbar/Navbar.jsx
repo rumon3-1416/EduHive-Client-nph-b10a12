@@ -27,7 +27,7 @@ const Navbar = () => {
               onClick={() => navigate('/')}
               className="cursor-pointer flex items-center gap-1"
             >
-              <h2 className="text-skyBlue text-xl font-bold">EduHive</h2>
+              <h2 className="text-darkBlue text-xl font-bold">EduHive</h2>
               <img className="h-8" src={logo} alt="" />
             </div>
 

@@ -5,7 +5,9 @@ import PopularClasses from './PopularClasses/PopularClasses';
 import Feedbacks from './Feedback/Feedbacks';
 import Overview from './OverView/Overview';
 import BecomeTeacher from './BecomeTeacher/BecomeTeacher';
-import Extra from './Extra';
+import QuesAns from './QuesAns/QuesAns';
+import NewsLetter from './NewsLetter/NewsLetter';
+import Categories from './Categories/Categories';
 
 const Home = () => {
   useEffect(() => {
@@ -17,10 +19,12 @@ const Home = () => {
       <Banner />
       <Collaborators />
       <PopularClasses />
-      <Feedbacks />
       <Overview />
+      <Categories />
+      <Feedbacks />
       <BecomeTeacher />
-      <Extra />
+      <QuesAns />
+      <NewsLetter />
     </>
   );
 };

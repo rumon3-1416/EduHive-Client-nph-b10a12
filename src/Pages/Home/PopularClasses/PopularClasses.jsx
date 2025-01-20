@@ -27,9 +27,11 @@ const PopularClasses = () => {
     <div className="bg-greenBg pt-14 pb-6">
       <Container>
         <section id="popular_classes">
-          <SectionHeading
-            heading={['Our Popular Classes', 'Explore Our Popular Classes']}
-          />
+          <div className="text-center">
+            <SectionHeading
+              heading={['Our Popular Classes', 'Explore Our Popular Classes']}
+            />
+          </div>
 
           <Swiper
             slidesPerView={1}

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
+import SectionHeading from '../../../Home/Shared/SectionHeading';
 
 const MyRequest = () => {
   const axiosSecure = useAxiosSecure();
@@ -15,30 +16,38 @@ const MyRequest = () => {
   });
   const { title, experience, category, status } = requestData;
 
+  useEffect(() => {
+    document.title = 'My Request | EduHive';
+  }, []);
+
   return (
     <div>
-      <h2 className="text-3xl font-semibold">My Request</h2>
+      <div className="hidden md:block">
+        <SectionHeading heading={['My Request']} />
+      </div>
 
-      <div>
-        <p>Title : {title}</p>
-        <p>Category : {category}</p>
-        <p>Experience : {experience}</p>
-        <p>
-          Status :{' '}
-          <span
-            className={
-              status === 'pending'
-                ? 'text-yellow-500'
-                : status === 'approved'
-                ? 'text-green-500'
-                : status === 'rejected'
-                ? 'text-red-500'
-                : ''
-            }
-          >
-            {status?.charAt(0)?.toUpperCase() + status?.slice(1) + ''}
-          </span>
-        </p>
+      <div className="bg-white w-fit p-10 rounded-xl shadow-xl flex flex-col justify-center items-center">
+        <div className="text-left">
+          <p className="text-lg font-medium">Title : {title}</p>
+          <p className="text-lg font-medium">Category : {category}</p>
+          <p className="text-lg font-medium">Experience : {experience}</p>
+          <p className="text-lg font-medium">
+            Status :{' '}
+            <span
+              className={
+                status === 'pending'
+                  ? 'text-yellow-500'
+                  : status === 'approved'
+                  ? 'text-green-500'
+                  : status === 'rejected'
+                  ? 'text-red-500'
+                  : ''
+              }
+            >
+              {status?.charAt(0)?.toUpperCase() + status?.slice(1) + ''}
+            </span>
+          </p>
+        </div>
       </div>
     </div>
   );

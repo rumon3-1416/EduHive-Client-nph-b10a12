@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useNavigate } from 'react-router-dom';
@@ -16,13 +16,17 @@ const StudentEnrolls = () => {
     },
   });
 
+  useEffect(() => {
+    document.title = 'My Enrolls | EduHive';
+  }, []);
+
   return (
     <div className="">
       <div className="hidden md:block">
         <SectionHeading heading={['My Enrolls']} />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
         {studentEnrolls.length > 0 ? (
           studentEnrolls.map(enroll => {
             const { _id, title, name, image } = enroll;

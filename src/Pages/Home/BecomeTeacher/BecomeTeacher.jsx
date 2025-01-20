@@ -8,7 +8,7 @@ const BecomeTeacher = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-blueBg">
+    <div className="bg-greenBg">
       <Container>
         <section className="pt-14 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-[3fr,_4fr] lg:grid-cols-2 items-center gap-6">
@@ -21,7 +21,7 @@ const BecomeTeacher = () => {
             </div>
 
             <div className="">
-              <h2 className="text-4xl font-bold mb-4">
+              <h2 className="poppins-font text-3xl leading-[44px] font-bold mb-2 text-dark4">
                 Share Your Knowledge, Shape Futures
               </h2>
               <p className="text-gray-600 text-lg mb-6">
@@ -32,19 +32,19 @@ const BecomeTeacher = () => {
 
               <ul className="text-gray-600 space-y-4 mb-6">
                 <li className="flex items-center">
-                  <span className="bg-skyBlue text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                  <span className="bg-green text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
                     ✓
                   </span>
                   Flexible teaching schedules.
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-skyBlue text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                  <span className="bg-green text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
                     ✓
                   </span>
                   Access to thousands of eager learners.
                 </li>
                 <li className="flex items-center">
-                  <span className="bg-skyBlue text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
+                  <span className="bg-green text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
                     ✓
                   </span>
                   Earn and grow as you teach.
