@@ -1,9 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import Container from '../../../components/Container/Container';
+import { useQuery } from '@tanstack/react-query';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 
+import Container from '../../../components/Container/Container';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import SectionHeading from '../Shared/SectionHeading';
 import StarRating from './StarRating';

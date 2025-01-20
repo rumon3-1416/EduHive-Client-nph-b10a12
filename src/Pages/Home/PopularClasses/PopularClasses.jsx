@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from 'swiper/modules';
+import { FreeMode, Autoplay } from 'swiper/modules';
 
 import Container from '../../../components/Container/Container';
 import PopClassCard from './PopClassCard';
@@ -38,7 +38,7 @@ const PopularClasses = () => {
             spaceBetween={10}
             grabCursor={true}
             freeMode={true}
-            modules={[FreeMode]}
+            modules={[FreeMode, Autoplay]}
             breakpoints={{
               640: {
                 slidesPerView: 2,
@@ -53,6 +53,7 @@ const PopularClasses = () => {
                 spaceBetween: 30,
               },
             }}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
             className="mySwiper pb-6"
           >
             {popularClasses.length > 2 &&
