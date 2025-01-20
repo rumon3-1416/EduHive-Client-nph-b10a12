@@ -17,7 +17,7 @@ const Navbar = () => {
 
   return (
     <div className="w-full fixed top-0 inset-x-0 z-10">
-      <div className={`w-full backdrop-blur-md bg-[#f4fbff8e]`}>
+      <div className={`w-full backdrop-blur-md bg-[#f4fbff8e] shadow-md`}>
         <Container>
           <nav
             className={`py-4 flex justify-between items-center gap-2 relative`}

@@ -20,7 +20,7 @@ const useAxiosSecure = () => {
         return config;
       },
       error => {
-        console.log('ReqIntError --> ', error.message);
+        // console.log('ReqIntError --> ', error.message);
         return Promise.reject(error);
       }
     );
@@ -31,7 +31,7 @@ const useAxiosSecure = () => {
         return response;
       },
       error => {
-        console.log('ResIntError --> ', error.message);
+        // console.log('ResIntError --> ', error.message);
         return Promise.reject(error);
       }
     );

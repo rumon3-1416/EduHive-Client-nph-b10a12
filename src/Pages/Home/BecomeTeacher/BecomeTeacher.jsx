@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../../../components/Container/Container';
 
-import instructorImg from '../../../assets/images/teacher.png';
+import instructorImg from '../../../assets/images/instructor.png';
 
 const BecomeTeacher = () => {
   const navigate = useNavigate();
@@ -12,9 +12,9 @@ const BecomeTeacher = () => {
       <Container>
         <section className="pt-14 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-[3fr,_4fr] lg:grid-cols-2 items-center gap-6">
-            <div className="">
+            <div>
               <img
-                className="w-4/5 md:w-full max-w-[30rem] mx-auto md:mx-0"
+                className="w-4/5 md:w-full max-w-[30rem] mx-auto"
                 src={instructorImg}
                 alt=""
               />
