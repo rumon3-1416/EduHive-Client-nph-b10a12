@@ -3,6 +3,7 @@
 }
 
 .side-ul li {
+  text-wrap: nowrap;
   width: 100%;
   padding: 0.3rem 1rem;
   border-radius: 3rem;
