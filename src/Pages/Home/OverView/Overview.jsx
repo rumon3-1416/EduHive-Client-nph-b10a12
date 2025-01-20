@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import Container from '../../../components/Container/Container';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
-import socialImg from '../../../assets/images/social-networking.png';
+import socialImg from '../../../assets/images/student.png';
 
 const Overview = () => {
   const axiosPublic = useAxiosPublic();

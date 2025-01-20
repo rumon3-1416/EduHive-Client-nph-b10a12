@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Container from '../../../components/Container/Container';
 
-import instructorImg from '../../../assets/images/instructor.png';
+import instructorImg from '../../../assets/images/teacher.png';
 
 const BecomeTeacher = () => {
   const navigate = useNavigate();
