@@ -1,8 +1,8 @@
-# EduHive (Assignment 12)
+[<img src='https://raw.githubusercontent.com/rumon3-1416/EduHive-Client-nph-b10a12/refs/heads/main/src/assets/images/eduHive.png'>](https://github.com/rumon3-1416/)
 
-### Live Site URL
+# EduHive
 
-[https://assignment-12-26ee0.web.app](https://assignment-12-26ee0.web.app)
+### [https://assignment-12-26ee0.web.app](https://assignment-12-26ee0.web.app)
 
 EduHive is an all-in-one educational platform where students, teachers, and admins can seamlessly interact to achieve their educational goals. Whether it's viewing and enrolling in classes, managing assignments, or handling administrative tasks, EduHive provides an intuitive and user-friendly experience for all users.
 
