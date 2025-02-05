@@ -28,6 +28,19 @@ EduHive is an all-in-one educational platform where students, teachers, and admi
 - **Authentication**: Firebase Authentication
 - **Payments**: Stripe
 
+## NPM Packages Used
+
+Here is a list of the primary npm packages used in the project:
+
+- `react`
+- `react-router-dom`
+- `firebase`
+- `react-toastify`
+- `react-intersection-observer`
+- `swiper-slider`
+- `animate.css`
+- `tailwindcss`
+
 ## Run Locally
 
 This is a React.js project built with Vite, Tailwind CSS, and various dependencies. Follow the steps below to set up and run the project locally.
