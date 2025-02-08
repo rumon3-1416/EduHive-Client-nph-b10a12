@@ -1,4 +1,4 @@
-[<img src='https://raw.githubusercontent.com/rumon3-1416/EduHive-Client-nph-b10a12/refs/heads/main/src/assets/images/eduHive.png'>](https://github.com/rumon3-1416/)
+[<img src='https://raw.githubusercontent.com/rumon3-1416/Portfolio/refs/heads/main/src/assets/images/eduhive1.png'>](https://github.com/rumon3-1416/)
 
 # EduHive
 
