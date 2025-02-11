@@ -1,4 +1,4 @@
-[<img src='https://raw.githubusercontent.com/rumon3-1416/Portfolio/refs/heads/main/src/assets/images/eduhive1.png'>](https://github.com/rumon3-1416/)
+<img src='https://raw.githubusercontent.com/rumon3-1416/EduHive-Client-nph-b10a12/refs/heads/main/public/assets/eduhive1.png'>
 
 # EduHive
 
@@ -46,6 +46,7 @@ Here is a list of the primary npm packages used in the project:
 This is a React.js project built with Vite, Tailwind CSS, and various dependencies. Follow the steps below to set up and run the project locally.
 
 ### 1️⃣ Prerequisites
+
 Make sure you have the following installed on your system:
 
 - [Node.js](https://nodejs.org/) (LTS recommended)
@@ -53,6 +54,7 @@ Make sure you have the following installed on your system:
 - A package manager: `npm` (comes with Node.js) or `yarn`
 
 ### 2️⃣ Clone the Repository
+
 Open a terminal and run:
 
 ```bash
@@ -61,6 +63,7 @@ cd your-repository
 ```
 
 ### 3️⃣ Install Dependencies
+
 Run the following command to install all necessary packages:
 
 ```bash
@@ -70,6 +73,7 @@ yarn install
 ```
 
 ### 4️⃣ Start the Development Server
+
 Run the command below to start the app in development mode:
 
 ```bash
@@ -81,6 +85,7 @@ yarn dev
 This will start a local development server. The output will show the local URL where the app is running (usually `http://localhost:5173/`).
 
 ### 5️⃣ Build for Production
+
 To create an optimized production build, run:
 
 ```bash
@@ -90,6 +95,7 @@ yarn build
 ```
 
 ### 6️⃣ Preview the Production Build
+
 You can preview the production build locally by running:
 
 ```bash
