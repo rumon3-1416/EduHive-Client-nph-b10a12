@@ -22,7 +22,7 @@ const Overview = () => {
         <section className="pt-14 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-[4fr,_3fr] lg:grid-cols-2 items-center gap-2 lg:gap-6">
             <div className="w-full p-6">
-              <div className="bg-white shadow-lg rounded-lg p-8 text-center">
+              <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
                 <h2 className="poppins-font text-3xl leading-[44px] font-bold mb-2 text-dark4">
                   Our Growing Community
                 </h2>

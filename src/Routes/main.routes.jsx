@@ -31,11 +31,7 @@ const mainRouter = {
     },
     {
       path: '/class_details/:id',
-      element: (
-        <PrivateNavigator>
-          <ClassDetails />
-        </PrivateNavigator>
-      ),
+      element: <ClassDetails />,
     },
     {
       path: '/payment/:id',

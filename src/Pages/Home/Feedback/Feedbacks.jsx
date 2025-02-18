@@ -67,7 +67,7 @@ const Feedbacks = () => {
                       className="h-full aspect-auto rounded-xl shadow-lg"
                       key={_id}
                     >
-                      <div className="bg-white min-h-[17.5rem] p-6 rounded-xl">
+                      <div className="bg-white min-h-[17.5rem] p-6 rounded-2xl">
                         <div className="mb-2 flex gap-4">
                           <img
                             className="w-12 h-12 aspect-square object-cover border-2 border-lightBlue p-0.5 rounded-full"
