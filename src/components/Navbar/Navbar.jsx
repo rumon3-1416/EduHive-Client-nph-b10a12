@@ -16,8 +16,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full fixed top-0 inset-x-0 z-10">
-      <div className={`w-full backdrop-blur-md bg-[#f4fbff8e] shadow-md`}>
+    <div className="w-full h-20 fixed top-0 inset-x-0 z-10">
+      <div className={`w-full backdrop-blur-md bg-[#b8d2e1ce] shadow-lg`}>
         <Container>
           <nav
             className={`py-4 flex justify-between items-center gap-2 relative`}
@@ -27,13 +27,13 @@ const Navbar = () => {
               onClick={() => navigate('/')}
               className="cursor-pointer flex items-center gap-1"
             >
-              <h2 className="text-darkBlue text-xl font-bold">EduHive</h2>
+              <h2 className="text-skyBlue text-xl font-bold">EduHive</h2>
               <img className="h-8" src={logo} alt="" />
             </div>
 
             {/* Nav Links */}
             <ul
-              className={`text-white sm:text-[#32443f] bg-[#3498dbf8] sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium py-8 sm:py-0 rounded-xl overflow-hidden sm:flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-20 sm:top-0 z-20 ${
+              className={`text-white sm:text-[#24312e] bg-[#3498dbf8] sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium py-8 sm:py-0 rounded-xl overflow-hidden sm:flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-20 sm:top-0 z-20 ${
                 showNav ? 'flex' : 'hidden'
               }
 `}
