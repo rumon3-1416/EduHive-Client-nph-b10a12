@@ -87,10 +87,19 @@ const Navbar = () => {
                       </h2>
                       <button
                         onClick={() => {
+                          navigate('/dashboard/profile');
+                          setShowProfile(false);
+                        }}
+                        className="text-skyBlue hover:bg-[#b8d2e19a] w-full font-medium text-nowrap px-3 py-1 mt-3 rounded-md"
+                      >
+                        Profile
+                      </button>
+                      <button
+                        onClick={() => {
                           navigate('/dashboard');
                           setShowProfile(false);
                         }}
-                        className="text-skyBlue hover:text-green font-medium text-nowrap px-3 py-1 mt-3 border-2 border-skyBlue hover:border-green rounded-full"
+                        className="text-skyBlue hover:bg-[#b8d2e19a] w-full font-medium text-nowrap px-3 py-1 rounded-md"
                       >
                         Dashboard
                       </button>
@@ -99,7 +108,7 @@ const Navbar = () => {
                           signOutUser();
                           setShowProfile(false);
                         }}
-                        className="text-skyBlue hover:text-warnYellow font-medium text-nowrap px-3 py-1 mt-3 border-2 border-skyBlue hover:border-warnYellow rounded-full"
+                        className="text-skyBlue hover:text-orange-500 hover:bg-[#b8d2e19a] w-full font-medium text-nowrap px-3 py-1 rounded-md"
                       >
                         Log Out
                       </button>
