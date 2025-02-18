@@ -28,7 +28,7 @@ const Banner = () => {
 
   return (
     <section className="bg-blueBg">
-      <Container>
+      <div className="w-full">
         {isLoading ? (
           <Loading />
         ) : (
@@ -52,7 +52,7 @@ const Banner = () => {
               ))}
           </Swiper>
         )}
-      </Container>
+      </div>
     </section>
   );
 };

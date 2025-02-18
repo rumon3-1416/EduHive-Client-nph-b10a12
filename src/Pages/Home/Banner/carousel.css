@@ -36,3 +36,8 @@
     aspect-ratio: 2/1;
   }
 }
+@media screen and (min-width: 1024px) {
+  .swiper-slide {
+    aspect-ratio: 5/2;
+  }
+}
