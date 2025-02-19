@@ -84,7 +84,7 @@ const CheckoutForm = () => {
       data.acknowledged
         ? notify('success', 'Payment Success')
         : notify('error', 'Payment Failed!');
-      navigate('/dashboard');
+      navigate('/dashboard/my_enrolls');
     }
   };
 

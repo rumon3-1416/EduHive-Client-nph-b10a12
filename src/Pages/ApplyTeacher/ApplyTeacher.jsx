@@ -10,7 +10,7 @@ import SectionHeading from '../Home/Shared/SectionHeading';
 
 const ApplyTeacher = () => {
   const { register, handleSubmit } = useForm();
-  const { user, role, notify } = useAuthContext();
+  const { user, role, notify, darkTheme } = useAuthContext();
   const generateImgUrl = useImgUrl();
   const axiosSecure = useAxiosSecure();
 
@@ -96,19 +96,27 @@ const ApplyTeacher = () => {
             ) : (
               <form
                 onSubmit={handleSubmit(handleTeacher)}
-                className="bg-white px-8 py-10 mt-8 rounded-xl shadow-xl grid grid-cols-1"
+                className={`${
+                  darkTheme ? 'bg-dark5' : 'bg-white'
+                } px-8 py-10 mt-8 rounded-xl shadow-xl grid grid-cols-1`}
               >
                 {/* Name */}
                 <div className="flex flex-col">
                   <label
                     htmlFor="name"
-                    className="text-gray-700 font-semibold mb-2"
+                    className={`${
+                      darkTheme ? 'text-gray-200' : 'text-gray-700'
+                    } font-semibold mb-2`}
                   >
                     Name
                   </label>
                   <input
                     {...register('name')}
-                    className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                    className={`${
+                      darkTheme
+                        ? 'bg-dark3 text-gray-200'
+                        : 'bg-[#f1f1f1] text-gray-800'
+                    } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
                     name="name"
                     id="name"
                     type="text"
@@ -120,14 +128,20 @@ const ApplyTeacher = () => {
                 {/* Title */}
                 <div className="flex flex-col">
                   <label
-                    className="text-gray-700 font-semibold mb-2"
+                    className={`${
+                      darkTheme ? 'text-gray-200' : 'text-gray-700'
+                    } font-semibold mb-2`}
                     htmlFor="title"
                   >
                     Title
                   </label>
                   <input
                     {...register('title')}
-                    className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                    className={`${
+                      darkTheme
+                        ? 'bg-dark3 text-gray-200'
+                        : 'bg-[#f1f1f1] text-gray-800'
+                    } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
                     name="title"
                     id="title"
                     type="text"
@@ -141,14 +155,20 @@ const ApplyTeacher = () => {
                   {/* Image */}
                   <div className="flex flex-col">
                     <label
-                      className="text-gray-700 font-semibold mb-2"
+                      className={`${
+                        darkTheme ? 'text-gray-200' : 'text-gray-700'
+                      } font-semibold mb-2`}
                       htmlFor="image"
                     >
                       Image
                     </label>
                     <input
                       {...register('image')}
-                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                      className={`${
+                        darkTheme
+                          ? 'bg-dark3 text-gray-200'
+                          : 'bg-[#f1f1f1] text-gray-800'
+                      } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
                       name="image"
                       id="image"
                       type="file"
@@ -159,14 +179,20 @@ const ApplyTeacher = () => {
                   {/* Email */}
                   <div className="flex flex-col">
                     <label
-                      className="text-gray-700 font-semibold mb-2"
+                      className={`${
+                        darkTheme ? 'text-gray-200' : 'text-gray-700'
+                      } font-semibold mb-2`}
                       htmlFor="email"
                     >
                       Email
                     </label>
                     <input
                       {...register('email')}
-                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                      className={`${
+                        darkTheme
+                          ? 'bg-dark3 text-gray-200'
+                          : 'bg-[#f1f1f1] text-gray-800'
+                      } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
                       name="email"
                       id="email"
                       type="email"
@@ -183,14 +209,20 @@ const ApplyTeacher = () => {
                   {/* Experience */}
                   <div className="flex flex-col">
                     <label
-                      className="text-gray-700 font-semibold mb-2"
+                      className={`${
+                        darkTheme ? 'text-gray-200' : 'text-gray-700'
+                      } font-semibold mb-2`}
                       htmlFor="experience"
                     >
                       Experience
                     </label>
                     <select
                       {...register('experience')}
-                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                      className={`${
+                        darkTheme
+                          ? 'bg-dark3 text-gray-200'
+                          : 'bg-[#f1f1f1] text-gray-800'
+                      } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
                       defaultValue=""
                       name="experience"
                       id="experience"
@@ -207,14 +239,20 @@ const ApplyTeacher = () => {
                   {/* Category */}
                   <div className="flex flex-col">
                     <label
-                      className="text-gray-700 font-semibold mb-2"
+                      className={`${
+                        darkTheme ? 'text-gray-200' : 'text-gray-700'
+                      } font-semibold mb-2`}
                       htmlFor="category"
                     >
                       Category
                     </label>
                     <select
                       {...register('category')}
-                      className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 mb-8 rounded-lg outline-none"
+                      className={`${
+                        darkTheme
+                          ? 'bg-dark3 text-gray-200'
+                          : 'bg-[#f1f1f1] text-gray-800'
+                      } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
                       defaultValue=""
                       name="category"
                       id="category"

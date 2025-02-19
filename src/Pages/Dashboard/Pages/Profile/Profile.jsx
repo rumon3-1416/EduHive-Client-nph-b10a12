@@ -31,7 +31,7 @@ const Profile = () => {
       <div className="">
         <div className="flex items-center gap-8">
           <img
-            className="bg-white max-w-40 p-1 aspect-square object-cover border-4 border-lightBlue rounded-full"
+            className="bg-white w-40 max-w-40 p-1 aspect-square object-cover border-4 border-lightBlue rounded-full"
             src={photoURL}
             alt=""
           />
