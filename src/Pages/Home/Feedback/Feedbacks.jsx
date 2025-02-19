@@ -11,8 +11,10 @@ import StarRating from './StarRating';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/autoplay';
+import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const Feedbacks = () => {
+  const { darkTheme } = useAuthContext();
   const axiosPublic = useAxiosPublic();
 
   const { data: feedbacks = [] } = useQuery({
@@ -67,7 +69,11 @@ const Feedbacks = () => {
                       className="h-full aspect-auto rounded-xl shadow-lg"
                       key={_id}
                     >
-                      <div className="bg-white min-h-[17.5rem] p-6 rounded-2xl">
+                      <div
+                        className={`${
+                          darkTheme ? 'bg-dark5' : 'bg-white'
+                        } min-h-[17.5rem] p-6 rounded-2xl`}
+                      >
                         <div className="mb-2 flex gap-4">
                           <img
                             className="w-12 h-12 aspect-square object-cover border-2 border-lightBlue p-0.5 rounded-full"
@@ -75,8 +81,18 @@ const Feedbacks = () => {
                             alt=""
                           />
                           <div>
-                            <p className="poppins-font font-semibold">{name}</p>
-                            <p className="text-xs font-medium">
+                            <p
+                              className={`poppins-font font-semibold ${
+                                darkTheme && 'text-light2'
+                              }`}
+                            >
+                              {name}
+                            </p>
+                            <p
+                              className={`text-xs font-medium ${
+                                darkTheme && 'text-lightGray'
+                              }`}
+                            >
                               Student of EduHive
                             </p>
                           </div>
@@ -84,8 +100,18 @@ const Feedbacks = () => {
 
                         <StarRating rating={rating} />
 
-                        <h3 className="font-medium mt-3 mb-1">{title}</h3>
-                        <p className="text-sm">{feedback}</p>
+                        <h3
+                          className={`font-medium mt-3 mb-1 ${
+                            darkTheme && 'text-gray-200'
+                          }`}
+                        >
+                          {title}
+                        </h3>
+                        <p
+                          className={`text-sm ${darkTheme && 'text-lightGray'}`}
+                        >
+                          {feedback}
+                        </p>
                       </div>
                     </SwiperSlide>
                   );

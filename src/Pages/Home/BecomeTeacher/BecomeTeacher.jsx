@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import Container from '../../../components/Container/Container';
 
 import instructorImg from '../../../assets/images/instructor.png';
+import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const BecomeTeacher = () => {
+  const { darkTheme } = useAuthContext();
   const navigate = useNavigate();
 
   return (
-    <div className="bg-greenBg">
+    <div className="bg-blueBg">
       <Container>
         <section className="pt-14 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-[3fr,_4fr] lg:grid-cols-2 items-center gap-6">
@@ -21,16 +23,28 @@ const BecomeTeacher = () => {
             </div>
 
             <div className="">
-              <h2 className="poppins-font text-3xl leading-[44px] font-bold mb-2 text-dark4">
+              <h2
+                className={`poppins-font text-3xl leading-[44px] font-bold mb-2 ${
+                  darkTheme ? 'text-light2' : 'text-dark4'
+                }`}
+              >
                 Share Your Knowledge, Shape Futures
               </h2>
-              <p className="text-gray-600 text-lg mb-6">
+              <p
+                className={`${
+                  darkTheme ? 'text-lightGray' : 'text-gray-600'
+                } text-lg mb-6`}
+              >
                 Become a part of our growing community of educators. Join us to
                 teach, inspire, and make a difference in students lives around
                 the globe. Your expertise matters!
               </p>
 
-              <ul className="text-gray-600 space-y-4 mb-6">
+              <ul
+                className={`${
+                  darkTheme ? 'text-lightGray' : 'text-gray-600'
+                } space-y-4 mb-6`}
+              >
                 <li className="flex items-center">
                   <span className="bg-green text-white rounded-full w-6 h-6 flex items-center justify-center mr-3">
                     ✓

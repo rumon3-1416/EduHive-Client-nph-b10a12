@@ -3,7 +3,7 @@ import Container from '../../../components/Container/Container';
 import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const NewsLetter = () => {
-  const { notify } = useAuthContext();
+  const { notify, darkTheme } = useAuthContext();
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -12,14 +12,22 @@ const NewsLetter = () => {
   };
 
   return (
-    <div className="bg-greenBg py-20">
+    <div className="bg-blueBg py-20">
       <Container>
         <div className="px-8 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
           <div className="text-center md:text-left">
-            <h2 className="text-darkGray poppins-font text-3xl leading-[44px] font-bold mb-2">
+            <h2
+              className={`${
+                darkTheme ? 'text-light2' : 'text-darkGray'
+              } poppins-font text-3xl leading-[44px] font-bold mb-2`}
+            >
               Join Our Newsletter
             </h2>
-            <p className="text-gray font-medium max-w-[440px] mx-auto md:mx-0">
+            <p
+              className={`${
+                darkTheme ? 'text-lightGray' : 'text-gray-500'
+              } font-medium max-w-[440px] mx-auto md:mx-0`}
+            >
               Push your email and be part of a vibrant community of runners.
               Subscribe now for an unforgettable journey.
             </p>
@@ -31,7 +39,9 @@ const NewsLetter = () => {
               className=" flex justify-center items-center"
             >
               <input
-                className="w-[10rem] sm:w-[15rem] md:w-[10rem] lg:w-[15rem] xl:w-[20rem] px-6 py-3 border-2 border-skyBlue focus:border-successGreen outline-none rounded-s-full"
+                className={`w-[10rem] sm:w-[15rem] md:w-[10rem] lg:w-[15rem] xl:w-[20rem] px-6 py-3 border-2 border-skyBlue focus:border-successGreen outline-none rounded-s-full ${
+                  darkTheme && 'bg-dark4'
+                }`}
                 type="email"
                 name="subscribe"
                 id="subscribe"

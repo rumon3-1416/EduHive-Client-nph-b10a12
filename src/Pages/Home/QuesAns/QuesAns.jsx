@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import Container from '../../../components/Container/Container';
+import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const QuesAns = () => {
   const [currTitle, setCurrTitle] = useState(0);
+
+  const { darkTheme } = useAuthContext();
 
   return (
     <div className="bg-blueBg pt-16 pb-8">
@@ -11,11 +14,17 @@ const QuesAns = () => {
           {/* Cards */}
           <div>
             <h1
-              className={`poppins-font text-3xl leading-[44px] font-bold mb-2 text-dark4`}
+              className={`poppins-font text-3xl leading-[44px] font-bold mb-2 ${
+                darkTheme ? 'text-light2' : 'text-dark4'
+              }`}
             >
               Frequently Asked Questions
             </h1>
-            <p className={`text-lg mb-10 text-[#32443f]`}>
+            <p
+              className={`text-lg mb-10 ${
+                darkTheme ? 'text-lightGray' : 'text-[#32443f]'
+              }`}
+            >
               Ask any question what in your mind. Ask about anything about our
               marathons, upcoming marathons, adding marathon, editing marathon
               or anything else.
@@ -32,13 +41,15 @@ const QuesAns = () => {
             >
               <input type="radio" name="my-accordion-2" />
               <div
-                className={`collapse-title ${
-                  currTitle === 1 && 'text-dark-green'
-                } text-xl font-medium`}
+                className={`collapse-title text-xl font-medium ${
+                  darkTheme && 'text-light2'
+                }`}
               >
                 <p>How can I enroll in a class?</p>
               </div>
-              <div className="collapse-content">
+              <div
+                className={`collapse-content ${darkTheme && 'text-lightGray'}`}
+              >
                 <p>
                   To enroll in a class, browse our available courses and click
                   on the class you want to join. After reviewing the course
@@ -56,13 +67,15 @@ const QuesAns = () => {
             >
               <input type="radio" name="my-accordion-2" />
               <div
-                className={`collapse-title ${
-                  currTitle === 2 && 'text-dark-green'
-                } text-xl font-medium`}
+                className={`collapse-title text-xl font-medium ${
+                  darkTheme && 'text-light2'
+                }`}
               >
                 <p>Can I request to become a teacher on this platform?</p>
               </div>
-              <div className="collapse-content">
+              <div
+                className={`collapse-content ${darkTheme && 'text-lightGray'}`}
+              >
                 <p>
                   Yes! If you are passionate about teaching, you can apply to
                   become a teacher by submitting a request through your account
@@ -80,13 +93,15 @@ const QuesAns = () => {
             >
               <input type="radio" name="my-accordion-2" />
               <div
-                className={`collapse-title ${
-                  currTitle === 3 && 'text-dark-green'
-                } text-xl font-medium`}
+                className={`collapse-title text-xl font-medium ${
+                  darkTheme && 'text-light2'
+                }`}
               >
                 <p>What payment methods are supported?</p>
               </div>
-              <div className="collapse-content">
+              <div
+                className={`collapse-content ${darkTheme && 'text-lightGray'}`}
+              >
                 <p>
                   We support a variety of secure payment options, including
                   credit/debit cards and online payment gateways like Stripe.
@@ -103,13 +118,15 @@ const QuesAns = () => {
             >
               <input type="radio" name="my-accordion-2" />
               <div
-                className={`collapse-title ${
-                  currTitle === 4 && 'text-dark-green'
-                } text-xl font-medium`}
+                className={`collapse-title text-xl font-medium ${
+                  darkTheme && 'text-light2'
+                }`}
               >
                 <p>How can I track my course progress?</p>
               </div>
-              <div className="collapse-content">
+              <div
+                className={`collapse-content ${darkTheme && 'text-lightGray'}`}
+              >
                 <p>
                   Once you enroll in a class, you can track your progress
                   through your personal dashboard. You will also be able to view

@@ -6,14 +6,22 @@ import logo from '../../assets/icons/logo.png';
 import fbIcon from '../../assets/icons/facebook.png';
 import twitterIcon from '../../assets/icons/twitter.png';
 import instIcon from '../../assets/icons/instagram.png';
+import { useAuthContext } from '../../Hooks/useAuthContext';
 
 const Footer = () => {
+  const { darkTheme } = useAuthContext();
   const navigate = useNavigate();
 
   return (
-    <footer className="bg-gradient-to-tr from-[#3498db33] to-[#2ecc7027]">
+    <footer
+      className={`bg-gradient-to-tr ${
+        darkTheme
+          ? 'from-[#303030] to-[#5f5f5f]'
+          : 'from-[#3498db33] to-[#2ecc7027]'
+      }`}
+    >
       <Container>
-        <div className="pt-24 pb-10 grid grid-cols-1 md:grid-cols-[2fr,_3fr] gap-8">
+        <div className="pt-16 pb-10 grid grid-cols-1 md:grid-cols-[2fr,_3fr] gap-8">
           {/* Intro */}
           <div>
             {/* Logo */}
@@ -27,7 +35,7 @@ const Footer = () => {
 
             <p
               className={`max-w-80 text-sm font-medium text-justify
-                text-[#09080F99]`}
+                ${darkTheme ? 'text-[#b0b0b0]' : 'text-[#09080F99]'}`}
             >
               EduHive is a digital platform for enroll, adding classes and
               seeing details of classes.
@@ -37,10 +45,18 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-[2fr,_2fr,_3fr] gap-4">
             {/* Menu */}
             <div>
-              <p className={`text-lg font-semibold mb-4 text-[#0e1513]`}>
+              <p
+                className={`text-lg font-semibold mb-4 ${
+                  darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+                }`}
+              >
                 Menu
               </p>
-              <ul className={`cursor-pointer text-[#0e151399]`}>
+              <ul
+                className={`cursor-pointer ${
+                  darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+                }`}
+              >
                 <li>
                   <Link to="/">Home</Link>
                 </li>
@@ -55,10 +71,18 @@ const Footer = () => {
 
             {/* About */}
             <div>
-              <p className={`text-lg font-semibold mb-4 text-[#0e1513]`}>
+              <p
+                className={`text-lg font-semibold mb-4 ${
+                  darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+                }`}
+              >
                 About Us
               </p>
-              <ul className={`cursor-pointer text-[#0e151399]`}>
+              <ul
+                className={`cursor-pointer ${
+                  darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+                }`}
+              >
                 <li>About Us</li>
                 <li>FAQ</li>
                 <li>Help</li>
@@ -67,13 +91,27 @@ const Footer = () => {
 
             {/* Contact */}
             <div>
-              <p className={`text-lg font-semibold mb-4 text-[#0e1513]`}>
+              <p
+                className={`text-lg font-semibold mb-4 ${
+                  darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+                }`}
+              >
                 Contact Us
               </p>
-              <p className={`mb-2 text-[#0e151399]`}>
+              <p
+                className={`mb-2 ${
+                  darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+                }`}
+              >
                 House 12, Road 5, Dhanmondi, Dhaka
               </p>
-              <p className={`mb-1 text-[#0e151399]`}>edu@hive.com</p>
+              <p
+                className={`mb-1 ${
+                  darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+                }`}
+              >
+                edu@hive.com
+              </p>
 
               {/* Social links */}
               <div className="mt-4 flex items-center gap-4">
@@ -102,11 +140,17 @@ const Footer = () => {
       </Container>
 
       {/* Border */}
-      <div className={`border border-white`}></div>
+      <div
+        className={`border ${darkTheme ? 'border-[#252525]' : 'border-white'}`}
+      ></div>
 
       {/* Copyright */}
       <Container>
-        <div className="text-[#0e151399] py-6 flex justify-between">
+        <div
+          className={`w-[95%] max-w-[1280px] mx-auto py-6 flex justify-between ${
+            darkTheme ? 'text-[#bfbfbf]' : 'text-[#0e151399]'
+          }`}
+        >
           <p>
             Copyright &copy; {new Date().getFullYear()}. All Right Reserved.
           </p>

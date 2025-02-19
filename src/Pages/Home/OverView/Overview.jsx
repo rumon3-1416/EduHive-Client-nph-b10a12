@@ -4,8 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import Container from '../../../components/Container/Container';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import socialImg from '../../../assets/images/student.png';
+import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const Overview = () => {
+  const { darkTheme } = useAuthContext();
   const axiosPublic = useAxiosPublic();
 
   const { data: overview = {} } = useQuery({
@@ -22,11 +24,23 @@ const Overview = () => {
         <section className="pt-14 pb-10">
           <div className="grid grid-cols-1 md:grid-cols-[4fr,_3fr] lg:grid-cols-2 items-center gap-2 lg:gap-6">
             <div className="w-full p-6">
-              <div className="bg-white shadow-lg rounded-2xl p-8 text-center">
-                <h2 className="poppins-font text-3xl leading-[44px] font-bold mb-2 text-dark4">
+              <div
+                className={`${
+                  darkTheme ? 'bg-dark5' : 'bg-white'
+                } shadow-lg rounded-2xl p-8 text-center`}
+              >
+                <h2
+                  className={`poppins-font text-3xl leading-[44px] font-bold mb-2 ${
+                    darkTheme ? 'text-light2' : 'text-dark4'
+                  }`}
+                >
                   Our Growing Community
                 </h2>
-                <p className="text-gray-600 mb-6">
+                <p
+                  className={`${
+                    darkTheme ? 'text-lightGray' : 'text-gray-600'
+                  } mb-6`}
+                >
                   Discover the numbers behind our success.
                 </p>
 
@@ -35,19 +49,37 @@ const Overview = () => {
                     <h3 className="text-skyBlue text-4xl font-extrabold">
                       {overview.totalUsers}+
                     </h3>
-                    <p className="text-gray-500">Total Users</p>
+                    <p
+                      className={`${
+                        darkTheme ? 'text-lightGray' : 'text-gray-600'
+                      }`}
+                    >
+                      Total Users
+                    </p>
                   </div>
                   <div>
                     <h3 className="text-skyBlue text-4xl font-extrabold">
                       {overview.totalClass}+
                     </h3>
-                    <p className="text-gray-500">Classes Offered</p>
+                    <p
+                      className={`${
+                        darkTheme ? 'text-lightGray' : 'text-gray-600'
+                      }`}
+                    >
+                      Classes Offered
+                    </p>
                   </div>
                   <div>
                     <h3 className="text-skyBlue text-4xl font-extrabold">
                       {overview.totalEnrolled}+
                     </h3>
-                    <p className="text-gray-500">Enrollments</p>
+                    <p
+                      className={`${
+                        darkTheme ? 'text-lightGray' : 'text-gray-600'
+                      }`}
+                    >
+                      Enrollments
+                    </p>
                   </div>
                 </div>
               </div>

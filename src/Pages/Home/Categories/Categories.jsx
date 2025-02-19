@@ -10,8 +10,10 @@ import graphicIcon from '../../../assets/icons/layers.png';
 import digitalIcon from '../../../assets/icons/ads.png';
 import dataIcon from '../../../assets/icons/data-engineer.png';
 import SectionHeading from '../Shared/SectionHeading';
+import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const Categories = () => {
+  const { darkTheme } = useAuthContext();
   const axiosPublic = useAxiosPublic();
 
   const { data: Categories = [], isLoading } = useQuery({
@@ -23,7 +25,7 @@ const Categories = () => {
   });
 
   return (
-    <section className="bg-greenBg pt-16 pb-8">
+    <section className="bg-blueBg pt-16 pb-8">
       <Container>
         <div className="text-center">
           <SectionHeading
@@ -36,7 +38,7 @@ const Categories = () => {
             Categories.map(category => (
               <div
                 className={`text-center p-6 hover:shadow-xl rounded-2xl
-              hover:bg-white`}
+              ${darkTheme ? 'hover:bg-dark5' : 'hover:bg-white'}`}
                 key={category._id}
               >
                 <div
@@ -70,11 +72,13 @@ const Categories = () => {
                 </div>
                 <h3
                   className={`text-2xl font-semibold mb-4
-                text-gray-800`}
+                ${darkTheme ? 'text-light2' : 'text-gray-800'}`}
                 >
                   {category.category}
                 </h3>
-                <p className="text-gray-600">{category.description}</p>
+                <p className={darkTheme ? 'text-lightGray' : 'text-gray-600'}>
+                  {category.description}
+                </p>
                 <Link className="group" to="/all_classes">
                   <p className="text-skyBlue hover:text-green text-lg font-semibold mt-6 inline-flex items-center gap-3">
                     See More{' '}

@@ -3,8 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import Container from '../../../components/Container/Container';
+import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const Collaborators = () => {
+  const { darkTheme } = useAuthContext();
+
   const axiosPublic = useAxiosPublic();
 
   const { data: partners = [] } = useQuery({
@@ -16,7 +19,7 @@ const Collaborators = () => {
   });
 
   return (
-    <div className="bg-blueBg">
+    <div className={`${darkTheme ? 'bg-[#d0dfe97a]' : 'bg-blueBg'}`}>
       <Container>
         <section className="w-4/5 mx-auto pt-6 pb-10">
           <p className="text-center mb-6">Our Partners & Collaborators</p>
