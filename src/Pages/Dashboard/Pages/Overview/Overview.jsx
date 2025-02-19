@@ -50,7 +50,11 @@ const Overview = () => {
 
       {/* Overview */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
-        <div className="bg-white p-6 rounded-2xl shadow-lg">
+        <div
+          className={`${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
+          } p-6 rounded-2xl shadow-lg`}
+        >
           <div className="bg-successGreen w-12 p-2.5 rounded-full">
             <img
               className="w-full aspect-square object-cover"
@@ -61,7 +65,11 @@ const Overview = () => {
           <p className="text-3xl font-bold mt-2">{totalClass}</p>
           <h2 className="text-lg font-medium">Total Classes</h2>
         </div>
-        <div className="bg-white p-6 rounded-2xl shadow-lg">
+        <div
+          className={`${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
+          } p-6 rounded-2xl shadow-lg`}
+        >
           <div className="bg-skyBlue w-12 p-2.5 rounded-full">
             <img
               className="w-full aspect-square object-cover"
@@ -72,7 +80,11 @@ const Overview = () => {
           <p className="text-3xl font-bold mt-2">{totalEnrolled}</p>
           <h2 className="text-lg font-medium">Total Enrolls</h2>
         </div>
-        <div className="bg-white p-6 rounded-2xl shadow-lg">
+        <div
+          className={`${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
+          } p-6 rounded-2xl shadow-lg`}
+        >
           <div className="bg-orange-400 w-12 p-2.5 rounded-full">
             <img
               className="w-full aspect-square object-cover"
@@ -83,7 +95,11 @@ const Overview = () => {
           <p className="text-3xl font-bold mt-2">{totalTeachers}</p>
           <h2 className="text-lg font-medium">Total Teachers</h2>
         </div>
-        <div className="bg-white p-6 rounded-2xl shadow-lg">
+        <div
+          className={`${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
+          } p-6 rounded-2xl shadow-lg`}
+        >
           <div className="bg-pink-500 w-12 p-2.5 rounded-full">
             <img
               className="w-full aspect-square object-cover"
@@ -106,7 +122,11 @@ const Overview = () => {
           Classes Enrolled
         </h2>
 
-        <div className="bg-white py-4 sm:px-4 sm:py-6 rounded-2xl shadow-lg">
+        <div
+          className={`${
+            darkTheme ? 'bg-dark5' : 'bg-white'
+          } py-4 sm:px-4 sm:py-6 rounded-2xl shadow-lg`}
+        >
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={classes}>
               <CartesianGrid strokeDasharray="3 3" />

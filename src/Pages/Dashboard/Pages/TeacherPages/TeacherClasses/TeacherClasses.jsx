@@ -19,7 +19,6 @@ const TeacherClasses = () => {
   const pagesArray = [...Array(totalPages).keys()];
 
   const [delId, setDelId] = useState(null);
-  const [confirmModal, setConfirmModal] = useState(false);
   const [updateModal, setUpdateModal] = useState({
     show: false,
     classData: {},
@@ -29,7 +28,7 @@ const TeacherClasses = () => {
     res: '',
     title: '',
   });
-  const { notify } = useAuthContext();
+  const { notify, darkTheme } = useAuthContext();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
@@ -86,7 +85,7 @@ const TeacherClasses = () => {
 
       <div>
         {/* Display Classes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
           {myClasses.map(classData => {
             const {
               _id,
@@ -102,7 +101,9 @@ const TeacherClasses = () => {
 
             return (
               <div
-                className="bg-white rounded-2xl shadow-lg flex flex-col items-start"
+                className={`${
+                  darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
+                } rounded-2xl shadow-lg flex flex-col items-start`}
                 key={_id}
               >
                 <div className="w-full p-4">

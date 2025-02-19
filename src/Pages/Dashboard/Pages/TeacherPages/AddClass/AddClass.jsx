@@ -8,7 +8,7 @@ import SectionHeading from '../../../../Home/Shared/SectionHeading';
 
 const AddClass = () => {
   const { register, handleSubmit, reset } = useForm();
-  const { user, notify } = useAuthContext();
+  const { user, notify, darkTheme } = useAuthContext();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
@@ -41,7 +41,9 @@ const AddClass = () => {
       <div>
         <form
           onSubmit={handleSubmit(handleAddClass)}
-          className="bg-white px-8 py-10 mt-8 rounded-xl shadow-xl grid grid-cols-1"
+          className={`${
+            darkTheme ? 'bg-dark5' : 'bg-white'
+          } px-8 py-10 mt-8 rounded-xl shadow-xl grid grid-cols-1`}
         >
           {/* Title */}
           <div className="flex flex-col">
@@ -50,7 +52,11 @@ const AddClass = () => {
             </label>
             <input
               {...register('title')}
-              className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+              className={`${
+                darkTheme
+                  ? 'bg-dark3 text-gray-200'
+                  : 'bg-[#f1f1f1] text-gray-800'
+              } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
               type="text"
               name="title"
               id="title"
@@ -70,7 +76,11 @@ const AddClass = () => {
               </label>
               <input
                 {...register('image')}
-                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                className={`${
+                  darkTheme
+                    ? 'bg-dark3 text-gray-200'
+                    : 'bg-[#f1f1f1] text-gray-800'
+                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
                 type="text"
                 name="image"
                 id="image"
@@ -88,7 +98,11 @@ const AddClass = () => {
               </label>
               <input
                 {...register('price')}
-                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                className={`${
+                  darkTheme
+                    ? 'bg-dark3 text-gray-200'
+                    : 'bg-[#f1f1f1] text-gray-800'
+                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
                 type="number"
                 name="price"
                 id="price"
@@ -109,7 +123,11 @@ const AddClass = () => {
               </label>
               <input
                 {...register('name')}
-                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                className={`${
+                  darkTheme
+                    ? 'bg-dark3 text-gray-200'
+                    : 'bg-[#f1f1f1] text-gray-800'
+                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
                 type="text"
                 name="name"
                 id="name"
@@ -128,7 +146,11 @@ const AddClass = () => {
               </label>
               <input
                 {...register('email')}
-                className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none"
+                className={`${
+                  darkTheme
+                    ? 'bg-dark3 text-gray-200'
+                    : 'bg-[#f1f1f1] text-gray-800'
+                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
                 type="text"
                 name="email"
                 id="email"
@@ -149,7 +171,11 @@ const AddClass = () => {
             </label>
             <textarea
               {...register('description')}
-              className="bg-[#f1f1f1] text-gray-800 w-full px-4 py-2.5 mb-8 rounded-lg outline-none resize-none"
+              className={`${
+                darkTheme
+                  ? 'bg-dark3 text-gray-200'
+                  : 'bg-[#f1f1f1] text-gray-800'
+              } w-full px-4 py-2.5 mb-8 rounded-lg outline-none resize-none`}
               rows={4}
               name="description"
               id="description"

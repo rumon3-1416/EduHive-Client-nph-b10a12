@@ -3,8 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useNavigate } from 'react-router-dom';
 import SectionHeading from '../../../../Home/Shared/SectionHeading';
+import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 
 const StudentEnrolls = () => {
+  const { darkTheme } = useAuthContext();
+
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
@@ -33,7 +36,9 @@ const StudentEnrolls = () => {
 
             return (
               <div
-                className="bg-white rounded-2xl shadow-lg flex flex-col items-start"
+                className={`${
+                  darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
+                } rounded-2xl shadow-lg flex flex-col items-start`}
                 key={_id}
               >
                 <div className="w-full p-4">
