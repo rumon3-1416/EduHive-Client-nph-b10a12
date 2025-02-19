@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { CgMenu } from 'react-icons/cg';
+import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import Container from '../Container/Container';
@@ -12,12 +13,26 @@ const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
-  const { user, signOutUser } = useAuthContext();
+  const { darkTheme, setDarkTheme, user, signOutUser } = useAuthContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.body.style.backgroundColor = darkTheme ? '#303030' : '#f7f7f7';
+    window.document.documentElement.classList.add(
+      darkTheme ? 'bg-dark3' : 'bg-[#f7f7f7]'
+    );
+    window.document.documentElement.classList.remove(
+      darkTheme ? 'bg-[#f7f7f7]' : 'bg-dark3'
+    );
+  }, [darkTheme]);
 
   return (
     <div className="w-full h-20 fixed top-0 inset-x-0 z-10">
-      <div className={`w-full backdrop-blur-md bg-[#c2d5e0f0] shadow-lg`}>
+      <div
+        className={`w-full backdrop-blur-md shadow-lg ${
+          darkTheme ? 'bg-[#212527f0]' : 'bg-[#c2d5e0f0]'
+        }`}
+      >
         <Container>
           <nav
             className={`py-4 flex justify-between items-center gap-2 relative`}
@@ -33,9 +48,11 @@ const Navbar = () => {
 
             {/* Nav Links */}
             <ul
-              className={`text-[#24312e] bg-[#c2d5e0f6] sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium py-8 sm:py-0 rounded-b-xl shadow-lg sm:shadow-none overflow-hidden sm:flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-[4.9rem] sm:top-0 z-20 ${
-                showNav ? 'flex' : 'hidden'
-              }
+              className={`sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium sm:h-fit sm:py-0 rounded-b-xl shadow-lg sm:shadow-none overflow-hidden flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-[4.9rem] sm:top-0 z-20 transition-all duration-300 ${
+                darkTheme
+                  ? 'text-light2 bg-[#212527f0]'
+                  : 'text-[#24312e] bg-[#c2d5e0f6]'
+              } ${showNav ? 'h-44 py-8' : 'h-0'}
 `}
             >
               <li
@@ -59,6 +76,16 @@ const Navbar = () => {
             </ul>
 
             <div className="flex items-center gap-2 lg:gap-3 relative">
+              {/* Theme Button */}
+              <button
+                onClick={() => {
+                  localStorage.setItem('darkTheme', darkTheme ? '' : true);
+                  setDarkTheme(!darkTheme);
+                }}
+                className={`text-3xl ${darkTheme ? 'text-white' : 'text-dark'}`}
+              >
+                {darkTheme ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
+              </button>
               {user ? (
                 <>
                   <button

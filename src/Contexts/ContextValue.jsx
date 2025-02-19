@@ -14,10 +14,13 @@ import { toast } from 'react-toastify';
 
 const googleProvider = new GoogleAuthProvider();
 
+const dark = localStorage.getItem('darkTheme');
+
 export const ContextValue = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [role, setRole] = useState('student');
+  const [darkTheme, setDarkTheme] = useState(dark || false);
 
   const axiosPublic = useAxiosPublic();
 
@@ -93,7 +96,9 @@ export const ContextValue = () => {
     role,
     notify,
     loading,
+    darkTheme,
     setLoading,
+    setDarkTheme,
     googleSignIn,
     emailPassSignUp,
     emailPassSignIn,

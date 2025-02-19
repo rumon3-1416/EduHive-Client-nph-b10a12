@@ -20,6 +20,7 @@ export default {
         successGreen: '#27ae60',
         infoBlue: '#3498db',
         warnYellow: '#e9d502',
+        light2: '#f7f7f7',
         dark: '#0a0a0a',
         dark2: '#121212',
         dark3: '#303030',

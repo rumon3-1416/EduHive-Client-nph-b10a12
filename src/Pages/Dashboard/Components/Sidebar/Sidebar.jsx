@@ -119,6 +119,14 @@ const Sidebar = ({ collapse, setCollapse }) => {
                   Home
                 </NavLink>
               </li>
+              <li
+                onClick={() => setCollapse(true)}
+                className="hover:bg-skyBlue hover:text-white"
+              >
+                <NavLink className="px-4 w-full inline-block" to="/all_classes">
+                  Classes
+                </NavLink>
+              </li>
               {/* Logout */}
               {user && (
                 <li
