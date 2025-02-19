@@ -19,13 +19,7 @@ button:active {
 } */
 
 nav a.active {
-  color: #00ff00;
+  color: #3498db;
   font-weight: 700;
   text-decoration: underline;
-}
-
-@media screen and (min-width: 640px) {
-  nav a.active {
-    color: #21608b;
-  }
 }
