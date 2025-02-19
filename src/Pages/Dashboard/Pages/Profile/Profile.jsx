@@ -14,7 +14,7 @@ const Profile = () => {
     },
   });
 
-  const { _id, email, displayName, role, photoURL } = profileInfo;
+  const { _id, email, displayName, role, photoURL, joined } = profileInfo;
 
   useEffect(() => {
     document.title = 'Profile | EduHive';
@@ -26,20 +26,34 @@ const Profile = () => {
         <SectionHeading heading={['My Profile']} />
       </div>
 
-      <div className="flex flex-col justify-center items-center">
-        <div className="bg-white p-10 rounded-xl shadow-xl flex flex-col justify-center items-center">
+      <div className="">
+        <div className="flex items-center gap-8">
           <img
-            className="bg-white max-w-44 p-1 aspect-square object-cover border-4 border-lightBlue rounded-full"
+            className="bg-white max-w-40 p-1 aspect-square object-cover border-4 border-lightBlue rounded-full"
             src={photoURL}
             alt=""
           />
-          <p className="text-skyBlue text-center text-xl font-semibold my-2">
-            {role?.charAt(0)?.toUpperCase() + role?.slice(1) + ''}
-          </p>
-          <div className="text-left">
-            <p className="text-lg font-medium">Name : {displayName}</p>
-            <p className="text-lg font-medium">Email : {email}</p>
-            <p className="text-lg font-medium">Number : {_id?.slice(0, 15)}</p>
+
+          <div className="">
+            <p className="text-skyBlue text-4xl font-bold">{displayName}</p>
+            <p className="text-lg font-semibold mt-2">
+              {role?.charAt(0)?.toUpperCase() + role?.slice(1) + ''} of EduHive
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white p-10 mt-10 rounded-2xl shadow-xl">
+          <div className="text-left text-lg font-medium w-fit grid grid-cols-[1fr,_auto] gap-x-8 gap-y-1">
+            <p>Name :</p>
+            <p>{displayName}</p>
+            <p>Role : </p>
+            <p>{role?.charAt(0)?.toUpperCase() + role?.slice(1) + ''}</p>
+            <p>Email :</p>
+            <p>{email}</p>
+            <p>Number :</p>
+            <p>{_id?.slice(0, 15)}</p>
+            <p>Joined At :</p>
+            <p>{new Date(joined).toLocaleDateString()}</p>
           </div>
         </div>
       </div>
