@@ -32,19 +32,19 @@ const Overview = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div>
-                    <h3 className="text-successGreen text-4xl font-extrabold">
+                    <h3 className="text-skyBlue text-4xl font-extrabold">
                       {overview.totalUsers}+
                     </h3>
                     <p className="text-gray-500">Total Users</p>
                   </div>
                   <div>
-                    <h3 className="text-successGreen text-4xl font-extrabold">
+                    <h3 className="text-skyBlue text-4xl font-extrabold">
                       {overview.totalClass}+
                     </h3>
                     <p className="text-gray-500">Classes Offered</p>
                   </div>
                   <div>
-                    <h3 className="text-successGreen text-4xl font-extrabold">
+                    <h3 className="text-skyBlue text-4xl font-extrabold">
                       {overview.totalEnrolled}+
                     </h3>
                     <p className="text-gray-500">Enrollments</p>

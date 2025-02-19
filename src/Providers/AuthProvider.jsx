@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider value={value}>
       {children}
-      <ToastContainer />
+      <ToastContainer pauseOnFocusLoss={false} />
     </AuthContext.Provider>
   );
 };

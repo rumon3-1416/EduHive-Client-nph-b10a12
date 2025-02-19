@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const PopClassCard = ({ popClass }) => {
-  const { title, name, image, description, total_enrolment } = popClass;
+  const { _id, title, image, description } = popClass;
+
+  const navigate = useNavigate();
 
   return (
-    <div className="bg-white min-h-[27.5rem] grow rounded-2xl flex flex-col items-start">
+    <div className="bg-white min-h-[27.5rem] rounded-2xl flex flex-col items-start">
       <img
         className="w-full aspect-[4/3] object-cover rounded-2xl mb-4"
         src={image}
@@ -12,21 +15,18 @@ const PopClassCard = ({ popClass }) => {
       />
 
       {/* Desc */}
-      <div className="px-6 pb-6 flex flex-col items-start">
-        <div className="w-full grow">
+      <div className="w-full px-6 pb-6 grow flex flex-col items-start gap-3">
+        <div className="grow">
           <h4 className="text-xl font-semibold mt-3 mb-1">{title}</h4>
-          <p className="font-medium">
-            Teacher :{' '}
-            <span className="text-darkBlue font-semibold">{name}</span>
-          </p>
-          <p className="font-medium">
-            Enrolled :{' '}
-            <span className="text-darkBlue font-semibold">
-              {total_enrolment}
-            </span>
-          </p>
           <p className="text-mutedGray text-justify mt-3">{description}</p>
         </div>
+
+        <button
+          onClick={() => navigate(`/class_details/${_id}`)}
+          className="bg-skyBlue text-white hover:bg-green font-medium w-full px-6 py-2.5 rounded-full transition-all duration-300"
+        >
+          Enroll
+        </button>
       </div>
     </div>
   );

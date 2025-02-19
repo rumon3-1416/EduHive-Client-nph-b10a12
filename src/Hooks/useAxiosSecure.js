@@ -7,7 +7,7 @@ const axiosInstance = axios.create({
 });
 
 const useAxiosSecure = () => {
-  const { user } = useAuthContext();
+  const { user, signOutUser } = useAuthContext();
 
   useEffect(() => {
     // Request Interceptor
@@ -31,7 +31,8 @@ const useAxiosSecure = () => {
         return response;
       },
       error => {
-        // console.log('ResIntError --> ', error.message);
+        console.log('ResIntError --> ', error.message);
+        signOutUser();
         return Promise.reject(error);
       }
     );

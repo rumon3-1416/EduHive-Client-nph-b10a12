@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import Container from '../../components/Container/Container';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const ClassDetails = () => {
-  const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { id } = useParams();
   const navigate = useNavigate();
 
   const { data: classDetails = {} } = useQuery({
     queryKey: ['classDetails', id],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/class_details/${id}`);
+      const { data } = await axiosPublic.get(`/class_details/${id}`);
       return data;
     },
   });
@@ -27,7 +27,7 @@ const ClassDetails = () => {
   return (
     <div className="bg-blueBg pt-12 pb-24">
       <Container>
-        <div className="bg-white p-6 shadow-lg rounded-xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="bg-white p-6 shadow-lg rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8">
           <img
             className="
         w-full aspect-video object-cover rounded-xl"

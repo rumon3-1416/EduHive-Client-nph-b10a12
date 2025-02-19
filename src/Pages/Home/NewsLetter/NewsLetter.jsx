@@ -1,7 +1,16 @@
 import React from 'react';
 import Container from '../../../components/Container/Container';
+import { useAuthContext } from '../../../Hooks/useAuthContext';
 
 const NewsLetter = () => {
+  const { notify } = useAuthContext();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    notify('success', 'Subscription Successful!');
+    e.target.reset();
+  };
+
   return (
     <div className="bg-greenBg py-20">
       <Container>
@@ -17,18 +26,25 @@ const NewsLetter = () => {
           </div>
 
           <div className="text-center">
-            <div className=" flex justify-center items-center">
+            <form
+              onSubmit={handleSubmit}
+              className=" flex justify-center items-center"
+            >
               <input
-                className="w-[10rem] sm:w-[15rem] md:w-[10rem] lg:w-[15rem] xl:w-[20rem] px-6 py-3 border-2 border-skyBlue outline-none rounded-s-full"
-                type="text"
+                className="w-[10rem] sm:w-[15rem] md:w-[10rem] lg:w-[15rem] xl:w-[20rem] px-6 py-3 border-2 border-skyBlue focus:border-successGreen outline-none rounded-s-full"
+                type="email"
                 name="subscribe"
                 id="subscribe"
                 placeholder="Email"
+                required
               />
-              <button className="bg-skyBlue text-white font-semibold px-6 py-3 border-2 border-skyBlue rounded-e-full">
+              <button
+                type="submit"
+                className="bg-skyBlue hover:bg-successGreen text-white font-semibold px-6 py-3 border-2 border-skyBlue rounded-e-full transition-all duration-300"
+              >
                 Subscribe
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </Container>
