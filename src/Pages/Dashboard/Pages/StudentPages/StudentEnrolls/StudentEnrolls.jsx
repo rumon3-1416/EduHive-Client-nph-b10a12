@@ -77,7 +77,7 @@ const StudentEnrolls = () => {
         ) : (
           <div>
             <h2
-              className={`text-3xl font-semibold ${darkTheme && 'text-light2'}`}
+              className={`${darkTheme && 'text-light2'} text-3xl font-semibold`}
             >
               No Data Found!
             </h2>
