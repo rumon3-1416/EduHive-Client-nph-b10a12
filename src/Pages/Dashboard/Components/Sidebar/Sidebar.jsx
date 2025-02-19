@@ -17,22 +17,22 @@ const Sidebar = ({ collapse, setCollapse }) => {
 
   const navigate = useNavigate();
 
-  // Handle Resize Screen
-  const handleResize = e => {
-    e.target.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
-  };
-  // Handle Outside Click
-  const handleClick = e => {
-    if (
-      window.innerWidth < 768 &&
-      divRef.current &&
-      !divRef.current.contains(e.target)
-    ) {
-      setCollapse(true);
-    }
-  };
-
   useEffect(() => {
+    // Handle Resize Screen
+    const handleResize = e => {
+      e.target.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
+    };
+    // Handle Outside Click
+    const handleClick = e => {
+      if (
+        window.innerWidth < 768 &&
+        divRef.current &&
+        !divRef.current.contains(e.target)
+      ) {
+        setCollapse(true);
+      }
+    };
+
     window.innerWidth < 768 ? setCollapse(true) : setCollapse(false);
 
     window.addEventListener('resize', handleResize);
@@ -51,7 +51,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
         <div
           ref={divRef}
           className={`sidebar bg-[#f4fbffbb] backdrop-blur-md md:h-full absolute md:static top-0 bottom-0 transition-all duration-300 ${
-            collapse ? 'w-0 overflow-hidden' : 'w-48'
+            collapse ? 'w-0 md:w-48 overflow-hidden' : 'w-48'
           }`}
         >
           <div className="p-3">
@@ -69,6 +69,20 @@ const Sidebar = ({ collapse, setCollapse }) => {
 
             {/* Sidebar Links */}
             <ul className="side-ul text-darkGray font-medium pt-2">
+              {/* Overview */}
+              <li
+                onClick={() => setCollapse(true)}
+                className={`${
+                  pathname === '/dashboard'
+                    ? 'bg-infoBlue text-white opacity-70'
+                    : 'hover:bg-skyBlue hover:text-white'
+                }`}
+              >
+                <NavLink className="px-4 w-full inline-block" to="/dashboard">
+                  Overview
+                </NavLink>
+              </li>
+              {/* Role based menu */}
               {role === 'student' ? (
                 <StudentMenu setCollapse={setCollapse} />
               ) : role === 'teacher' ? (
@@ -76,7 +90,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
               ) : (
                 role === 'admin' && <AdminMenu setCollapse={setCollapse} />
               )}
-
+              {/* Profile */}
               <li
                 onClick={() => setCollapse(true)}
                 className={`${

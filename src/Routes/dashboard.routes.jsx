@@ -2,7 +2,6 @@ import PrivateNavigator from './Navigators/PrivateNavigator';
 import StudentNavigator from './Navigators/StudentNavigator';
 import TeacherNavigator from './Navigators/TeacherNavigator';
 import AdminNavigator from './Navigators/AdminNavigator';
-import DashboardDefault from './Navigators/DashboardDefault';
 
 import DashboardLayout from '../Layouts/DashboardLayout';
 import Profile from '../Pages/Dashboard/Pages/Profile/Profile';
@@ -12,6 +11,11 @@ import TeachClassDetails from '../Pages/Dashboard/Pages/TeacherPages/ClassDetail
 import AllTeacherClasses from '../Pages/Dashboard/Pages/AdminPages/AllTeacherClasses/AllTeachersClasses';
 import EnrollClassDetails from '../Pages/Dashboard/Pages/StudentPages/EnrollClassDetails/EnrollClassDetails';
 import MyRequest from '../Pages/Dashboard/Pages/StudentPages/MyRequest';
+import Overview from '../Pages/Dashboard/Pages/OverView/Overview';
+
+import AddClass from '../Pages/Dashboard/Pages/TeacherPages/AddClass/AddClass';
+import TeacherRequests from '../Pages/Dashboard/Pages/AdminPages/TeacherRequests/TeacherRequests';
+import StudentEnrolls from '../Pages/Dashboard/Pages/StudentPages/StudentEnrolls/StudentEnrolls';
 
 const dashboardRouter = {
   path: '/dashboard',
@@ -23,11 +27,23 @@ const dashboardRouter = {
   children: [
     {
       index: true,
-      element: <DashboardDefault />,
+      element: <Overview />,
+    },
+    {
+      path: 'my_enrolls',
+      element: <StudentEnrolls />,
     },
     {
       path: 'my_request',
       element: <MyRequest />,
+    },
+    {
+      path: 'add_class',
+      element: (
+        <TeacherNavigator>
+          <AddClass />
+        </TeacherNavigator>
+      ),
     },
     {
       path: 'my_classes',
@@ -35,6 +51,14 @@ const dashboardRouter = {
         <TeacherNavigator>
           <TeacherClasses />
         </TeacherNavigator>
+      ),
+    },
+    {
+      path: 'teacher_requests',
+      element: (
+        <AdminNavigator>
+          <TeacherRequests />
+        </AdminNavigator>
       ),
     },
     {

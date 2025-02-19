@@ -11,15 +11,17 @@ const DashNavbar = ({ setCollapse }) => {
 
   useEffect(() => {
     pathname === '/dashboard'
-      ? role === 'admin'
-        ? setTitle('Teacher Requests')
-        : role === 'teacher'
-        ? setTitle('Add Classes')
-        : role === 'student' && setTitle('My Enrolls')
+      ? setTitle('Overview')
+      : pathname === '/dashboard/my_enrolls'
+      ? setTitle('My Enrolls')
       : pathname === '/dashboard/my_request'
       ? setTitle('My Request')
+      : pathname === '/dashboard/add_class'
+      ? setTitle('Add Class')
       : pathname === '/dashboard/my_classes'
       ? setTitle('My Classes')
+      : pathname === '/dashboard/teacher_requests'
+      ? setTitle('Teacher Requests')
       : pathname === '/dashboard/users'
       ? setTitle('All Users')
       : pathname === '/dashboard/all_classes'

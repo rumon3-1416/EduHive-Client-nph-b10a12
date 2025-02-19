@@ -9,12 +9,12 @@ const TeacherMenu = ({ setCollapse }) => {
       <li
         onClick={() => setCollapse(true)}
         className={`${
-          pathname === '/dashboard'
+          pathname === '/dashboard/add_class'
             ? 'bg-infoBlue text-white opacity-70'
             : 'hover:bg-skyBlue hover:text-white'
         }`}
       >
-        <NavLink className="px-4 w-full inline-block" to="/dashboard">
+        <NavLink className="px-4 w-full inline-block" to="/dashboard/add_class">
           Add Class
         </NavLink>
       </li>
