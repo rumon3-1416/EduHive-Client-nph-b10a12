@@ -5,7 +5,7 @@
 .side-ul li {
   text-wrap: nowrap;
   width: 100%;
-  padding: 0.3rem 1rem;
+  padding: 0.3rem 0;
   border-radius: 3rem;
   margin-bottom: 0.1rem;
 }

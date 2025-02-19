@@ -70,14 +70,15 @@ const Sidebar = ({ collapse, setCollapse }) => {
             {/* Sidebar Links */}
             <ul className="side-ul text-darkGray font-medium pt-2">
               {role === 'student' ? (
-                <StudentMenu />
+                <StudentMenu setCollapse={setCollapse} />
               ) : role === 'teacher' ? (
-                <TeacherMenu />
+                <TeacherMenu setCollapse={setCollapse} />
               ) : (
-                role === 'admin' && <AdminMenu />
+                role === 'admin' && <AdminMenu setCollapse={setCollapse} />
               )}
 
               <li
+                onClick={() => setCollapse(true)}
                 className={`${
                   pathname === '/dashboard/profile'
                     ? 'bg-infoBlue text-white opacity-70'
@@ -85,7 +86,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
                 }`}
               >
                 <NavLink
-                  className="w-full inline-block"
+                  className="px-4 w-full inline-block"
                   to="/dashboard/profile"
                 >
                   Profile
@@ -96,16 +97,22 @@ const Sidebar = ({ collapse, setCollapse }) => {
               <div className="my-2 border border-[#00000027]"></div>
 
               {/* Home */}
-              <li className="hover:bg-skyBlue hover:text-white">
-                <NavLink className="w-full inline-block" to="/">
+              <li
+                onClick={() => setCollapse(true)}
+                className="hover:bg-skyBlue hover:text-white"
+              >
+                <NavLink className="px-4 w-full inline-block" to="/">
                   Home
                 </NavLink>
               </li>
               {/* Logout */}
               {user && (
-                <li className="hover:bg-orange-500 hover:text-white">
+                <li
+                  onClick={() => setCollapse(true)}
+                  className="hover:bg-orange-500 hover:text-white"
+                >
                   <button
-                    className=" w-full text-left"
+                    className="px-4 w-full text-left"
                     onClick={() => signOutUser()}
                   >
                     Logout
