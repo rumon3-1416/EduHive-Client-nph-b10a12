@@ -16,8 +16,10 @@ import classesIcon from '../../../../assets/icons/classes.png';
 import enrollsIcon from '../../../../assets/icons/enrolls.png';
 import teacherIcon from '../../../../assets/icons/teachers.png';
 import studentsIcon from '../../../../assets/icons/student.png';
+import { useAuthContext } from '../../../../Hooks/useAuthContext';
 
 const Overview = () => {
+  const { darkTheme } = useAuthContext();
   const axiosPublic = useAxiosPublic();
 
   // Overview
@@ -96,7 +98,13 @@ const Overview = () => {
 
       {/* Graph */}
       <section>
-        <h2 className="text-2xl font-semibold mb-4">Classes Enrolled</h2>
+        <h2
+          className={`text-2xl font-semibold mb-4 ${
+            darkTheme && 'text-gray-200'
+          }`}
+        >
+          Classes Enrolled
+        </h2>
 
         <div className="bg-white py-4 sm:px-4 sm:py-6 rounded-2xl shadow-lg">
           <ResponsiveContainer width="100%" height={400}>

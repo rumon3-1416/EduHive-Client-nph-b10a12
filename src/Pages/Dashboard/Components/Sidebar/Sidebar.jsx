@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation, NavLink, useNavigate } from 'react-router-dom';
+import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
 import { useAuthContext } from '../../../../Hooks/useAuthContext';
 import StudentMenu from './StudentMenu';
@@ -13,7 +14,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
   const divRef = useRef(null);
 
   const { pathname } = useLocation();
-  const { user, role, signOutUser } = useAuthContext();
+  const { darkTheme, setDarkTheme, user, role, signOutUser } = useAuthContext();
 
   const navigate = useNavigate();
 
@@ -44,15 +45,25 @@ const Sidebar = ({ collapse, setCollapse }) => {
     };
   }, []);
 
+  useEffect(() => {
+    document.body.style.backgroundColor = darkTheme ? '#303030' : '#f7f7f7';
+    window.document.documentElement.classList.add(
+      darkTheme ? 'bg-dark3' : 'bg-[#f7f7f7]'
+    );
+    window.document.documentElement.classList.remove(
+      darkTheme ? 'bg-[#f7f7f7]' : 'bg-dark3'
+    );
+  }, [darkTheme]);
+
   return (
     <div className="min-h-[100vh] max-h-[100vh] sticky top-0 left-0 z-10">
       <div className="h-full relative">
         {/* Sidebar */}
         <div
           ref={divRef}
-          className={`sidebar bg-[#f4fbffbb] backdrop-blur-md md:h-full absolute md:static top-0 bottom-0 transition-all duration-300 ${
+          className={`sidebar backdrop-blur-md md:h-full absolute md:static top-0 bottom-0 transition-all duration-300 ${
             collapse ? 'w-0 md:w-48 overflow-hidden' : 'w-48'
-          }`}
+          } ${darkTheme ? 'bg-[#212527f0]' : 'bg-[#f4fbffbb]'}`}
         >
           <div className="p-3">
             {/* Logo */}
@@ -68,13 +79,17 @@ const Sidebar = ({ collapse, setCollapse }) => {
             <div className="my-2 border border-[#00000027]"></div>
 
             {/* Sidebar Links */}
-            <ul className="side-ul text-darkGray font-medium pt-2">
+            <ul
+              className={`side-ul font-medium pt-2 ${
+                darkTheme ? 'text-gray-200' : 'text-darkGray'
+              }`}
+            >
               {/* Overview */}
               <li
                 onClick={() => setCollapse(true)}
                 className={`${
                   pathname === '/dashboard'
-                    ? 'bg-infoBlue text-white opacity-70'
+                    ? 'bg-infoBlue text-white bg-opacity-70'
                     : 'hover:bg-skyBlue hover:text-white'
                 }`}
               >
@@ -95,7 +110,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
                 onClick={() => setCollapse(true)}
                 className={`${
                   pathname === '/dashboard/profile'
-                    ? 'bg-infoBlue text-white opacity-70'
+                    ? 'bg-infoBlue text-white bg-opacity-70'
                     : 'hover:bg-skyBlue hover:text-white'
                 }`}
               >
@@ -141,6 +156,22 @@ const Sidebar = ({ collapse, setCollapse }) => {
                   </button>
                 </li>
               )}
+
+              {/* Theme Button */}
+              <li
+                onClick={() => {
+                  setDarkTheme(!darkTheme);
+                  setCollapse(true);
+                }}
+                className="hover:bg-skyBlue hover:text-white"
+              >
+                <button className="px-4 w-full text-left flex items-center gap-2">
+                  <span>{darkTheme ? 'Light Theme' : 'Dark Theme'}</span>
+                  <span className="text-xl">
+                    {darkTheme ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
+                  </span>
+                </button>
+              </li>
             </ul>
           </div>
         </div>

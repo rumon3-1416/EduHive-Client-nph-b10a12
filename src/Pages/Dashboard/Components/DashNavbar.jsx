@@ -6,7 +6,7 @@ import { useAuthContext } from '../../../Hooks/useAuthContext';
 const DashNavbar = ({ setCollapse }) => {
   const [title, setTitle] = useState('');
 
-  const { role } = useAuthContext();
+  const { role, darkTheme } = useAuthContext();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -39,9 +39,9 @@ const DashNavbar = ({ setCollapse }) => {
     <>
       {/* Navbar */}
       <div
-        className={
-          'bg-[#f4fbffbb] backdrop-blur-md w-full h-16 px-[2.5%] shadow-lg fixed top-0 left-0 right-0 flex md:hidden justify-between items-center'
-        }
+        className={`${
+          darkTheme ? 'bg-[#212527f0]' : 'bg-[#f4fbffbb]'
+        } backdrop-blur-md w-full h-16 px-[2.5%] shadow-lg fixed top-0 left-0 right-0 flex md:hidden justify-between items-center`}
       >
         <button
           onClick={() => setCollapse(false)}
@@ -50,7 +50,11 @@ const DashNavbar = ({ setCollapse }) => {
           <TbLayoutSidebarLeftExpandFilled />
         </button>
 
-        <h3 className="poppins-font text-gray-600 text-2xl font-bold">
+        <h3
+          className={`poppins-font text-2xl font-bold ${
+            darkTheme ? 'text-gray-100' : 'text-gray-600'
+          }`}
+        >
           {title}
         </h3>
 

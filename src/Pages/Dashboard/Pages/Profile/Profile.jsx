@@ -2,8 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react';
 import useAxiosSecure from '../../../../Hooks/useAxiosSecure';
 import SectionHeading from '../../../Home/Shared/SectionHeading';
+import { useAuthContext } from '../../../../Hooks/useAuthContext';
 
 const Profile = () => {
+  const { darkTheme } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
   const { data: profileInfo = {} } = useQuery({
@@ -36,13 +38,21 @@ const Profile = () => {
 
           <div className="">
             <p className="text-skyBlue text-4xl font-bold">{displayName}</p>
-            <p className="text-lg font-semibold mt-2">
+            <p
+              className={`text-lg font-semibold mt-2 ${
+                darkTheme && 'text-gray-200'
+              }`}
+            >
               {role?.charAt(0)?.toUpperCase() + role?.slice(1) + ''} of EduHive
             </p>
           </div>
         </div>
 
-        <div className="bg-white p-10 mt-10 rounded-2xl shadow-xl">
+        <div
+          className={`${
+            darkTheme ? 'bg-dark5 text-gray-100' : 'bg-white'
+          } p-10 mt-10 rounded-2xl shadow-xl`}
+        >
           <div className="text-left text-lg font-medium w-fit grid grid-cols-[1fr,_auto] gap-x-8 gap-y-1">
             <p>Name :</p>
             <p>{displayName}</p>

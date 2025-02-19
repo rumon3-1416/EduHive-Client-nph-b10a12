@@ -9,7 +9,7 @@ const StudentMenu = ({ setCollapse }) => {
       onClick={() => setCollapse(true)}
       className={`${
         pathname === '/dashboard/my_enrolls'
-          ? 'bg-infoBlue text-white opacity-70'
+          ? 'bg-infoBlue text-white bg-opacity-70'
           : 'hover:bg-skyBlue hover:text-white'
       }`}
     >

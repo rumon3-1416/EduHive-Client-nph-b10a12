@@ -10,7 +10,7 @@ const AdminMenu = ({ setCollapse }) => {
         onClick={() => setCollapse(true)}
         className={`${
           pathname === '/dashboard/teacher_requests'
-            ? 'bg-infoBlue text-white opacity-70'
+            ? 'bg-infoBlue text-white bg-opacity-70'
             : 'hover:bg-skyBlue hover:text-white'
         }`}
       >
@@ -25,7 +25,7 @@ const AdminMenu = ({ setCollapse }) => {
         onClick={() => setCollapse(true)}
         className={`${
           pathname === '/dashboard/users'
-            ? 'bg-infoBlue text-white opacity-70'
+            ? 'bg-infoBlue text-white bg-opacity-70'
             : 'hover:bg-skyBlue hover:text-white'
         }`}
       >
@@ -37,7 +37,7 @@ const AdminMenu = ({ setCollapse }) => {
         onClick={() => setCollapse(true)}
         className={`${
           pathname === '/dashboard/all_classes'
-            ? 'bg-infoBlue text-white opacity-70'
+            ? 'bg-infoBlue text-white bg-opacity-70'
             : 'hover:bg-skyBlue hover:text-white'
         }`}
       >
