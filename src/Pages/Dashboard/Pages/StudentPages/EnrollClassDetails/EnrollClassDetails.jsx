@@ -23,7 +23,7 @@ const EnrollClassDetails = () => {
   const [rating, setRating] = useState(0);
 
   const { id } = useParams();
-  const { user, notify } = useAuthContext();
+  const { user, notify, darkTheme } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
   // Load Assignments
@@ -108,11 +108,19 @@ const EnrollClassDetails = () => {
       </div>
 
       {/* Assignments */}
-      <div className="bg-[#fffcfc] overflow-x-auto mt-4">
+      <div
+        className={`${
+          darkTheme ? 'bg-dark5 text-light2' : 'bg-[#fffcfc]'
+        } overflow-x-auto mt-4`}
+      >
         <table className="table">
           {/* head */}
           <thead>
-            <tr className={`bg-[#cccccc] text-slate-700`}>
+            <tr
+              className={`border-none ${
+                darkTheme ? 'text-light2 bg-dark5' : 'bg-[#e6e6e6]'
+              }`}
+            >
               <th>No</th>
               <th>Title</th>
               <th>Description</th>
@@ -138,8 +146,18 @@ const EnrollClassDetails = () => {
                 return (
                   <tr
                     className={`${
-                      index % 2 !== 0 && 'bg-[#f1f1f1]'
-                    } hover:bg-[#e6e6e6]`}
+                      index % 2 !== 0
+                        ? darkTheme
+                          ? 'bg-[#595959]'
+                          : 'bg-[#f1f1f1]'
+                        : darkTheme
+                        ? 'bg-[#616161]'
+                        : ''
+                    } ${
+                      darkTheme
+                        ? 'text-gray-100 hover:bg-[#4f4f4f]'
+                        : 'hover:bg-[#e6e6e6]'
+                    } border-none`}
                     key={_id}
                   >
                     <td className="text-nowrap">
@@ -175,7 +193,10 @@ const EnrollClassDetails = () => {
           {/* foot */}
           <tfoot>
             <tr>
-              <td colSpan={5} className="bg-[#d3d3d3] text-base">
+              <td
+                colSpan={5}
+                className={`${darkTheme ? '' : 'bg-[#d3d3d3]'} text-base`}
+              >
                 <div className="flex justify-end items-center gap-4">
                   <button
                     onClick={() => {
@@ -216,7 +237,11 @@ const EnrollClassDetails = () => {
 
       {/* Assignment Modal */}
       <dialog id="assignment_modal" className="modal">
-        <div className="modal-box w-4/5 max-w-5xl bg-gray-200">
+        <div
+          className={`modal-box w-4/5 max-w-5xl ${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-gray-200'
+          }`}
+        >
           <h2 className="text-center text-2xl font-semibold mb-6">
             Assignment
           </h2>
@@ -230,7 +255,9 @@ const EnrollClassDetails = () => {
               {assignClassId && (
                 <textarea
                   {...register('assignment')}
-                  className="w-full px-2 py-1 rounded-xl outline-none resize-none"
+                  className={`w-full px-2 py-1 rounded-xl outline-none resize-none ${
+                    darkTheme && 'bg-dark3 text-light2'
+                  }`}
                   rows={5}
                   name="assignment"
                   id="assignment"
@@ -249,7 +276,11 @@ const EnrollClassDetails = () => {
 
       {/* Feedback Modal */}
       <dialog id="feedback_modal" className="modal">
-        <div className="modal-box w-4/5 max-w-5xl bg-gray-200">
+        <div
+          className={`modal-box w-4/5 max-w-5xl ${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-gray-200'
+          }`}
+        >
           <h2 className="text-center text-2xl font-semibold mb-6">
             Feedback Us
           </h2>
@@ -262,7 +293,9 @@ const EnrollClassDetails = () => {
             >
               <textarea
                 {...register('feedback')}
-                className="w-full px-2 py-1 rounded-xl outline-none resize-none"
+                className={`w-full px-2 py-1 rounded-xl outline-none resize-none ${
+                  darkTheme && 'bg-dark3 text-light2'
+                }`}
                 rows={5}
                 name="feedback"
                 id="feedback"
