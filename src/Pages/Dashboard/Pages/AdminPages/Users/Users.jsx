@@ -17,7 +17,7 @@ const Users = () => {
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
 
-  const { notify } = useAuthContext();
+  const { notify, darkTheme } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
   // Load Teacher Requests
@@ -57,11 +57,19 @@ const Users = () => {
       <SearchUsers setSearch={setSearch} />
 
       {/* Table */}
-      <div className="bg-[#fffcfc] overflow-x-auto mt-4">
+      <div
+        className={`${
+          darkTheme ? 'bg-dark5 text-light2' : 'bg-[#fffcfc]'
+        } overflow-x-auto mt-4`}
+      >
         <table className="table">
           {/* head */}
           <thead>
-            <tr className={`bg-[#cccccc] text-slate-700`}>
+            <tr
+              className={`border-none ${
+                darkTheme ? 'text-light2 bg-dark5' : 'bg-[#e6e6e6]'
+              }`}
+            >
               <th>No</th>
               <th>Image</th>
               <th>Name</th>
@@ -87,8 +95,18 @@ const Users = () => {
                 return (
                   <tr
                     className={`${
-                      index % 2 !== 0 && 'bg-[#f1f1f1]'
-                    } hover:bg-[#e6e6e6]`}
+                      index % 2 !== 0
+                        ? darkTheme
+                          ? 'bg-[#595959]'
+                          : 'bg-[#f1f1f1]'
+                        : darkTheme
+                        ? 'bg-[#616161]'
+                        : ''
+                    } ${
+                      darkTheme
+                        ? 'text-gray-100 hover:bg-[#4f4f4f]'
+                        : 'hover:bg-[#e6e6e6]'
+                    } border-none`}
                     key={_id}
                   >
                     <td className="text-nowrap">
@@ -133,7 +151,10 @@ const Users = () => {
           {/* foot */}
           <tfoot>
             <tr>
-              <td colSpan={6} className="bg-[#d3d3d3] text-base">
+              <td
+                colSpan={6}
+                className={`${darkTheme ? '' : 'bg-[#d3d3d3]'} text-base`}
+              >
                 <div className="flex justify-end items-center gap-4">
                   <button
                     onClick={() => {

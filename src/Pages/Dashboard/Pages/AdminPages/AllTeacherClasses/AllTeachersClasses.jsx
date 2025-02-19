@@ -18,7 +18,7 @@ const AllTeacherClasses = () => {
   const totalPages = Math.ceil(totalData / dataPerPage);
   const pagesArray = [...Array(totalPages).keys()];
 
-  const { notify } = useAuthContext();
+  const { notify, darkTheme } = useAuthContext();
   const axiosSecure = useAxiosSecure();
 
   // Load all Classes
@@ -58,11 +58,19 @@ const AllTeacherClasses = () => {
       </div>
 
       {/* Table */}
-      <div className="bg-[#fffcfc] overflow-x-auto mt-4">
+      <div
+        className={`${
+          darkTheme ? 'bg-dark5 text-light2' : 'bg-[#fffcfc]'
+        } overflow-x-auto mt-4`}
+      >
         <table className="table">
           {/* head */}
           <thead>
-            <tr className={`bg-[#cccccc] text-slate-700`}>
+            <tr
+              className={`border-none ${
+                darkTheme ? 'text-light2 bg-dark5' : 'bg-[#e6e6e6]'
+              }`}
+            >
               <th>No</th>
               <th>Image</th>
               <th>Title</th>
@@ -90,8 +98,18 @@ const AllTeacherClasses = () => {
                 return (
                   <tr
                     className={`${
-                      index % 2 !== 0 && 'bg-[#f1f1f1]'
-                    } hover:bg-[#e6e6e6]`}
+                      index % 2 !== 0
+                        ? darkTheme
+                          ? 'bg-[#595959]'
+                          : 'bg-[#f1f1f1]'
+                        : darkTheme
+                        ? 'bg-[#616161]'
+                        : ''
+                    } ${
+                      darkTheme
+                        ? 'text-gray-100 hover:bg-[#4f4f4f]'
+                        : 'hover:bg-[#e6e6e6]'
+                    } border-none`}
                     key={_id}
                   >
                     <td className="text-nowrap">
@@ -151,7 +169,10 @@ const AllTeacherClasses = () => {
           {/* foot */}
           <tfoot>
             <tr>
-              <td colSpan={7} className="bg-[#d3d3d3] text-base">
+              <td
+                colSpan={7}
+                className={`${darkTheme ? '' : 'bg-[#d3d3d3]'} text-base`}
+              >
                 <div className="flex justify-end items-center gap-4">
                   <button
                     onClick={() => {
@@ -192,7 +213,11 @@ const AllTeacherClasses = () => {
 
       {/* Progress Modal */}
       <dialog id="progress_modal" className="modal">
-        <div className="modal-box w-11/12 max-w-5xl">
+        <div
+          className={`modal-box w-11/12 max-w-5xl ${
+            darkTheme ? 'bg-[#4e4e4e] text-light2' : 'bg-gray-100'
+          }`}
+        >
           <h2 className="text-2xl font-semibold mb-6">Progress</h2>
           {progressId && <ClassProgress id={progressId} />}
 
