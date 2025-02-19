@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 
 const UpdateClass = ({ classData, handleUpdate }) => {
   const { _id, title, image, price, description } = classData;
+
+  const { darkTheme } = useAuthContext();
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -21,9 +24,15 @@ const UpdateClass = ({ classData, handleUpdate }) => {
   return (
     <div className="bg-[#00000053] w-full min-h-screen max-h-screen backdrop-blur-sm p-4 sm:p-10 md:p-12 fixed inset-0 overflow-hidden flex flex-col justify-center items-center z-50">
       <div
-        className={`animate__animated animate__zoomIn px-8 bg-white py-10 max-h-full w-full max-w-[1232px] mx-auto shadow-lg overflow-y-auto rounded-xl`}
+        className={`animate__animated animate__zoomIn px-8 py-10 max-h-full w-full max-w-[1232px] mx-auto shadow-lg overflow-y-auto rounded-xl ${
+          darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
+        }`}
       >
-        <h3 className={`text-3xl font-bold text-center mb-12 text-gray-800`}>
+        <h3
+          className={`text-3xl font-bold text-center mb-12 ${
+            darkTheme ? 'text-light2' : 'text-gray-800'
+          }`}
+        >
           Update Class
         </h3>
 
@@ -35,7 +44,11 @@ const UpdateClass = ({ classData, handleUpdate }) => {
             </label>
             <input
               {...register('title')}
-              className={`bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 rounded-lg outline-none`}
+              className={`${
+                darkTheme
+                  ? 'bg-dark3 text-gray-200'
+                  : 'bg-[#f1f1f1] text-gray-800'
+              } w-full px-4 py-3 rounded-lg outline-none`}
               id="title"
               type="text"
               name="title"
@@ -53,7 +66,11 @@ const UpdateClass = ({ classData, handleUpdate }) => {
               </label>
               <input
                 {...register('image')}
-                className={`bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 rounded-lg outline-none`}
+                className={`${
+                  darkTheme
+                    ? 'bg-dark3 text-gray-200'
+                    : 'bg-[#f1f1f1] text-gray-800'
+                } w-full px-4 py-3 rounded-lg outline-none`}
                 id="image"
                 type="text"
                 name="image"
@@ -69,7 +86,11 @@ const UpdateClass = ({ classData, handleUpdate }) => {
               </label>
               <input
                 {...register('price')}
-                className={`bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 rounded-lg outline-none`}
+                className={`${
+                  darkTheme
+                    ? 'bg-dark3 text-gray-200'
+                    : 'bg-[#f1f1f1] text-gray-800'
+                } w-full px-4 py-3 rounded-lg outline-none`}
                 id="price"
                 type="number"
                 name="price"
@@ -87,7 +108,11 @@ const UpdateClass = ({ classData, handleUpdate }) => {
             </label>
             <textarea
               {...register('description')}
-              className={`bg-[#f1f1f1] text-gray-800 w-full px-4 py-3 rounded-lg outline-none resize-none`}
+              className={`${
+                darkTheme
+                  ? 'bg-dark3 text-gray-200'
+                  : 'bg-[#f1f1f1] text-gray-800'
+              } w-full px-4 py-3 rounded-lg outline-none resize-none`}
               id="description"
               name="description"
               placeholder="Write a short description"
