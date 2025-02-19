@@ -8,9 +8,11 @@ import Container from '../../components/Container/Container';
 import { useNavigate } from 'react-router-dom';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import SectionHeading from '../Home/Shared/SectionHeading';
+import SortClasses from './SortClasses';
 
 const AllClasses = () => {
   const [totalData, setTotalData] = useState(0);
+  const [sort, setSort] = useState('default');
   const [currentPage, setCurrentPage] = useState(1);
   const dataPerPage = 12;
   const totalPages = Math.ceil(totalData / dataPerPage);
@@ -20,10 +22,10 @@ const AllClasses = () => {
   const navigate = useNavigate();
 
   const { data: classes = [] } = useQuery({
-    queryKey: ['classes', currentPage],
+    queryKey: ['classes', currentPage, sort],
     queryFn: async () => {
       const { data } = await axiosPublic.get(
-        `/classes?page=${currentPage}&limit=${dataPerPage}`
+        `/classes?page=${currentPage}&limit=${dataPerPage}&sort=${sort}`
       );
       setTotalData(data.count);
       return data.classes;
@@ -41,6 +43,8 @@ const AllClasses = () => {
           <SectionHeading
             heading={['All Classes', 'Explore Our All Classes']}
           />
+
+          <SortClasses setSort={setSort} />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
             {classes.map(cl => {
