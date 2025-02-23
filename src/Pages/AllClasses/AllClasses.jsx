@@ -45,9 +45,9 @@ const AllClasses = () => {
       <Container>
         {classes.length > 0 ? (
           <div className="py-10">
-            <SectionHeading
+            {/* <SectionHeading
               heading={['All Classes', 'Explore Our All Classes']}
-            />
+            /> */}
 
             <SortClasses setSort={setSort} />
 
@@ -62,7 +62,7 @@ const AllClasses = () => {
                     } rounded-2xl shadow-lg flex flex-col items-start`}
                     key={_id}
                   >
-                    <div className="w-full p-4">
+                    <div className="w-full p-3">
                       <img
                         className="w-full aspect-[4/3] object-cover rounded-xl"
                         src={image}
@@ -89,7 +89,7 @@ const AllClasses = () => {
                           Teacher {name}
                         </p>
                         <p
-                          className={`mt-1 mb-3 ${
+                          className={`text-sm mt-1 mb-3 ${
                             darkTheme && 'text-lightGray'
                           }`}
                         >
@@ -99,9 +99,9 @@ const AllClasses = () => {
 
                       <button
                         onClick={() => navigate(`/class_details/${_id}`)}
-                        className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
+                        className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-1.5 rounded-full"
                       >
-                        Enroll
+                        Enroll Now
                       </button>
                     </div>
                   </div>

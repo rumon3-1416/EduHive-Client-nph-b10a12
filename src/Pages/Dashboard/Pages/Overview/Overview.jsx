@@ -55,60 +55,68 @@ const Overview = () => {
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
           } p-6 rounded-2xl shadow-lg`}
         >
-          <div className="bg-successGreen w-12 p-2.5 rounded-full">
-            <img
-              className="w-full aspect-square object-cover"
-              src={classesIcon}
-              alt=""
-            />
+          <div className="flex items-center gap-3">
+            <div className="bg-successGreen w-12 p-2.5 rounded-full">
+              <img
+                className="w-full aspect-square object-cover"
+                src={classesIcon}
+                alt=""
+              />
+            </div>
+            <p className="text-3xl font-bold">{totalClass}</p>
           </div>
-          <p className="text-3xl font-bold mt-2">{totalClass}</p>
-          <h2 className="text-lg font-medium">Total Classes</h2>
+          <h2 className="text-lg font-medium mt-2">Total Classes</h2>
         </div>
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
           } p-6 rounded-2xl shadow-lg`}
         >
-          <div className="bg-skyBlue w-12 p-2.5 rounded-full">
-            <img
-              className="w-full aspect-square object-cover"
-              src={enrollsIcon}
-              alt=""
-            />
+          <div className="flex items-center gap-3">
+            <div className="bg-skyBlue w-12 p-2.5 rounded-full">
+              <img
+                className="w-full aspect-square object-cover"
+                src={enrollsIcon}
+                alt=""
+              />
+            </div>
+            <p className="text-3xl font-bold">{totalEnrolled}</p>
           </div>
-          <p className="text-3xl font-bold mt-2">{totalEnrolled}</p>
-          <h2 className="text-lg font-medium">Total Enrolls</h2>
+          <h2 className="text-lg font-medium mt-2">Total Enrolls</h2>
         </div>
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
           } p-6 rounded-2xl shadow-lg`}
         >
-          <div className="bg-orange-400 w-12 p-2.5 rounded-full">
-            <img
-              className="w-full aspect-square object-cover"
-              src={teacherIcon}
-              alt=""
-            />
+          <div className="flex items-center gap-3">
+            <div className="bg-orange-400 w-12 p-2.5 rounded-full">
+              <img
+                className="w-full aspect-square object-cover"
+                src={teacherIcon}
+                alt=""
+              />
+            </div>
+            <p className="text-3xl font-bold">{totalTeachers}</p>
           </div>
-          <p className="text-3xl font-bold mt-2">{totalTeachers}</p>
-          <h2 className="text-lg font-medium">Total Teachers</h2>
+          <h2 className="text-lg font-medium mt-2">Total Teachers</h2>
         </div>
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
           } p-6 rounded-2xl shadow-lg`}
         >
-          <div className="bg-pink-500 w-12 p-2.5 rounded-full">
-            <img
-              className="w-full aspect-square object-cover"
-              src={studentsIcon}
-              alt=""
-            />
+          <div className="flex items-center gap-3">
+            <div className="bg-pink-500 w-12 p-2.5 rounded-full">
+              <img
+                className="w-full aspect-square object-cover"
+                src={studentsIcon}
+                alt=""
+              />
+            </div>
+            <p className="text-3xl font-bold">{totalStudents}</p>
           </div>
-          <p className="text-3xl font-bold mt-2">{totalStudents}</p>
-          <h2 className="text-lg font-medium">Total Students</h2>
+          <h2 className="text-lg font-medium mt-2">Total Students</h2>
         </div>
       </section>
 

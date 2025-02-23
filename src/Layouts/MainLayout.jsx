@@ -11,7 +11,7 @@ const MainLayout = () => {
       <ScrollRestoration />
 
       <Navbar />
-      <div className={`bg-blueBg ${pathname !== '/' ? 'h-20' : 'h-10'}`}></div>
+      <div className={`bg-blueBg h-20`}></div>
       <Outlet />
       <Footer />
     </>
