@@ -91,65 +91,55 @@ const SignUp = () => {
   }, []);
 
   return (
-    <div className="bg-blueBg pb-24">
+    <div className="bg-blueBg">
       <Container>
-        <section className="min-h-[80vh] p-6 md:p-10 flex justify-center items-center">
-          <div className="text-[#403F3F bg-[#fffcfc] w-full md:w-4/5 lg:w-3/5 px-6 md:px-14 pt-12 md:pt-16 pb-16 rounded-2xl shadow-lg">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl text-center font-semibold">
+        <section className="min-h-[calc(100vh-1.5rem)] py-6 flex justify-center items-center">
+          <div className="text-[#403F3F bg-[#fffcfc] w-full sm:w-4/5 max-w-md px-6 md:px-8 py-6 rounded-2xl shadow-lg">
+            <h3 className="text-2xl text-center font-semibold">
               Register Your Account
             </h3>
             {/* border */}
-            <div className="border border-[#E7E7E7] my-8"></div>
+            <div className="border border-[#E7E7E7] my-3"></div>
 
             <form
               onSubmit={handleSubmit(handleSignup)}
-              className="md:px-6 flex flex-col gap-6"
+              className="flex flex-col gap-4"
             >
               {/* Name */}
-              <div>
-                <p className="text-xl font-semibold mb-4">Name</p>
-                <input
-                  {...register('displayName')}
-                  className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
-                  id="displayName"
-                  name="displayName"
-                  type="text"
-                  placeholder="Enter your name"
-                  required
-                />
-              </div>
+              <input
+                {...register('displayName')}
+                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                id="displayName"
+                name="displayName"
+                type="text"
+                placeholder="Your name"
+                required
+              />
               {/* Email */}
-              <div>
-                <p className="text-xl font-semibold mb-4">Email</p>
-                <input
-                  {...register('email')}
-                  className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="Enter your email"
-                  required
-                />
-              </div>
+              <input
+                {...register('email')}
+                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Your email"
+                required
+              />
               {/* Photo */}
-              <div>
-                <p className="text-xl font-semibold mb-4">Photo URL</p>
-                <input
-                  {...register('photoURL')}
-                  className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
-                  id="photoURL"
-                  name="photoURL"
-                  type="text"
-                  placeholder="Enter your photo url"
-                  required
-                />
-              </div>
+              <input
+                {...register('photoURL')}
+                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                id="photoURL"
+                name="photoURL"
+                type="text"
+                placeholder="Your photo url"
+                required
+              />
               {/* Password */}
               <div className="relative">
-                <p className="text-xl font-semibold mb-4">Password</p>
                 <input
                   {...register('password')}
-                  className="bg-[#F3F3F3] w-full p-5 outline-none rounded-md"
+                  className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
                   id="password"
                   name="password"
                   type={showPass ? `text` : `password`}
@@ -158,22 +148,22 @@ const SignUp = () => {
                 />
                 <button
                   onClick={() => setShowPass(!showPass)}
-                  className="absolute top-16 right-4 rounded-full"
+                  className="absolute top-2 right-4 rounded-full"
                   type="button"
                 >
                   {showPass ? (
-                    <IoEyeOutline className="text-2xl" />
+                    <IoEyeOutline className="text-xl" />
                   ) : (
-                    <FaRegEyeSlash className="text-2xl" />
+                    <FaRegEyeSlash className="text-xl" />
                   )}
                 </button>
                 {passErr && <p className="text-red-500 mt-3">{passErr}</p>}
               </div>
               {/* Terms */}
-              <div className="flex items-center gap-2.5">
+              <div className="text-sm flex items-center gap-2.5">
                 <input
                   {...register('terms')}
-                  className="w-6 h-6 outline-none accent-skyBlue"
+                  className="w-4 h-4 outline-none accent-skyBlue"
                   type="checkbox"
                   name="terms"
                   id="terms"
@@ -187,14 +177,14 @@ const SignUp = () => {
               {errMessage && <p className="text-red-500">{errMessage}</p>}
               {/* Submit */}
               <button
-                className="bg-skyBlue hover:bg-green text-white text-xl font-semibold px-5 py-4 mt-6 rounded-full"
+                className="bg-skyBlue hover:bg-green text-white text-xl font-semibold px-5 py-2 rounded-full transition-all duration-300"
                 type="submit"
               >
                 Register
               </button>
             </form>
 
-            <p className="text-[#706F6F] text-center font-semibold mt-7">
+            <p className="text-[#706F6F] text-center font-semibold mt-5">
               Already Have An Account ?{' '}
               <Link className="text-green whitespace-nowrap" to="/signin">
                 Log In
@@ -202,9 +192,9 @@ const SignUp = () => {
             </p>
 
             {/* or border */}
-            <div className="my-6 grid grid-cols-[1fr,_40px,_1fr] items-center">
+            <div className="my-3 grid grid-cols-[1fr,_40px,_1fr] items-center">
               <div className="border border-[#8d8b8b]"></div>
-              <p className="text-[#403F3F] text-2xl font-medium text-center">
+              <p className="text-[#403F3F] text-xl font-medium text-center">
                 or
               </p>
               <div className="border border-[#8d8b8b]"></div>
@@ -213,9 +203,9 @@ const SignUp = () => {
             {/* Google Sign In */}
             <button
               onClick={() => handlePopup('google')}
-              className="w-full sm:text-xl font-semibold p-4 border-2 border-dark-green hover:border-gold rounded-full flex justify-center items-center gap-2 sm:gap-4"
+              className="w-full font-semibold px-4 py-2 border-[1.5px] border-skyBlue hover:border-green rounded-full flex justify-center items-center gap-2 sm:gap-4"
             >
-              <img className="w-6 sm:w-8" src={googleIcon} alt="G" />
+              <img className="w-6" src={googleIcon} alt="G" />
               <span>Continue With Google</span>
             </button>
           </div>
