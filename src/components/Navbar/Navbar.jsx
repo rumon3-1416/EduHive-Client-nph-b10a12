@@ -27,7 +27,7 @@ const Navbar = () => {
   }, [darkTheme]);
 
   return (
-    <div className="w-full h-20 fixed top-0 inset-x-0 z-10">
+    <div className="w-full fixed top-0 inset-x-0 z-10">
       <div
         className={`w-full backdrop-blur-md shadow-lg ${
           darkTheme ? 'bg-[#212527f0]' : 'bg-[#f4fbffb6]'
@@ -35,7 +35,7 @@ const Navbar = () => {
       >
         <Container>
           <nav
-            className={`py-4 flex justify-between items-center gap-2 relative`}
+            className={`h-16 flex justify-between items-center gap-2 relative`}
           >
             {/* Logo */}
             <div
