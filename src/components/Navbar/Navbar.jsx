@@ -79,7 +79,9 @@ const Navbar = () => {
                   localStorage.setItem('darkTheme', darkTheme ? '' : true);
                   setDarkTheme(!darkTheme);
                 }}
-                className={`text-3xl ${darkTheme ? 'text-white' : 'text-dark'}`}
+                className={`text-xl p-1 rounded-full ${
+                  darkTheme ? 'text-white bg-white/10' : 'text-dark bg-black/10'
+                }`}
               >
                 {darkTheme ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
               </button>
