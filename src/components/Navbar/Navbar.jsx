@@ -48,10 +48,10 @@ const Navbar = () => {
 
             {/* Nav Links */}
             <ul
-              className={`sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium sm:h-fit sm:py-0 rounded-b-xl shadow-lg sm:shadow-none overflow-hidden flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-[4.9rem] sm:top-0 z-20 transition-all duration-300 ${
+              className={`sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium sm:h-fit sm:py-0 rounded-b-xl shadow-lg sm:shadow-none overflow-hidden flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-16 sm:top-0 z-20 transition-all duration-300 ${
                 darkTheme
                   ? 'text-light2 bg-[#212527f0]'
-                  : 'text-[#24312e] bg-[#c2d5e0f6]'
+                  : 'text-[#24312e] bg-[#f4fbfff0]'
               } ${showNav ? 'h-44 py-8' : 'h-0'}
 `}
             >

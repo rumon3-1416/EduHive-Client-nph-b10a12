@@ -9,10 +9,12 @@ export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const value = ContextValue();
 
+  const toastTheme = value.darkTheme ? 'dark' : 'light';
+
   return (
     <AuthContext.Provider value={value}>
       {children}
-      <ToastContainer pauseOnFocusLoss={false} />
+      <ToastContainer pauseOnFocusLoss={false} theme={toastTheme} />
     </AuthContext.Provider>
   );
 };
