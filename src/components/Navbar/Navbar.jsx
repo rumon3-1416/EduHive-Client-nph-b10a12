@@ -9,6 +9,12 @@ import Container from '../Container/Container';
 import logo from '../../assets/icons/logo.png';
 import userIcon from '../../assets/icons/user.png';
 
+const navLinks = [
+  { id: '01', title: 'Home', link: '/' },
+  { id: '02', title: 'All Classes', link: '/all_classes' },
+  { id: '03', title: 'Teach on EduHive', link: '/apply_teacher' },
+];
+
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -55,24 +61,15 @@ const Navbar = () => {
               } ${showNav ? 'h-44 py-8' : 'h-0'}
 `}
             >
-              <li
-                onClick={() => setShowNav(false)}
-                className="hover:text-skyBlue"
-              >
-                <NavLink to="/">Home</NavLink>
-              </li>
-              <li
-                onClick={() => setShowNav(false)}
-                className="hover:text-green"
-              >
-                <NavLink to="/all_classes">All Classes</NavLink>
-              </li>
-              <li
-                onClick={() => setShowNav(false)}
-                className="hover:text-green text-nowrap"
-              >
-                <NavLink to="/apply_teacher">Teach on EduHive</NavLink>
-              </li>
+              {navLinks.map(nav => (
+                <li
+                  key={nav.id}
+                  onClick={() => setShowNav(false)}
+                  className="hover:text-skyBlue text-nowrap"
+                >
+                  <NavLink to={nav.link}>{nav.title}</NavLink>
+                </li>
+              ))}
             </ul>
 
             <div className="flex items-center gap-2 lg:gap-3 relative">
