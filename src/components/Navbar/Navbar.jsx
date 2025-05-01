@@ -57,7 +57,7 @@ const Navbar = () => {
             >
               <li
                 onClick={() => setShowNav(false)}
-                className="hover:text-green"
+                className="hover:text-skyBlue"
               >
                 <NavLink to="/">Home</NavLink>
               </li>

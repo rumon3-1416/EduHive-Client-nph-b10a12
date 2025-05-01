@@ -19,7 +19,7 @@ button:active {
 } */
 
 nav a.active {
-  color: #3498db;
+  color: #2876ab;
   font-weight: 700;
   text-decoration: underline;
 }
