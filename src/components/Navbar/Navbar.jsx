@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { IoIosMenu } from 'react-icons/io';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
@@ -16,12 +16,42 @@ const navLinks = [
 ];
 
 const Navbar = () => {
+  const profileRef = useRef(null);
+  const profileMenuRef = useRef(null);
+  const menuRef = useRef(null);
+  const navRef = useRef(null);
   const [showNav, setShowNav] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
   const { darkTheme, setDarkTheme, user, signOutUser } = useAuthContext();
   const navigate = useNavigate();
 
+  // Outside click
+  useEffect(() => {
+    const handleOutsideClick = e => {
+      if (
+        !profileRef.current.contains(e.target) &&
+        !profileMenuRef.current.contains(e.target)
+      ) {
+        setShowProfile(false);
+      }
+
+      if (
+        !menuRef.current.contains(e.target) &&
+        !navRef.current.contains(e.target)
+      ) {
+        setShowNav(false);
+      }
+    };
+
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
+
+  // Theme
   useEffect(() => {
     document.body.style.backgroundColor = darkTheme ? '#303030' : '#f7f7f7';
     window.document.documentElement.classList.add(
@@ -54,6 +84,7 @@ const Navbar = () => {
 
             {/* Nav Links */}
             <ul
+              ref={navRef}
               className={`sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium sm:h-fit sm:py-0 rounded-b-xl shadow-lg sm:shadow-none overflow-hidden flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-16 sm:top-0 z-20 transition-all duration-300 ${
                 darkTheme
                   ? 'text-light2 bg-[#212527f0]'
@@ -91,6 +122,7 @@ const Navbar = () => {
               {user ? (
                 <>
                   <button
+                    ref={profileRef}
                     onClick={() => setShowProfile(!showProfile)}
                     className="bg-transparent w-9 h-9 p-0.5 border-[1.5px] border-lightBlue hover:border-skyBlue rounded-full transition-colors duration-300"
                   >
@@ -104,6 +136,7 @@ const Navbar = () => {
 
                   {/* Profile Info */}
                   <div
+                    ref={profileMenuRef}
                     className={`p-2 top-10 right-2 absolute z-20 ${
                       showProfile ? 'block' : 'hidden'
                     }`}
@@ -155,6 +188,7 @@ const Navbar = () => {
 
               {/* Menubar */}
               <button
+                ref={menuRef}
                 onClick={() => setShowNav(!showNav)}
                 className={`text-2xl p-1 border-lightBlue hover:border-skyBlue border-[1.5px] rounded-full sm:hidden transition-colors duration-300 ${
                   darkTheme
