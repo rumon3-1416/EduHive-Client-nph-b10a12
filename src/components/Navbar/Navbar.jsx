@@ -65,7 +65,7 @@ const Navbar = () => {
                 <li
                   key={nav.id}
                   onClick={() => setShowNav(false)}
-                  className="hover:text-skyBlue text-nowrap"
+                  className="hover:text-skyBlue text-nowrap transition-colors duration-300"
                 >
                   <NavLink to={nav.link}>{nav.title}</NavLink>
                 </li>
@@ -79,8 +79,10 @@ const Navbar = () => {
                   localStorage.setItem('darkTheme', darkTheme ? '' : true);
                   setDarkTheme(!darkTheme);
                 }}
-                className={`text-xl p-1 rounded-full ${
-                  darkTheme ? 'text-white bg-white/10' : 'text-dark bg-black/10'
+                className={`text-xl p-1 rounded-full transition-colors duration-200 ${
+                  darkTheme
+                    ? 'text-white bg-white/10 hover:bg-white/20'
+                    : 'text-dark bg-black/10 hover:bg-black/20'
                 }`}
               >
                 {darkTheme ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
@@ -90,7 +92,7 @@ const Navbar = () => {
                 <>
                   <button
                     onClick={() => setShowProfile(!showProfile)}
-                    className="bg-transparent w-9 h-9 p-0.5 border-[1.5px] border-lightBlue rounded-full"
+                    className="bg-transparent w-9 h-9 p-0.5 border-[1.5px] border-lightBlue hover:border-skyBlue rounded-full transition-colors duration-300"
                   >
                     <img
                       className="w-full h-full object-cover rounded-full"
@@ -154,7 +156,7 @@ const Navbar = () => {
               {/* Menubar */}
               <button
                 onClick={() => setShowNav(!showNav)}
-                className={`text-2xl p-1 border-lightBlue border-[1.5px] rounded-full sm:hidden ${
+                className={`text-2xl p-1 border-lightBlue hover:border-skyBlue border-[1.5px] rounded-full sm:hidden transition-colors duration-300 ${
                   darkTheme
                     ? 'text-light2 border-light2'
                     : 'text-gray-900 border-gray-800'
