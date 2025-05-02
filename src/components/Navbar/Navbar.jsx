@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
-import { CgMenu } from 'react-icons/cg';
+import { IoIosMenu } from 'react-icons/io';
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
 import { useAuthContext } from '../../Hooks/useAuthContext';
@@ -85,11 +85,12 @@ const Navbar = () => {
               >
                 {darkTheme ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
               </button>
+
               {user ? (
                 <>
                   <button
                     onClick={() => setShowProfile(!showProfile)}
-                    className="bg-transparent w-12 h-12 p-0.5 border-2 border-lightBlue rounded-full"
+                    className="bg-transparent w-9 h-9 p-0.5 border-[1.5px] border-lightBlue rounded-full"
                   >
                     <img
                       className="w-full h-full object-cover rounded-full"
@@ -153,9 +154,13 @@ const Navbar = () => {
               {/* Menubar */}
               <button
                 onClick={() => setShowNav(!showNav)}
-                className="p-2.5 border-2 border-lightBlue rounded-full sm:hidden"
+                className={`text-2xl p-1 border-lightBlue border-[1.5px] rounded-full sm:hidden ${
+                  darkTheme
+                    ? 'text-light2 border-light2'
+                    : 'text-gray-900 border-gray-800'
+                }`}
               >
-                <CgMenu className="text-skyBlue text-2xl" />
+                <IoIosMenu />
               </button>
             </div>
           </nav>
