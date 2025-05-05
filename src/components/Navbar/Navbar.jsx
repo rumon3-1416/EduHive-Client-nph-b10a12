@@ -8,11 +8,17 @@ import Container from '../Container/Container';
 
 import logo from '../../assets/icons/logo.png';
 import userIcon from '../../assets/icons/user.png';
+import Button from '../Button';
 
 const navLinks = [
   { id: '01', title: 'Home', link: '/' },
   { id: '02', title: 'All Classes', link: '/all_classes' },
   { id: '03', title: 'Teach on EduHive', link: '/apply_teacher' },
+];
+
+const dashboardLinks = [
+  { id: '01', title: 'Profile', link: '/dashboard/profile' },
+  { id: '02', title: 'Dashboard', link: '/dashboard' },
 ];
 
 const Navbar = () => {
@@ -30,15 +36,15 @@ const Navbar = () => {
   useEffect(() => {
     const handleOutsideClick = e => {
       if (
-        !profileRef.current.contains(e.target) &&
-        !profileMenuRef.current.contains(e.target)
+        !profileRef.current?.contains(e.target) &&
+        !profileMenuRef.current?.contains(e.target)
       ) {
         setShowProfile(false);
       }
 
       if (
-        !menuRef.current.contains(e.target) &&
-        !navRef.current.contains(e.target)
+        !menuRef.current?.contains(e.target) &&
+        !navRef.current?.contains(e.target)
       ) {
         setShowNav(false);
       }
@@ -85,11 +91,11 @@ const Navbar = () => {
             {/* Nav Links */}
             <ul
               ref={navRef}
-              className={`sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none sm:text-sm lg:text-base font-medium sm:h-fit sm:py-0 rounded-b-xl shadow-lg sm:shadow-none overflow-hidden flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-16 sm:top-0 z-20 transition-all duration-300 ${
+              className={`text-sm sm:bg-transparent backdrop-blur-md sm:backdrop-blur-none font-medium sm:h-fit sm:py-0 rounded-b-md shadow-lg sm:shadow-none overflow-hidden flex flex-col sm:flex-row items-center gap-4 sm:gap-2 lg:gap-4 xl:gap-8 absolute sm:static inset-x-0 top-16 sm:top-0 z-20 transition-all duration-300 ${
                 darkTheme
                   ? 'text-light2 bg-[#212527f0]'
                   : 'text-[#24312e] bg-[#f4fbfff0]'
-              } ${showNav ? 'h-44 py-8' : 'h-0'}
+              } ${showNav ? 'h-36 py-6' : 'h-0'}
 `}
             >
               {navLinks.map(nav => (
@@ -137,40 +143,42 @@ const Navbar = () => {
                   {/* Profile Info */}
                   <div
                     ref={profileMenuRef}
-                    className={`p-2 top-10 right-2 absolute z-20 ${
+                    className={`p-2 top-8 right-2 absolute z-20 ${
                       showProfile ? 'block' : 'hidden'
                     }`}
                   >
                     <div
-                      className={`bg-white text-center p-4 pb-5 rounded-lg shadow-md shadow-[#7b7b7b] `}
+                      className={`px-3 py-4 rounded-md shadow-md shadow-[#7b7b7b] backdrop-blur-md flex flex-col gap-1 ${
+                        darkTheme ? 'bg-[#212527]' : 'bg-[#e6ecf0]'
+                      }`}
                     >
-                      <h2 className="font-semibold text-nowrap">
-                        {user?.displayName || 'Name'}
-                      </h2>
-                      <button
-                        onClick={() => {
-                          navigate('/dashboard/profile');
-                          setShowProfile(false);
-                        }}
-                        className="text-skyBlue hover:bg-[#b8d2e19a] w-full font-medium text-nowrap px-3 py-1 mt-3 rounded-md"
-                      >
-                        Profile
-                      </button>
-                      <button
-                        onClick={() => {
-                          navigate('/dashboard');
-                          setShowProfile(false);
-                        }}
-                        className="text-skyBlue hover:bg-[#b8d2e19a] w-full font-medium text-nowrap px-3 py-1 rounded-md"
-                      >
-                        Dashboard
-                      </button>
+                      {dashboardLinks.map(link => (
+                        <button
+                          key={link.id}
+                          onClick={() => {
+                            navigate(link.link);
+                            setShowProfile(false);
+                          }}
+                          className={`hover:bg-skyBlue/90 text-sm text-left w-full text-nowrap px-4 py-1 rounded-md transition-colors duration-300 ${
+                            darkTheme
+                              ? 'text-light2'
+                              : 'text-black hover:text-light2'
+                          }`}
+                        >
+                          {link.title}
+                        </button>
+                      ))}
+                      {/* Log Out */}
                       <button
                         onClick={() => {
                           signOutUser();
                           setShowProfile(false);
                         }}
-                        className="text-skyBlue hover:text-orange-500 hover:bg-[#b8d2e19a] w-full font-medium text-nowrap px-3 py-1 rounded-md"
+                        className={`hover:bg-orange-500 text-sm text-left w-full text-nowrap px-4 py-1 rounded-md transition-colors duration-300 ${
+                          darkTheme
+                            ? 'text-light2'
+                            : 'text-black hover:text-light2'
+                        }`}
                       >
                         Log Out
                       </button>
@@ -178,12 +186,7 @@ const Navbar = () => {
                   </div>
                 </>
               ) : (
-                <button
-                  onClick={() => navigate('/signin')}
-                  className="text-white bg-skyBlue hover:bg-green font-medium px-5 xl:px-9 py-2 rounded-full transition-all duration-300"
-                >
-                  Sign In
-                </button>
+                <Button onClick={() => navigate('/signin')}>Log In</Button>
               )}
 
               {/* Menubar */}

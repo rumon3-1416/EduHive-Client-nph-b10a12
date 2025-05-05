@@ -8,6 +8,7 @@ import googleIcon from '../../assets/icons/google.png';
 import Container from '../../components/Container/Container';
 import { useForm } from 'react-hook-form';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import GoogleSignIn from './GoogleSignIn';
 
 const SignUp = () => {
   const { register, handleSubmit } = useForm();
@@ -94,7 +95,7 @@ const SignUp = () => {
     <div className="bg-blueBg">
       <Container>
         <section className="min-h-[calc(100vh-1.5rem)] py-6 flex justify-center items-center">
-          <div className="text-[#403F3F bg-[#fffcfc] w-full sm:w-4/5 max-w-md px-6 md:px-8 py-6 rounded-2xl shadow-lg">
+          <div className="text-[#403F3F bg-[#fffcfc] w-full sm:w-4/5 max-w-md px-6 md:px-8 py-10 rounded-md shadow-lg">
             <h3 className="text-2xl text-center font-semibold">
               Register Your Account
             </h3>
@@ -108,7 +109,7 @@ const SignUp = () => {
               {/* Name */}
               <input
                 {...register('displayName')}
-                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none border border-white focus:border-skyBlue rounded-md transition-colors duration-300"
                 id="displayName"
                 name="displayName"
                 type="text"
@@ -118,7 +119,7 @@ const SignUp = () => {
               {/* Email */}
               <input
                 {...register('email')}
-                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none border border-white focus:border-skyBlue rounded-md transition-colors duration-300"
                 id="email"
                 name="email"
                 type="email"
@@ -128,7 +129,7 @@ const SignUp = () => {
               {/* Photo */}
               <input
                 {...register('photoURL')}
-                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none border border-white focus:border-skyBlue rounded-md transition-colors duration-300"
                 id="photoURL"
                 name="photoURL"
                 type="text"
@@ -139,7 +140,7 @@ const SignUp = () => {
               <div className="relative">
                 <input
                   {...register('password')}
-                  className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                  className="bg-[#F3F3F3] w-full px-3 py-2 outline-none border border-white focus:border-skyBlue rounded-md transition-colors duration-300"
                   id="password"
                   name="password"
                   type={showPass ? `text` : `password`}
@@ -177,7 +178,7 @@ const SignUp = () => {
               {errMessage && <p className="text-red-500">{errMessage}</p>}
               {/* Submit */}
               <button
-                className="bg-skyBlue hover:bg-green text-white text-xl font-semibold px-5 py-2 rounded-full transition-all duration-300"
+                className="bg-skyBlue text-white hover:bg-darkBlue font-medium px-6 py-2 rounded-md transition-all duration-300"
                 type="submit"
               >
                 Register
@@ -186,7 +187,10 @@ const SignUp = () => {
 
             <p className="text-[#706F6F] text-center font-semibold mt-5">
               Already Have An Account ?{' '}
-              <Link className="text-green whitespace-nowrap" to="/signin">
+              <Link
+                className="text-skyBlue hover:text-darkBlue whitespace-nowrap"
+                to="/signin"
+              >
                 Log In
               </Link>
             </p>
@@ -201,13 +205,7 @@ const SignUp = () => {
             </div>
 
             {/* Google Sign In */}
-            <button
-              onClick={() => handlePopup('google')}
-              className="w-full font-semibold px-4 py-2 border-[1.5px] border-skyBlue hover:border-green rounded-full flex justify-center items-center gap-2 sm:gap-4"
-            >
-              <img className="w-6" src={googleIcon} alt="G" />
-              <span>Continue With Google</span>
-            </button>
+            <GoogleSignIn setErrMessage={setErrMessage} />
           </div>
         </section>
       </Container>

@@ -59,7 +59,7 @@ const PopularClasses = () => {
             {popularClasses.length > 2 &&
               popularClasses.map(popClass => (
                 <SwiperSlide
-                  className="rounded-2xl aspect-auto h-full shadow-lg"
+                  className="rounded-md aspect-auto h-full shadow-lg"
                   key={popClass._id}
                 >
                   <PopClassCard popClass={popClass} />

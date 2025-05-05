@@ -37,7 +37,7 @@ const Categories = () => {
           {!isLoading &&
             Categories.map(category => (
               <div
-                className={`text-center p-6 hover:shadow-xl rounded-2xl
+                className={`text-center p-6 hover:shadow-xl rounded-md transition-colors duration-300
               ${darkTheme ? 'hover:bg-dark5' : 'hover:bg-white'}`}
                 key={category._id}
               >
@@ -80,7 +80,7 @@ const Categories = () => {
                   {category.description}
                 </p>
                 <Link className="group" to="/all_classes">
-                  <p className="text-skyBlue hover:text-green text-lg font-semibold mt-6 inline-flex items-center gap-3">
+                  <p className="text-skyBlue hover:text-green text-lg font-semibold mt-6 inline-flex items-center gap-3 transition-colors duration-200">
                     See More{' '}
                     <span className="text-xl">
                       <LuArrowUpRight />

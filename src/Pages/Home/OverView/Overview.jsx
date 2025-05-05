@@ -27,7 +27,7 @@ const Overview = () => {
               <div
                 className={`${
                   darkTheme ? 'bg-dark5' : 'bg-white'
-                } shadow-lg rounded-2xl p-8 text-center`}
+                } shadow-lg rounded-md p-8 text-center`}
               >
                 <h2
                   className={`poppins-font text-3xl leading-[44px] font-bold mb-2 ${

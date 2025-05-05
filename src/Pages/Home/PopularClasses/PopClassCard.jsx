@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../../Hooks/useAuthContext.js';
+import Button from '../../../components/Button.jsx';
 
 const PopClassCard = ({ popClass }) => {
   const { _id, title, image, description } = popClass;
@@ -10,12 +11,12 @@ const PopClassCard = ({ popClass }) => {
 
   return (
     <div
-      className={`min-h-[27.5rem] rounded-2xl flex flex-col items-start ${
+      className={`min-h-[27.5rem] rounded-md flex flex-col items-start ${
         darkTheme ? 'bg-dark5' : 'bg-white'
       }`}
     >
       <img
-        className="w-full aspect-[4/3] object-cover border-b rounded-2xl mb-4"
+        className="w-full aspect-[4/3] object-cover border-b rounded-md mb-4"
         src={image}
         alt={title}
       />
@@ -35,12 +36,13 @@ const PopClassCard = ({ popClass }) => {
           </p>
         </div>
 
-        <button
+        <Button
           onClick={() => navigate(`/class_details/${_id}`)}
-          className="bg-skyBlue text-white hover:bg-green font-medium w-full px-6 py-2 rounded-full transition-all duration-300"
+          className="w-full"
+          text="text-base"
         >
           Enroll Now
-        </button>
+        </Button>
       </div>
     </div>
   );

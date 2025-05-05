@@ -35,7 +35,7 @@ const QuesAns = () => {
           <div>
             <div
               onClick={() => setCurrTitle(1)}
-              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-xl ${
+              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-md ${
                 currTitle !== 1 ? 'bg-blueBg' : ''
               }`}
             >
@@ -61,7 +61,7 @@ const QuesAns = () => {
 
             <div
               onClick={() => setCurrTitle(2)}
-              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-xl ${
+              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-md ${
                 currTitle !== 2 ? 'bg-blueBg' : ''
               }`}
             >
@@ -87,7 +87,7 @@ const QuesAns = () => {
 
             <div
               onClick={() => setCurrTitle(3)}
-              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-xl ${
+              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-md ${
                 currTitle !== 3 ? 'bg-blueBg' : ''
               }`}
             >
@@ -112,7 +112,7 @@ const QuesAns = () => {
 
             <div
               onClick={() => setCurrTitle(4)}
-              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-xl ${
+              className={`collapse collapse-arrow border mb-4 border-skyBlue rounded-md ${
                 currTitle !== 4 ? 'bg-blueBg' : ''
               }`}
             >

@@ -66,13 +66,13 @@ const Feedbacks = () => {
 
                   return (
                     <SwiperSlide
-                      className="h-full aspect-auto rounded-xl shadow-lg"
+                      className="h-full aspect-auto rounded-md shadow-lg"
                       key={_id}
                     >
                       <div
                         className={`${
                           darkTheme ? 'bg-dark5' : 'bg-white'
-                        } min-h-[17.5rem] p-6 rounded-2xl`}
+                        } min-h-[17.5rem] p-6 rounded-md`}
                       >
                         <div className="mb-2 flex gap-4">
                           <img

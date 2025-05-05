@@ -8,7 +8,7 @@ export default {
         skyBlue: '#3498db',
         blueBg: '#3498db0e',
         blueTrans: '#3498db1e',
-        darkBlue: '#21608b',
+        darkBlue: '#2f87c2',
         lightBlue: '#9ec3dc',
         green: '#2ecc71',
         greenBg: '#2ecc700e',

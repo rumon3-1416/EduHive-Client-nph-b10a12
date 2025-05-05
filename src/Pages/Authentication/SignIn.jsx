@@ -4,8 +4,9 @@ import { useAuthContext } from '../../Hooks/useAuthContext';
 
 import { IoEyeOutline } from 'react-icons/io5';
 import { FaRegEyeSlash } from 'react-icons/fa';
-import googleIcon from '../../assets/icons/google.png';
 import Container from '../../components/Container/Container';
+import Button from '../../components/Button';
+import GoogleSignIn from './GoogleSignIn';
 
 const SignIn = () => {
   const [showPass, setShowPass] = useState(false);
@@ -13,7 +14,7 @@ const SignIn = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { notify, emailPassSignIn, googleSignIn } = useAuthContext();
+  const { notify, emailPassSignIn } = useAuthContext();
 
   const desired = location.state?.pathname || '/';
 
@@ -25,20 +26,6 @@ const SignIn = () => {
     const password = form.password.value;
 
     emailPassSignIn(email, password)
-      .then(() => {
-        setErrMessage(null);
-        notify('success', 'Login Successful');
-        navigate(desired);
-      })
-      .catch(err => {
-        setErrMessage(err.message);
-        notify('error', 'Login Failed!');
-      });
-  };
-
-  // Popup Log In Handler
-  const handlePopup = () => {
-    googleSignIn()
       .then(() => {
         setErrMessage(null);
         notify('success', 'Login Successful');
@@ -67,7 +54,7 @@ const SignIn = () => {
     <div className="bg-blueBg">
       <Container>
         <section className="min-h-[calc(100vh-1.5rem)] py-6 flex justify-center items-center">
-          <div className="text-[#403F3F bg-[#fffcfc] w-full sm:w-4/5 max-w-md px-6 md:px-8 py-6 rounded-2xl shadow-lg">
+          <div className="text-[#403F3F bg-[#fffcfc] w-full sm:w-4/5 max-w-md px-6 md:px-8 py-10 rounded-md shadow-lg">
             <h3 className="text-2xl text-center font-semibold">
               Signin to Continue
             </h3>
@@ -79,33 +66,30 @@ const SignIn = () => {
               Users Credentials
             </p>
             <div className="mb-6 flex flex-wrap justify-center items-center gap-4">
-              <button
+              <Button
                 onClick={() => {
                   handleCredentials('student@gmail.com', 'A12Student');
                 }}
-                className="bg-skyBlue text-white hover:bg-green text-lg font-medium px-4 py-1 rounded-full transition-all duration-300"
               >
                 Student
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => {
                   handleCredentials(
                     'shahidhasanruman3@gmail.com',
                     'A12Teacher'
                   );
                 }}
-                className="bg-skyBlue text-white hover:bg-green text-lg font-medium px-4 py-1 rounded-full transition-all duration-300"
               >
                 Teacher
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => {
                   handleCredentials('admin@gmail.com', 'A12Admin');
                 }}
-                className="bg-skyBlue text-white hover:bg-green text-lg font-medium px-4 py-1 rounded-full transition-all duration-300"
               >
                 Admin
-              </button>
+              </Button>
             </div>
 
             {/* Email Password Sign In */}
@@ -116,7 +100,7 @@ const SignIn = () => {
             >
               {/* Email */}
               <input
-                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md"
+                className="bg-[#F3F3F3] w-full px-3 py-2 outline-none border border-white focus:border-skyBlue rounded-md transition-colors duration-300"
                 id="email"
                 name="email"
                 type="email"
@@ -127,7 +111,7 @@ const SignIn = () => {
               {/* Password */}
               <div className="relative">
                 <input
-                  className="bg-[#F3F3F3] w-full px-3 py-2 outline-none focus:border border-skyBlue rounded-md mb-3"
+                  className="bg-[#F3F3F3] w-full px-3 py-2 outline-none border border-white focus:border-skyBlue rounded-md mb-3 transition-colors duration-300"
                   id="password"
                   name="password"
                   type={showPass ? `text` : `password`}
@@ -152,7 +136,7 @@ const SignIn = () => {
 
               {/* Submit */}
               <button
-                className="bg-skyBlue hover:bg-green text-white text-xl font-semibold px-5 py-2 rounded-full transition-all duration-300"
+                className="bg-skyBlue text-white hover:bg-darkBlue font-medium px-6 py-2 rounded-md transition-all duration-300"
                 type="submit"
               >
                 Signin
@@ -161,7 +145,10 @@ const SignIn = () => {
 
             <p className="text-[#706F6F] text-center font-semibold mt-5">
               Don’t Have An Account ?{' '}
-              <Link className="text-green whitespace-nowrap" to="/signup">
+              <Link
+                className="text-skyBlue hover:text-darkBlue whitespace-nowrap"
+                to="/signup"
+              >
                 Register
               </Link>
             </p>
@@ -176,13 +163,7 @@ const SignIn = () => {
             </div>
 
             {/* Google Sign In */}
-            <button
-              onClick={() => handlePopup('google')}
-              className="w-full font-semibold px-4 py-2 border-[1.5px] border-skyBlue hover:border-green rounded-full flex justify-center items-center gap-2 sm:gap-4"
-            >
-              <img className="w-6" src={googleIcon} alt="G" />
-              <span>Continue With Google</span>
-            </button>
+            <GoogleSignIn setErrMessage={setErrMessage} />
           </div>
         </section>
       </Container>

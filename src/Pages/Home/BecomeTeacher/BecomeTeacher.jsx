@@ -4,6 +4,7 @@ import Container from '../../../components/Container/Container';
 
 import instructorImg from '../../../assets/images/instructor.png';
 import { useAuthContext } from '../../../Hooks/useAuthContext';
+import Button from '../../../components/Button';
 
 const BecomeTeacher = () => {
   const { darkTheme } = useAuthContext();
@@ -65,12 +66,9 @@ const BecomeTeacher = () => {
                 </li>
               </ul>
 
-              <button
-                onClick={() => navigate('/apply_teacher')}
-                className="bg-skyBlue hover:bg-green text-white px-6 py-2 rounded-full shadow-lg"
-              >
+              <Button onClick={() => navigate('/apply_teacher')}>
                 Join as a Teacher
-              </button>
+              </Button>
             </div>
           </div>
         </section>

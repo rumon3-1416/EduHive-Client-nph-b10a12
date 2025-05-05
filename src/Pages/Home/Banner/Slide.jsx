@@ -14,7 +14,7 @@ const Slide = ({ data }) => {
         alt=""
       />
 
-      <div className="bg-[#00000096] w-full text-white text-center flex flex-col items-center justify-center absolute inset-0">
+      <div className="bg-[#000000a5] w-full text-white text-center flex flex-col items-center justify-center absolute inset-0">
         <h2 className="max-w-[80%] text-3xl sm:text-4xl md:text-5xl font-semibold lg:font-bold">
           {title}
         </h2>
@@ -33,7 +33,7 @@ const Slide = ({ data }) => {
                 ?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
-          className="bg-green hover:bg-hoverGreen text-lg px-6 py-3 mt-6 rounded-full font-medium"
+          className="bg-skyBlue text-white hover:bg-darkBlue text-lg font-medium px-8 py-3 mt-6 shadow-lg shadow-lightBlue rounded-md transition-all duration-300"
         >
           {buttonText}
         </button>
