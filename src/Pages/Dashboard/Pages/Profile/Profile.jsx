@@ -51,19 +51,21 @@ const Profile = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-gray-100' : 'bg-white'
-          } p-10 mt-10 rounded-2xl shadow-xl`}
+          } p-10 mt-10 rounded-md shadow-xl`}
         >
           <div className="text-left text-lg font-medium w-fit grid grid-cols-[1fr,_auto] gap-x-8 gap-y-1">
-            <p>Name :</p>
-            <p>{displayName}</p>
-            <p>Role : </p>
-            <p>{role?.charAt(0)?.toUpperCase() + role?.slice(1) + ''}</p>
-            <p>Email :</p>
-            <p>{email}</p>
-            <p>Number :</p>
-            <p>{_id?.slice(0, 15)}</p>
-            <p>Joined At :</p>
-            <p>{new Date(joined).toLocaleDateString()}</p>
+            <p className="text-nowrap">Name :</p>
+            <p className="break-all">{displayName}</p>
+            <p className="text-nowrap">Role : </p>
+            <p className="break-all">
+              {role?.charAt(0)?.toUpperCase() + role?.slice(1) + ''}
+            </p>
+            <p className="text-nowrap">Email :</p>
+            <p className="break-all">{email}</p>
+            <p className="text-nowrap">Number :</p>
+            <p className="break-all">{_id?.slice(0, 15)}</p>
+            <p className="text-nowrap">Joined At :</p>
+            <p className="break-all">{new Date(joined).toLocaleDateString()}</p>
           </div>
         </div>
       </div>

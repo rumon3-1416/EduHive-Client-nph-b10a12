@@ -28,7 +28,7 @@ const Modal = ({ property, children }) => {
   return show ? (
     <div className="bg-[#00000053] w-full min-h-screen backdrop-blur-sm p-12 fixed inset-x-0 top-0 z-20 flex justify-center items-center">
       <div
-        className={`animate__animated animate__bounceIn min-w-[18rem] shadow-lg p-8 rounded-xl flex flex-col items-center ${
+        className={`animate__animated animate__bounceIn min-w-[18rem] shadow-lg p-8 rounded-md flex flex-col items-center ${
           darkTheme ? 'bg-dark5' : 'bg-[#fffcfc]'
         }`}
       >

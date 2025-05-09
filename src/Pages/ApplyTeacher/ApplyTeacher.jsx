@@ -7,6 +7,7 @@ import { useAuthContext } from '../../Hooks/useAuthContext';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import SectionHeading from '../Home/Shared/SectionHeading';
+import Button from '../../components/Button';
 
 const ApplyTeacher = () => {
   const { register, handleSubmit } = useForm();
@@ -116,7 +117,7 @@ const ApplyTeacher = () => {
                       darkTheme
                         ? 'bg-dark3 text-gray-200'
                         : 'bg-[#f1f1f1] text-gray-800'
-                    } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
+                    } w-full px-4 py-3 mb-8 border-[1.5px] border-white focus:border-skyBlue rounded-md outline-none transition-colors duration-200`}
                     name="name"
                     id="name"
                     type="text"
@@ -141,7 +142,7 @@ const ApplyTeacher = () => {
                       darkTheme
                         ? 'bg-dark3 text-gray-200'
                         : 'bg-[#f1f1f1] text-gray-800'
-                    } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
+                    } w-full px-4 py-3 mb-8 border-[1.5px] border-white focus:border-skyBlue rounded-md outline-none transition-colors duration-200`}
                     name="title"
                     id="title"
                     type="text"
@@ -168,7 +169,7 @@ const ApplyTeacher = () => {
                         darkTheme
                           ? 'bg-dark3 text-gray-200'
                           : 'bg-[#f1f1f1] text-gray-800'
-                      } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
+                      } w-full px-4 py-2.5 mb-8 border-[1.5px] border-white focus:border-skyBlue rounded-md outline-none transition-colors duration-200`}
                       name="image"
                       id="image"
                       type="file"
@@ -192,7 +193,7 @@ const ApplyTeacher = () => {
                         darkTheme
                           ? 'bg-dark3 text-gray-200'
                           : 'bg-[#f1f1f1] text-gray-800'
-                      } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
+                      } w-full px-4 py-3 mb-8 border-[1.5px] border-white focus:border-skyBlue rounded-md outline-none transition-colors duration-200`}
                       name="email"
                       id="email"
                       type="email"
@@ -222,7 +223,7 @@ const ApplyTeacher = () => {
                         darkTheme
                           ? 'bg-dark3 text-gray-200'
                           : 'bg-[#f1f1f1] text-gray-800'
-                      } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
+                      } w-full px-4 py-3 mb-8 border-[1.5px] border-white focus:border-skyBlue rounded-md outline-none transition-colors duration-200`}
                       defaultValue=""
                       name="experience"
                       id="experience"
@@ -252,7 +253,7 @@ const ApplyTeacher = () => {
                         darkTheme
                           ? 'bg-dark3 text-gray-200'
                           : 'bg-[#f1f1f1] text-gray-800'
-                      } w-full px-4 py-3 mb-8 rounded-lg outline-none`}
+                      } w-full px-4 py-3 mb-8 border-[1.5px] border-white focus:border-skyBlue rounded-md outline-none transition-colors duration-200`}
                       defaultValue=""
                       name="category"
                       id="category"
@@ -274,15 +275,16 @@ const ApplyTeacher = () => {
 
                 {/* Submit */}
                 <div className="text-center">
-                  <button
-                    className="bg-skyBlue text-white hover:bg-green text-xl font-semibold px-12 py-2.5 rounded-full"
+                  <Button
+                    className=""
+                    text="text-lg"
                     disabled={isLoading}
                     type="submit"
                   >
                     {status === 'rejected'
                       ? 'Request to Another'
                       : 'Submit For Review'}
-                  </button>
+                  </Button>
                 </div>
               </form>
             )}

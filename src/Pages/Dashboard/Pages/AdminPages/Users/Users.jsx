@@ -136,7 +136,9 @@ const Users = () => {
                     <td>
                       <button
                         onClick={() => handleAdmin(email)}
-                        className="text-green hover:text-hoverGreen text-nowrap"
+                        className={`text-green hover:bg-gray-300 text-nowrap px-2 py-1 rounded-md ${
+                          role === 'admin' ? 'cursor-not-allowed' : ''
+                        }`}
                         disabled={role === 'admin'}
                       >
                         Make Admin

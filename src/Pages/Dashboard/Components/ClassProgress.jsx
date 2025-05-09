@@ -22,7 +22,7 @@ const ClassProgress = ({ id }) => {
       <div
         className={`${
           darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-        } text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1`}
+        } text-center px-3 py-6 rounded-md shadow-lg flex flex-col justify-center items-center gap-1`}
       >
         <p className="text-3xl font-bold">{total_enrolment}</p>
         <h3 className="text-xl font-semibold">Total Enrollment</h3>
@@ -31,7 +31,7 @@ const ClassProgress = ({ id }) => {
       <div
         className={`${
           darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-        } text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1`}
+        } text-center px-3 py-6 rounded-md shadow-lg flex flex-col justify-center items-center gap-1`}
       >
         <p className="text-3xl font-bold">{total_assignment}</p>
         <h3 className="text-xl font-semibold">Total Assignment</h3>
@@ -40,7 +40,7 @@ const ClassProgress = ({ id }) => {
       <div
         className={`${
           darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-        } text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1`}
+        } text-center px-3 py-6 rounded-md shadow-lg flex flex-col justify-center items-center gap-1`}
       >
         <p className="text-3xl font-bold">{total_submission}</p>
         <h3 className="text-xl font-semibold">Total Submission</h3>

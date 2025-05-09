@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
+import Button from '../../../../../components/Button';
 
-const UpdateClass = ({ classData, handleUpdate }) => {
+const UpdateClass = ({ classData, handleUpdate, setUpdateModal }) => {
   const { _id, title, image, price, description } = classData;
 
   const { darkTheme } = useAuthContext();
@@ -21,10 +22,20 @@ const UpdateClass = ({ classData, handleUpdate }) => {
     await handleUpdate({ _id, ...data });
   };
 
+  // Input Fields and label classes
+  const labelClasses = `font-semibold mb-2 ${
+    darkTheme ? 'text-gray-100' : 'text-gray-700'
+  }`;
+  const inputClasses = `w-full px-4 py-2 mb-4 border-[1.5px] focus:border-skyBlue rounded-md outline-none transition-colors duration-300 ${
+    darkTheme
+      ? 'bg-dark3 text-gray-200 border-gray-500'
+      : 'bg-[#f1f1f1] text-gray-800'
+  }`;
+
   return (
     <div className="bg-[#00000053] w-full min-h-screen max-h-screen backdrop-blur-sm p-4 sm:p-10 md:p-12 fixed inset-0 overflow-hidden flex flex-col justify-center items-center z-50">
       <div
-        className={`animate__animated animate__zoomIn px-8 py-10 max-h-full w-full max-w-[1232px] mx-auto shadow-lg overflow-y-auto rounded-xl ${
+        className={`animate__animated animate__zoomIn px-8 py-10 max-h-full w-full max-w-[1232px] mx-auto shadow-lg overflow-y-auto rounded-md ${
           darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
         }`}
       >
@@ -38,17 +49,13 @@ const UpdateClass = ({ classData, handleUpdate }) => {
 
         <form onSubmit={handleSubmit(updateClass)}>
           {/* Title */}
-          <div className="mb-6 flex flex-col">
-            <label htmlFor="title" className={`font-semibold mb-2`}>
+          <div className="flex flex-col">
+            <label htmlFor="title" className={labelClasses}>
               Title
             </label>
             <input
               {...register('title')}
-              className={`${
-                darkTheme
-                  ? 'bg-dark3 text-gray-200'
-                  : 'bg-[#f1f1f1] text-gray-800'
-              } w-full px-4 py-3 rounded-lg outline-none`}
+              className={inputClasses}
               id="title"
               type="text"
               name="title"
@@ -58,19 +65,15 @@ const UpdateClass = ({ classData, handleUpdate }) => {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 md:gap-4">
             {/* Image */}
-            <div className="mb-6 flex flex-col">
-              <label htmlFor="image" className={`font-semibold mb-2`}>
+            <div className="flex flex-col">
+              <label htmlFor="image" className={labelClasses}>
                 Image
               </label>
               <input
                 {...register('image')}
-                className={`${
-                  darkTheme
-                    ? 'bg-dark3 text-gray-200'
-                    : 'bg-[#f1f1f1] text-gray-800'
-                } w-full px-4 py-3 rounded-lg outline-none`}
+                className={inputClasses}
                 id="image"
                 type="text"
                 name="image"
@@ -80,17 +83,13 @@ const UpdateClass = ({ classData, handleUpdate }) => {
               />
             </div>
             {/* Price */}
-            <div className="mb-6 flex flex-col">
-              <label htmlFor="price" className={`font-semibold mb-2`}>
+            <div className="flex flex-col">
+              <label htmlFor="price" className={labelClasses}>
                 Price
               </label>
               <input
                 {...register('price')}
-                className={`${
-                  darkTheme
-                    ? 'bg-dark3 text-gray-200'
-                    : 'bg-[#f1f1f1] text-gray-800'
-                } w-full px-4 py-3 rounded-lg outline-none`}
+                className={inputClasses}
                 id="price"
                 type="number"
                 name="price"
@@ -102,17 +101,13 @@ const UpdateClass = ({ classData, handleUpdate }) => {
           </div>
 
           {/* description */}
-          <div className="mb-6 flex flex-col">
-            <label htmlFor="description" className={`font-semibold mb-2`}>
+          <div className="flex flex-col">
+            <label htmlFor="description" className={labelClasses}>
               Description
             </label>
             <textarea
               {...register('description')}
-              className={`${
-                darkTheme
-                  ? 'bg-dark3 text-gray-200'
-                  : 'bg-[#f1f1f1] text-gray-800'
-              } w-full px-4 py-3 rounded-lg outline-none resize-none`}
+              className={`${inputClasses} resize-none`}
               id="description"
               name="description"
               placeholder="Write a short description"
@@ -123,13 +118,19 @@ const UpdateClass = ({ classData, handleUpdate }) => {
           </div>
 
           {/* Submit */}
-          <div className="text-center">
+          <div className="text-center flex gap-4 justify-center">
             <button
-              type="submit"
-              className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
+              onClick={() => {
+                setUpdateModal({ show: false, classData: {} });
+              }}
+              className="bg-orange-500 text-white hover:bg-orange-600 font-medium px-6 py-2 rounded-md transition-all duration-200"
+              type="button"
             >
-              Update
+              cancel
             </button>
+            <Button type="submit" text="text-base">
+              Update
+            </Button>
           </div>
         </form>
       </div>

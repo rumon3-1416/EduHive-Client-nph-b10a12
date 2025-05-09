@@ -8,6 +8,7 @@ import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import ClassProgress from '../../../Components/ClassProgress';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 import SectionHeading from '../../../../Home/Shared/SectionHeading';
+import Button from '../../../../../components/Button';
 
 const AllTeacherClasses = () => {
   const [totalData, setTotalData] = useState(0);
@@ -134,14 +135,18 @@ const AllTeacherClasses = () => {
                       <div className="flex justify-center items-center gap-4">
                         <button
                           onClick={() => handleClassStatus(_id, 'approved')}
-                          className="text-green hover:text-hoverGreen"
+                          className={`text-green hover:bg-gray-300 text-nowrap px-2 py-1 rounded-md ${
+                            status === 'approved' && 'cursor-not-allowed'
+                          }`}
                           disabled={status !== 'pending'}
                         >
                           Approve{status === 'approved' ? 'd' : ''}
                         </button>
                         <button
                           onClick={() => handleClassStatus(_id, 'rejected')}
-                          className="text-[#ff8629] hover:text-[#ff0000] px-2 rounded-md"
+                          className={`text-[#ff8629] hover:text-[#ff0000] hover:bg-gray-300 text-nowrap px-2 py-1 rounded-md ${
+                            status !== 'pending' && 'cursor-not-allowed'
+                          }`}
                           disabled={status !== 'pending'}
                         >
                           Reject{status === 'rejected' ? 'ed' : ''}
@@ -154,7 +159,9 @@ const AllTeacherClasses = () => {
                           setProgressId(_id);
                           document.getElementById('progress_modal').showModal();
                         }}
-                        className="text-blue-400 hover:text-infoBlue px-2 rounded-md"
+                        className={`text-blue-400 hover:bg-gray-300 text-nowrap px-2 py-1 rounded-md ${
+                          status !== 'approved' && 'cursor-not-allowed'
+                        }`}
                         disabled={status !== 'approved'}
                       >
                         Progress
@@ -178,14 +185,14 @@ const AllTeacherClasses = () => {
                     onClick={() => {
                       currentPage > 1 && setCurrentPage(currentPage - 1);
                     }}
-                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-[7px] rounded-md border-2 border-lightBlue hover:border-skyBlue"
                   >
                     <IoIosArrowBack />
                   </button>
                   {pagesArray.map(num => (
                     <button
                       onClick={() => setCurrentPage(num + 1)}
-                      className={`px-3 py-1 rounded-lg border-2 border-lightBlue ${
+                      className={`px-3 py-1 rounded-md border-2 border-lightBlue ${
                         currentPage === num + 1
                           ? 'bg-lightBlue text-white cursor-default'
                           : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'
@@ -200,7 +207,7 @@ const AllTeacherClasses = () => {
                       currentPage < totalPages &&
                         setCurrentPage(currentPage + 1);
                     }}
-                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-[7px] rounded-md border-2 border-lightBlue hover:border-skyBlue"
                   >
                     <IoIosArrowForward />
                   </button>
@@ -214,7 +221,7 @@ const AllTeacherClasses = () => {
       {/* Progress Modal */}
       <dialog id="progress_modal" className="modal">
         <div
-          className={`modal-box w-11/12 max-w-5xl ${
+          className={`modal-box w-11/12 max-w-5xl rounded-md ${
             darkTheme ? 'bg-[#4e4e4e] text-light2' : 'bg-gray-100'
           }`}
         >
@@ -223,12 +230,9 @@ const AllTeacherClasses = () => {
 
           <div className="modal-action">
             <form method="dialog">
-              <button
-                onClick={() => setProgressId(null)}
-                className="bg-skyBlue text-white hover:bg-green text-xl font-semibold px-12 py-2.5 rounded-full"
-              >
+              <Button onClick={() => setProgressId(null)} text="text-base">
                 Close
-              </button>
+              </Button>
             </form>
           </div>
         </div>

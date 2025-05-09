@@ -15,7 +15,7 @@ const Payment = () => {
     <div className="bg-blueBg">
       <Container>
         <section className="min-h-[80vh] flex justify-center items-center">
-          <div className="bg-white w-4/5 min-w-[20rem] p-6 rounded-xl shadow-xl">
+          <div className="bg-white w-4/5 min-w-[20rem] p-6 rounded-md shadow-xl">
             <Elements stripe={stripePromise}>
               <CheckoutForm />
             </Elements>

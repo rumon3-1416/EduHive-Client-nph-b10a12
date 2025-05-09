@@ -5,6 +5,7 @@ import AddAssignment from './AddAssignment';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 import SectionHeading from '../../../../Home/Shared/SectionHeading';
+import Button from '../../../../../components/Button';
 
 const TeachClassDetails = () => {
   const [showForm, setShowForm] = useState(false);
@@ -59,7 +60,7 @@ const TeachClassDetails = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-          } text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1`}
+          } text-center px-3 py-6 rounded-md shadow-lg flex flex-col justify-center items-center gap-1`}
         >
           <p className="text-3xl font-bold">{total_enrolment}</p>
           <h3 className="text-xl font-semibold">Total Enrollment</h3>
@@ -68,7 +69,7 @@ const TeachClassDetails = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-          } text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1`}
+          } text-center px-3 py-6 rounded-md shadow-lg flex flex-col justify-center items-center gap-1`}
         >
           <p className="text-3xl font-bold">{total_assignment}</p>
           <h3 className="text-xl font-semibold">Total Assignment</h3>
@@ -77,7 +78,7 @@ const TeachClassDetails = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-          } text-center px-3 py-6 rounded-lg shadow-lg flex flex-col justify-center items-center gap-1`}
+          } text-center px-3 py-6 rounded-md shadow-lg flex flex-col justify-center items-center gap-1`}
         >
           <p className="text-3xl font-bold">{total_submission}</p>
           <h3 className="text-xl font-semibold">Total Submission</h3>
@@ -86,16 +87,18 @@ const TeachClassDetails = () => {
 
       {/* Create Assignment */}
       <div className="mt-6">
-        <button
-          onClick={() => setShowForm(true)}
-          className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
-        >
+        <Button onClick={() => setShowForm(true)} text="text-base">
           Create Assignment
-        </button>
+        </Button>
       </div>
 
       {/* Add Assignment Form */}
-      {showForm && <AddAssignment addAssignment={addAssignment} />}
+      {showForm && (
+        <AddAssignment
+          addAssignment={addAssignment}
+          setShowForm={setShowForm}
+        />
+      )}
     </div>
   );
 };

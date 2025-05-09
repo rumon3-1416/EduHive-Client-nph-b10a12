@@ -11,6 +11,7 @@ import SectionHeading from '../Home/Shared/SectionHeading';
 import SortClasses from './SortClasses';
 import Loading from '../../components/Loading/Loading';
 import { useAuthContext } from '../../Hooks/useAuthContext';
+import Button from '../../components/Button';
 
 const AllClasses = () => {
   const [totalData, setTotalData] = useState(0);
@@ -59,19 +60,19 @@ const AllClasses = () => {
                   <div
                     className={`${
                       darkTheme ? 'bg-dark5' : 'bg-white'
-                    } rounded-2xl shadow-lg flex flex-col items-start`}
+                    } rounded-md shadow-lg flex flex-col items-start`}
                     key={_id}
                   >
-                    <div className="w-full p-3">
+                    <div className="w-full p-2">
                       <img
-                        className="w-full aspect-[4/3] object-cover rounded-xl"
+                        className="w-full aspect-[4/3] object-cover rounded-md"
                         src={image}
                         alt={title}
                       />
                     </div>
 
                     {/* Desc */}
-                    <div className="px-6 pb-8 grow flex flex-col items-start">
+                    <div className="px-4 pb-6 grow flex flex-col items-start">
                       <div className="grow">
                         <h4
                           className={`text-lg font-semibold mb-2 ${
@@ -97,12 +98,12 @@ const AllClasses = () => {
                         </p>
                       </div>
 
-                      <button
+                      <Button
                         onClick={() => navigate(`/class_details/${_id}`)}
-                        className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-1.5 rounded-full"
+                        className="w-full"
                       >
                         Enroll Now
-                      </button>
+                      </Button>
                     </div>
                   </div>
                 );
@@ -115,14 +116,14 @@ const AllClasses = () => {
                 onClick={() => {
                   currentPage > 1 && setCurrentPage(currentPage - 1);
                 }}
-                className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-[7px] rounded-md border-2 border-lightBlue hover:border-skyBlue"
               >
                 <IoIosArrowBack />
               </button>
               {pagesArray.map(num => (
                 <button
                   onClick={() => setCurrentPage(num + 1)}
-                  className={`px-3 py-1 rounded-lg border-2 border-lightBlue ${
+                  className={`px-3 py-1 rounded-md border-2 border-lightBlue ${
                     currentPage === num + 1
                       ? 'bg-lightBlue text-white cursor-default'
                       : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'
@@ -136,7 +137,7 @@ const AllClasses = () => {
                 onClick={() => {
                   currentPage < totalPages && setCurrentPage(currentPage + 1);
                 }}
-                className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-[7px] rounded-md border-2 border-lightBlue hover:border-skyBlue"
               >
                 <IoIosArrowForward />
               </button>

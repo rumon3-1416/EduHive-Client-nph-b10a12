@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useAuthContext } from '../../Hooks/useAuthContext';
+import Button from '../../components/Button';
 
 const ClassDetails = () => {
   const { darkTheme } = useAuthContext();
@@ -33,46 +34,50 @@ const ClassDetails = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5' : 'bg-white'
-          } p-6 shadow-lg rounded-2xl grid grid-cols-1 md:grid-cols-2 gap-8`}
+          } p-5 shadow-lg rounded-md grid grid-cols-1 md:grid-cols-2 gap-8`}
         >
           <img
             className="
-        w-full aspect-video object-cover rounded-xl"
+        w-full aspect-video object-cover rounded-md"
             src={image}
             alt=""
           />
 
-          <div>
-            <p
-              className={`${
-                darkTheme ? 'text-light2' : 'text-gray-800'
-              } text-2xl font-bold mb-4`}
-            >
-              {title}
-            </p>
-            <p className={`${darkTheme ? 'text-gray-200' : 'text-gray-600'}`}>
-              Teacher : <span className="font-semibold">{name}</span>
-            </p>
-            <p className={`${darkTheme ? 'text-gray-200' : 'text-gray-600'}`}>
-              Enrolled :{' '}
-              <span className="font-semibold">{total_enrolment}</span>
-            </p>
-            <p
-              className={`${
-                darkTheme ? 'text-gray-200' : 'text-gray-600'
-              } mb-2`}
-            >
-              Price : <span className="font-semibold">{price}</span>
-            </p>
-            <p className={`mb-6 ${darkTheme && 'text-lightGray'}`}>
-              {description}
-            </p>
-            <button
+          <div className="py-3 flex flex-col">
+            <div className="flex-grow">
+              <p
+                className={`${
+                  darkTheme ? 'text-light2' : 'text-gray-800'
+                } text-2xl font-bold mb-4`}
+              >
+                {title}
+              </p>
+              <p className={`${darkTheme ? 'text-gray-200' : 'text-gray-600'}`}>
+                Teacher : <span className="font-semibold">{name}</span>
+              </p>
+              <p className={`${darkTheme ? 'text-gray-200' : 'text-gray-600'}`}>
+                Enrolled :{' '}
+                <span className="font-semibold">{total_enrolment}</span>
+              </p>
+              <p
+                className={`${
+                  darkTheme ? 'text-gray-200' : 'text-gray-600'
+                } mb-2`}
+              >
+                Price : <span className="font-semibold">{price}</span>
+              </p>
+              <p className={`mb-6 ${darkTheme && 'text-lightGray'}`}>
+                {description}
+              </p>
+            </div>
+
+            <Button
               onClick={() => navigate(`/payment/${_id}`)}
-              className="bg-skyBlue text-white hover:bg-green font-medium px-9 py-2 mb-2 rounded-full"
+              className="w-full"
+              text="text-lg"
             >
               Pay Now
-            </button>
+            </Button>
           </div>
         </div>
       </Container>

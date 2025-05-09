@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { useLocation, NavLink, useNavigate } from 'react-router-dom';
-import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md';
+import {
+  MdOutlineDarkMode,
+  MdOutlineLightMode,
+  MdLogout,
+} from 'react-icons/md';
 
 import { useAuthContext } from '../../../../Hooks/useAuthContext';
 import StudentMenu from './StudentMenu';
@@ -65,8 +69,8 @@ const Sidebar = ({ collapse, setCollapse }) => {
             collapse ? 'w-0 md:w-48 overflow-hidden' : 'w-48'
           } ${darkTheme ? 'bg-[#212527f0]' : 'bg-[#f4fbffbb]'}`}
         >
-          <div className="p-3">
-            {/* Logo */}
+          <div className="h-full p-3 relative">
+            {/* sidebar Head */}
             <div
               onClick={() => navigate('/')}
               className="py-2 cursor-pointer flex items-center gap-1"
@@ -76,11 +80,16 @@ const Sidebar = ({ collapse, setCollapse }) => {
             </div>
 
             {/* Border */}
-            <div className="my-2 border border-[#00000027]"></div>
+            <div
+              className={`my-2 border ${
+                darkTheme ? 'border-[#ffffff27]' : 'border-[#00000027]'
+              }`}
+            ></div>
 
+            {/* sidebar body */}
             {/* Sidebar Links */}
             <ul
-              className={`side-ul font-medium pt-2 ${
+              className={`side-ul font-medium h-[calc(100vh-11.7rem)] pt-2 overflow-y-auto ${
                 darkTheme ? 'text-gray-200' : 'text-darkGray'
               }`}
             >
@@ -123,7 +132,11 @@ const Sidebar = ({ collapse, setCollapse }) => {
               </li>
 
               {/* Border */}
-              <div className="my-2 border border-[#00000027]"></div>
+              <div
+                className={`my-2 border ${
+                  darkTheme ? 'border-[#ffffff27]' : 'border-[#00000027]'
+                }`}
+              ></div>
 
               {/* Home */}
               <li
@@ -142,37 +155,65 @@ const Sidebar = ({ collapse, setCollapse }) => {
                   Classes
                 </NavLink>
               </li>
-              {/* Logout */}
-              {user && (
+            </ul>
+
+            {/* sidebar Footer */}
+            <div className="p-3 absolute bottom-0 inset-x-0">
+              {/* Border */}
+              <div
+                className={`my-2 border ${
+                  darkTheme ? 'border-[#ffffff27]' : 'border-[#00000027]'
+                }`}
+              ></div>
+              {/* Footer Links */}
+
+              <ul
+                className={`side-ul font-medium ${
+                  darkTheme ? 'text-gray-200' : 'text-darkGray'
+                }`}
+              >
+                {/* Theme Button */}
                 <li
-                  onClick={() => setCollapse(true)}
-                  className="hover:bg-orange-500 hover:text-white"
+                  onClick={() => {
+                    setDarkTheme(!darkTheme);
+                    setCollapse(true);
+                  }}
+                  className={
+                    darkTheme
+                      ? 'hover:text-gray-800 hover:bg-white/90'
+                      : 'hover:text-light2 hover:bg-[#414141]'
+                  }
                 >
-                  <button
-                    className="px-4 w-full text-left"
-                    onClick={() => signOutUser()}
-                  >
-                    Logout
+                  <button className="px-4 w-full text-left flex items-center gap-2">
+                    <span className="text-xl">
+                      {darkTheme ? (
+                        <MdOutlineLightMode />
+                      ) : (
+                        <MdOutlineDarkMode />
+                      )}
+                    </span>
+                    <span>{darkTheme ? 'Light Theme' : 'Dark Theme'}</span>
                   </button>
                 </li>
-              )}
-
-              {/* Theme Button */}
-              <li
-                onClick={() => {
-                  setDarkTheme(!darkTheme);
-                  setCollapse(true);
-                }}
-                className="hover:bg-skyBlue hover:text-white"
-              >
-                <button className="px-4 w-full text-left flex items-center gap-2">
-                  <span>{darkTheme ? 'Light Theme' : 'Dark Theme'}</span>
-                  <span className="text-xl">
-                    {darkTheme ? <MdOutlineLightMode /> : <MdOutlineDarkMode />}
-                  </span>
-                </button>
-              </li>
-            </ul>
+                {/* Logout */}
+                {user && (
+                  <li
+                    onClick={() => setCollapse(true)}
+                    className="hover:bg-orange-500 hover:text-white"
+                  >
+                    <button
+                      className="px-4 w-full text-left flex items-center gap-2"
+                      onClick={() => signOutUser()}
+                    >
+                      <span className="text-xl">
+                        <MdLogout />
+                      </span>
+                      <span>Log Out</span>
+                    </button>
+                  </li>
+                )}
+              </ul>
+            </div>
           </div>
         </div>
       </div>

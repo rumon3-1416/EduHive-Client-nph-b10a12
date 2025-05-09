@@ -10,6 +10,7 @@ import Rating from './Rating';
 import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
 import SectionHeading from '../../../../Home/Shared/SectionHeading';
+import Button from '../../../../../components/Button';
 
 const EnrollClassDetails = () => {
   const [totalData, setTotalData] = useState(0);
@@ -97,14 +98,13 @@ const EnrollClassDetails = () => {
 
       {/* Feedback Button */}
       <div className="mb-4">
-        <button
+        <Button
           onClick={() => {
             document.getElementById('feedback_modal').showModal();
           }}
-          className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
         >
           Teaching Evaluation Report
-        </button>
+        </Button>
       </div>
 
       {/* Assignments */}
@@ -238,8 +238,8 @@ const EnrollClassDetails = () => {
       {/* Assignment Modal */}
       <dialog id="assignment_modal" className="modal">
         <div
-          className={`modal-box w-4/5 max-w-5xl ${
-            darkTheme ? 'bg-dark5 text-light2' : 'bg-gray-200'
+          className={`modal-box w-4/5 max-w-5xl rounded-md ${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-gray-100'
           }`}
         >
           <h2 className="text-center text-2xl font-semibold mb-6">
@@ -255,7 +255,7 @@ const EnrollClassDetails = () => {
               {assignClassId && (
                 <textarea
                   {...register('assignment')}
-                  className={`w-full px-2 py-1 rounded-xl outline-none resize-none ${
+                  className={`w-full px-2 py-1 rounded-md border-[1.5px] focus:border-skyBlue outline-none resize-none ${
                     darkTheme && 'bg-dark3 text-light2'
                   }`}
                   rows={5}
@@ -266,9 +266,18 @@ const EnrollClassDetails = () => {
                 ></textarea>
               )}
 
-              <button className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full">
-                Submit
-              </button>
+              <div className="text-center flex gap-4 justify-center">
+                <button
+                  onClick={() => {
+                    document.getElementById('assignment_modal').close();
+                  }}
+                  className="bg-orange-500 text-white hover:bg-orange-600 font-medium px-6 py-2 rounded-md transition-all duration-200"
+                  type="button"
+                >
+                  cancel
+                </button>
+                <Button className="">Submit</Button>
+              </div>
             </form>
           </div>
         </div>
@@ -277,8 +286,8 @@ const EnrollClassDetails = () => {
       {/* Feedback Modal */}
       <dialog id="feedback_modal" className="modal">
         <div
-          className={`modal-box w-4/5 max-w-5xl ${
-            darkTheme ? 'bg-dark5 text-light2' : 'bg-gray-200'
+          className={`modal-box w-4/5 max-w-5xl rounded-md ${
+            darkTheme ? 'bg-dark5 text-light2' : 'bg-gray-100'
           }`}
         >
           <h2 className="text-center text-2xl font-semibold mb-6">
@@ -293,7 +302,7 @@ const EnrollClassDetails = () => {
             >
               <textarea
                 {...register('feedback')}
-                className={`w-full px-2 py-1 rounded-xl outline-none resize-none ${
+                className={`w-full px-2 py-1 rounded-md border-[1.5px] focus:border-skyBlue outline-none resize-none ${
                   darkTheme && 'bg-dark3 text-light2'
                 }`}
                 rows={5}
@@ -306,9 +315,18 @@ const EnrollClassDetails = () => {
                 <Rating setRating={setRating} />
               </div>
 
-              <button className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full">
-                Submit
-              </button>
+              <div className="text-center flex gap-4 justify-center">
+                <button
+                  onClick={() => {
+                    document.getElementById('feedback_modal').close();
+                  }}
+                  className="bg-orange-500 text-white hover:bg-orange-600 font-medium px-6 py-2 rounded-md transition-all duration-200"
+                  type="button"
+                >
+                  cancel
+                </button>
+                <Button>Submit</Button>
+              </div>
             </form>
           </div>
         </div>

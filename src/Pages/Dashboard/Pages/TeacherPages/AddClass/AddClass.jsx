@@ -5,6 +5,7 @@ import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import SectionHeading from '../../../../Home/Shared/SectionHeading';
+import Button from '../../../../../components/Button';
 
 const AddClass = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -32,6 +33,16 @@ const AddClass = () => {
     document.title = 'Add Class | EduHive';
   }, []);
 
+  // Input Fields and label classes
+  const labelClasses = `font-semibold mb-2 ${
+    darkTheme ? 'text-gray-100' : 'text-gray-700'
+  }`;
+  const inputClasses = `w-full px-4 py-2 mb-4 border-[1.5px] focus:border-skyBlue rounded-md outline-none transition-colors duration-300 ${
+    darkTheme
+      ? 'bg-dark3 text-gray-200 border-gray-500'
+      : 'bg-[#f1f1f1] text-gray-800'
+  }`;
+
   return (
     <div>
       <div className="hidden md:block">
@@ -43,20 +54,16 @@ const AddClass = () => {
           onSubmit={handleSubmit(handleAddClass)}
           className={`${
             darkTheme ? 'bg-dark5' : 'bg-white'
-          } px-8 py-10 mt-8 rounded-xl shadow-xl grid grid-cols-1`}
+          } px-8 py-10 mt-8 rounded-md shadow-xl grid grid-cols-1`}
         >
           {/* Title */}
           <div className="flex flex-col">
-            <label className="text-gray-700 font-semibold mb-2" htmlFor="title">
+            <label className={labelClasses} htmlFor="title">
               Title
             </label>
             <input
               {...register('title')}
-              className={`${
-                darkTheme
-                  ? 'bg-dark3 text-gray-200'
-                  : 'bg-[#f1f1f1] text-gray-800'
-              } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
+              className={inputClasses}
               type="text"
               name="title"
               id="title"
@@ -66,21 +73,14 @@ const AddClass = () => {
           </div>
 
           {/* Image & Price */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-6">
             <div className="flex flex-col">
-              <label
-                className="text-gray-700 font-semibold mb-2"
-                htmlFor="image"
-              >
+              <label className={labelClasses} htmlFor="image">
                 Image
               </label>
               <input
                 {...register('image')}
-                className={`${
-                  darkTheme
-                    ? 'bg-dark3 text-gray-200'
-                    : 'bg-[#f1f1f1] text-gray-800'
-                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
+                className={inputClasses}
                 type="text"
                 name="image"
                 id="image"
@@ -90,19 +90,12 @@ const AddClass = () => {
             </div>
 
             <div className="flex flex-col">
-              <label
-                className="text-gray-700 font-semibold mb-2"
-                htmlFor="price"
-              >
+              <label className={labelClasses} htmlFor="price">
                 Price
               </label>
               <input
                 {...register('price')}
-                className={`${
-                  darkTheme
-                    ? 'bg-dark3 text-gray-200'
-                    : 'bg-[#f1f1f1] text-gray-800'
-                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
+                className={inputClasses}
                 type="number"
                 name="price"
                 id="price"
@@ -113,21 +106,14 @@ const AddClass = () => {
           </div>
 
           {/* Name & Email */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-6">
             <div className="flex flex-col">
-              <label
-                className="text-gray-700 font-semibold mb-2"
-                htmlFor="name"
-              >
+              <label className={labelClasses} htmlFor="name">
                 Name
               </label>
               <input
                 {...register('name')}
-                className={`${
-                  darkTheme
-                    ? 'bg-dark3 text-gray-200'
-                    : 'bg-[#f1f1f1] text-gray-800'
-                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
+                className={`${inputClasses} cursor-not-allowed`}
                 type="text"
                 name="name"
                 id="name"
@@ -138,19 +124,12 @@ const AddClass = () => {
             </div>
 
             <div className="flex flex-col">
-              <label
-                className="text-gray-700 font-semibold mb-2"
-                htmlFor="email"
-              >
+              <label className={labelClasses} htmlFor="email">
                 Email
               </label>
               <input
                 {...register('email')}
-                className={`${
-                  darkTheme
-                    ? 'bg-dark3 text-gray-200'
-                    : 'bg-[#f1f1f1] text-gray-800'
-                } w-full px-4 py-2.5 mb-8 rounded-lg outline-none`}
+                className={`${inputClasses} cursor-not-allowed`}
                 type="text"
                 name="email"
                 id="email"
@@ -163,19 +142,12 @@ const AddClass = () => {
 
           {/* Description */}
           <div className="flex flex-col">
-            <label
-              className="text-gray-700 font-semibold mb-2"
-              htmlFor="description"
-            >
+            <label className={labelClasses} htmlFor="description">
               Description
             </label>
             <textarea
               {...register('description')}
-              className={`${
-                darkTheme
-                  ? 'bg-dark3 text-gray-200'
-                  : 'bg-[#f1f1f1] text-gray-800'
-              } w-full px-4 py-2.5 mb-8 rounded-lg outline-none resize-none`}
+              className={`${inputClasses} resize-none`}
               rows={4}
               name="description"
               id="description"
@@ -186,12 +158,9 @@ const AddClass = () => {
 
           {/* Submit */}
           <div className="text-center">
-            <button
-              className="bg-skyBlue text-white hover:bg-green text-xl font-semibold px-12 py-2.5 rounded-full"
-              type="submit"
-            >
+            <Button text="text-base" type="submit">
               {mutation.isPending ? 'Adding...' : 'Add Class'}
-            </button>
+            </Button>
           </div>
         </form>
       </div>

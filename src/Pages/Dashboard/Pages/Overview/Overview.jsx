@@ -53,9 +53,9 @@ const Overview = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-          } p-6 rounded-2xl shadow-lg`}
+          } p-6 rounded-md shadow-lg`}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <div className="bg-successGreen w-12 p-2.5 rounded-full">
               <img
                 className="w-full aspect-square object-cover"
@@ -70,9 +70,9 @@ const Overview = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-          } p-6 rounded-2xl shadow-lg`}
+          } p-6 rounded-md shadow-lg`}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <div className="bg-skyBlue w-12 p-2.5 rounded-full">
               <img
                 className="w-full aspect-square object-cover"
@@ -87,9 +87,9 @@ const Overview = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-          } p-6 rounded-2xl shadow-lg`}
+          } p-6 rounded-md shadow-lg`}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <div className="bg-orange-400 w-12 p-2.5 rounded-full">
               <img
                 className="w-full aspect-square object-cover"
@@ -104,9 +104,9 @@ const Overview = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-          } p-6 rounded-2xl shadow-lg`}
+          } p-6 rounded-md shadow-lg`}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <div className="bg-pink-500 w-12 p-2.5 rounded-full">
               <img
                 className="w-full aspect-square object-cover"
@@ -133,7 +133,7 @@ const Overview = () => {
         <div
           className={`${
             darkTheme ? 'bg-dark5' : 'bg-white'
-          } py-4 sm:px-4 sm:py-6 rounded-2xl shadow-lg`}
+          } py-4 sm:px-4 sm:py-6 rounded-md shadow-lg`}
         >
           <ResponsiveContainer width="100%" height={400}>
             <BarChart data={classes}>
@@ -147,7 +147,7 @@ const Overview = () => {
                 fill="#3498db"
                 barSize={30}
                 name="Enrolment"
-                radius={[5, 5, 0, 0]}
+                radius={[3, 3, 0, 0]}
               />
             </BarChart>
           </ResponsiveContainer>

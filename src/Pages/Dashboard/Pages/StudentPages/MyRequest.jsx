@@ -26,7 +26,7 @@ const MyRequest = () => {
         <SectionHeading heading={['My Request']} />
       </div>
 
-      <div className="bg-white w-fit p-10 rounded-xl shadow-xl flex flex-col justify-center items-center">
+      <div className="bg-white w-fit p-10 rounded-md shadow-xl flex flex-col justify-center items-center">
         <div className="text-left">
           <p className="text-lg font-medium">Title : {title}</p>
           <p className="text-lg font-medium">Category : {category}</p>

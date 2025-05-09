@@ -4,6 +4,7 @@ import useAxiosSecure from '../../../../../Hooks/useAxiosSecure';
 import { useNavigate } from 'react-router-dom';
 import SectionHeading from '../../../../Home/Shared/SectionHeading';
 import { useAuthContext } from '../../../../../Hooks/useAuthContext';
+import Button from '../../../../../components/Button';
 
 const StudentEnrolls = () => {
   const { darkTheme } = useAuthContext();
@@ -38,38 +39,38 @@ const StudentEnrolls = () => {
               <div
                 className={`${
                   darkTheme ? 'bg-dark5 text-light2' : 'bg-white'
-                } rounded-2xl shadow-lg flex flex-col items-start`}
+                } rounded-md shadow-lg flex flex-col items-start`}
                 key={_id}
               >
-                <div className="w-full p-4">
+                <div className="w-full p-3">
                   <img
-                    className="w-full aspect-[4/3] object-cover rounded-xl"
+                    className="w-full aspect-[4/3] object-cover rounded-md"
                     src={image}
                     alt={title}
                   />
                 </div>
 
                 {/* Desc */}
-                <div className="px-6 pb-8 grow flex flex-col items-start">
+                <div className="w-full px-5 pb-8 grow flex flex-col items-start">
                   <div className="grow">
                     <h4 className="text-xl font-semibold">{title}</h4>
 
                     <p className="mb-2  mt-1 flex flex-wrap items-center">
                       <span className="text-dark-green font-medium">
-                        Teacher :
+                        Instructor
                       </span>
-                      <span className="font-medium ms-2">{name}</span>
+                      <span className="font-semibold ms-2">{name}</span>
                     </p>
                   </div>
 
-                  <button
+                  <Button
                     onClick={() =>
                       navigate(`/dashboard/enroll_class_details/${_id}`)
                     }
-                    className="bg-skyBlue text-white hover:bg-green font-medium px-6 py-2.5 rounded-full"
+                    className="w-full"
                   >
                     Continue
-                  </button>
+                  </Button>
                 </div>
               </div>
             );

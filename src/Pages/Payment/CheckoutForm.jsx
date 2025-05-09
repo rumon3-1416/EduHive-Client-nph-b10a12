@@ -4,6 +4,7 @@ import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuthContext } from '../../Hooks/useAuthContext';
 import { useMutation } from '@tanstack/react-query';
+import Button from '../../components/Button';
 
 const CheckoutForm = () => {
   const [stripeError, setStripeError] = useState('');
@@ -90,33 +91,36 @@ const CheckoutForm = () => {
 
   return (
     <form onSubmit={handlePay}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: '16px',
-              color: '#424770',
-              fontFamily: "'Roboto', sans-serif",
-              fontSmoothing: 'antialiased',
-              '::placeholder': {
-                color: '#aab7c4',
+      <div className="border-[1.5px] border-skyBlue rounded-md p-2">
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: '16px',
+                color: '#424770',
+                fontFamily: "'Roboto', sans-serif",
+                border: '1px solid #ccc',
+                fontSmoothing: 'antialiased',
+                '::placeholder': {
+                  color: '#aab7c4',
+                },
+              },
+              invalid: {
+                color: '#9e2146',
+                iconColor: '#fa755a',
               },
             },
-            invalid: {
-              color: '#9e2146',
-              iconColor: '#fa755a',
-            },
-          },
-        }}
-      />
+          }}
+        />
+      </div>
       {stripeError && <p className="text-red-500">{stripeError}</p>}
-      <button
-        className="bg-skyBlue text-white hover:bg-green font-medium px-9 py-2 mt-4 rounded-full"
+      <Button
+        className="mt-4"
         disabled={!stripe || mutation.isLoading}
         type="submit"
       >
         {mutation.isPending ? 'Loading...' : 'Pay'}
-      </button>
+      </Button>
     </form>
   );
 };

@@ -8,7 +8,7 @@ const SearchUsers = ({ setSearch }) => {
     <div className="mb-6 md:mt-4">
       <input
         onChange={e => setSearch(e.target.value)}
-        className={`px-3 py-1.5 border-2 border-skyBlue rounded-lg outline-none ${
+        className={`px-3 py-1.5 border-2 border-lightBlue focus:border-skyBlue rounded-lg outline-none transition-colors duration-300 ${
           darkTheme && 'bg-dark3 text-gray-200'
         }`}
         type="text"

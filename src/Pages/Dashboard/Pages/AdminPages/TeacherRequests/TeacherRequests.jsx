@@ -156,7 +156,9 @@ const TeacherRequests = () => {
                           onClick={() =>
                             handleReqAction(_id, email, 'approved')
                           }
-                          className="text-green hover:text-hoverGreen"
+                          className={`text-green hover:bg-gray-300 px-2 py-1 rounded-md ${
+                            status !== 'pending' ? 'cursor-not-allowed' : ''
+                          }`}
                           disabled={status !== 'pending'}
                         >
                           Approve
@@ -165,7 +167,9 @@ const TeacherRequests = () => {
                           onClick={() =>
                             handleReqAction(_id, email, 'rejected')
                           }
-                          className="text-[#ff8629] hover:text-[#ff0000] px-2 rounded-md"
+                          className={`text-[#ff8629] hover:text-[#ff0000] hover:bg-gray-300 px-2 py-1 rounded-md ${
+                            status !== 'pending' ? 'cursor-not-allowed' : ''
+                          }`}
                           disabled={status !== 'pending'}
                         >
                           Reject
@@ -190,14 +194,14 @@ const TeacherRequests = () => {
                     onClick={() => {
                       currentPage > 1 && setCurrentPage(currentPage - 1);
                     }}
-                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-[7px] rounded-md border-2 border-lightBlue hover:border-skyBlue"
                   >
                     <IoIosArrowBack />
                   </button>
                   {pagesArray.map(num => (
                     <button
                       onClick={() => setCurrentPage(num + 1)}
-                      className={`px-3 py-1 rounded-lg border-2 border-lightBlue ${
+                      className={`px-3 py-1 rounded-md border-2 border-lightBlue ${
                         currentPage === num + 1
                           ? 'bg-lightBlue text-white cursor-default'
                           : 'text-black hover:text-white bg-white hover:bg-skyBlue hover:border-skyBlue'
@@ -212,7 +216,7 @@ const TeacherRequests = () => {
                       currentPage < totalPages &&
                         setCurrentPage(currentPage + 1);
                     }}
-                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-1.5 rounded-lg border-2 border-lightBlue hover:border-skyBlue"
+                    className="text-black hover:text-white bg-white hover:bg-skyBlue text-lg px-2 py-[7px] rounded-md border-2 border-lightBlue hover:border-skyBlue"
                   >
                     <IoIosArrowForward />
                   </button>
