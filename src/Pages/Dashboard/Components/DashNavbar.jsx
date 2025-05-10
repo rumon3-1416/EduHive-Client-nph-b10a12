@@ -41,7 +41,7 @@ const DashNavbar = ({ setCollapse }) => {
       <div
         className={`${
           darkTheme ? 'bg-[#212527f0]' : 'bg-[#f4fbffbb]'
-        } backdrop-blur-md w-full h-16 px-[2.5%] shadow-lg fixed top-0 left-0 right-0 flex md:hidden justify-between items-center`}
+        } backdrop-blur-md w-full h-16 px-[2.5%] shadow-lg fixed top-0 left-0 right-0 flex md:hidden justify-between items-center z-10`}
       >
         <button
           onClick={() => setCollapse(false)}

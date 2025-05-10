@@ -60,7 +60,7 @@ const Sidebar = ({ collapse, setCollapse }) => {
   }, [darkTheme]);
 
   return (
-    <div className="min-h-[100vh] max-h-[100vh] sticky top-0 left-0 z-10">
+    <div className="min-h-[100vh] max-h-[100vh] sticky top-0 left-0 z-20">
       <div className="h-full relative">
         {/* Sidebar */}
         <div
